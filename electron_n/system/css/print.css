@@ -1,0 +1,25 @@
+
+	a, input,select {
+	display: block;
+	font-size: 10px;
+}
+#medio {
+	display: block;
+}
+#cabecera {
+	display: none;
+}
+#mnu_Reportes {
+	display: none;
+}
+#lateral_i{
+	display: none;
+}
+#Reportes {
+	display: block;
+	
+	
+}
+#tabla_tgridReportes {
+	display: table;
+}

@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+/*
+  -----------------------------------------------------------------------
+    Hoja de Estilo CSS
+    Desarrollado Por:  Carlos Peña
+    Modificado Por: Carlos Peña a PHP
+    Cuando defino (*) en el Style llamo a todos los eventos de la páginas 
+    mobiles....
+  ------------------------------------------------------------------------
+  */
+* {
+  margin: 0;
+  padding: 0;
+  clear: none;
+  float: none;
+  height: auto;
+  width: auto;
+}
+
+body {
+  font-size: 16px;
+  -webkit-text-size-adjust: none;
+  font-family: Helvetica, 'Nokia Sans', Arial, Sans-serif
+  }
+
+table {
+  border:0;
+  border-collapse: collapse;
+  border-spacing:0;
+  width:auto;
+  font-size: 16px;
+  -webkit-text-size-adjust: none;
+  font-family: Helvetica, 'Nokia Sans', Arial, Sans-serif
+  }
+
+input.os-text{
+  border:1px solid #ababab;
+  background:#fff;
+  color:#000;
+  font-size:100%;
+  padding:1px 2px 2px;
+  width:98%;
+  height:20px
+  }
+  
+.CajaBuscar input {
+  margin:0
+  }

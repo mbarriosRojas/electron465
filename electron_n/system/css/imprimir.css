@@ -1,0 +1,12 @@
+a, input {
+	display: block;
+}
+#medio {
+	display: block;
+}
+#cabecera {
+	display: none;
+}
+#lateral_i {
+	display: none;
+}

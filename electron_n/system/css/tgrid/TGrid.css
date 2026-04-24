@@ -1,0 +1,184 @@
+/*
+ -----------------------------------------------------------------------
+ Hoja de Estilo CSS
+ Desarrollado Por:  Mauricio Barrios
+ Modificado Por: Carlos Peña and Judelvis
+ Cuando defino (*) en el Style llamo a todos los eventos de la páginas
+ ------------------------------------------------------------------------
+ */
+
+.TGrid .detalle thead th {
+width:auto;
+border:10px;
+font-family: "Trebuchet MS", sans-serif;
+color:#045B8E;
+font-size: 10px;
+padding: 1px 1px 1px 1px;
+background-color:#BED9F3;
+text-shadow: 1px 1px 1px #fff;
+font-weight:bold;
+text-transform: uppercase;
+}
+.TGrid .detalle td{
+background:#ffffff;
+}
+.TGrid .detalle tbody th {
+font-family: "Trebuchet MS", sans-serif;
+color:#045B8E;
+text-shadow: 1px 1px 1px #fff;
+font-size: 10px;
+padding: 0px 0px 0px 0px;
+background-color:#BED9F3;
+font-weight:bold;
+}
+
+.TGrid input[type = 'image']{width:16px; height:16px}
+
+h1.titulo {
+	color: #815528;
+	letter-spacing: .1em;
+	font-size: 1.1em;
+	font-weight: bold;
+	line-height: 20px;
+	border-bottom:1px solid  #ccc;
+	text-shadow: 1px 1px 2px #999;
+	text-transform: uppercase;
+}
+.TGrid thead th {
+	font-family: "Trebuchet MS", sans-serif;
+	color:#fff;
+	font-size: 11px;
+	padding: 5px 5px 5px 5px;
+	background-color:#4E96BE;
+	text-shadow: 1px 1px 1px #444;
+	font-weight:bold;
+	text-transform: uppercase;
+}
+.TGrid tfoot th {
+	font-family: "Trebuchet MS", sans-serif;
+	color:#fff;
+	font-size: 11px;
+	padding: 5px 5px 5px 5px;
+	background-color:#4E96BE;
+	text-shadow: 1px 1px 1px #444;
+	font-weight:bold;
+	text-transform: uppercase;
+}
+.TGrid > .table{
+	font-family: Georgia, serif;
+	font-weight: normal;
+	text-align:center;
+}
+.TGrid thead th:empty {
+	background:transparent;
+	border: 1px;
+}
+.TGrid tbody th {	
+	font-family: "Trebuchet MS", sans-serif;
+	color:#fff;
+	font-size: 11px;
+	padding: 2px 5px 2px 5px;
+	background-color:#4E96BE;
+	text-shadow: 1px 1px 1px #444;
+	font-weight:bold;
+}
+.TGrid input[type = 'text'], select {
+	font-size: 11px;
+	color: #A52A2A;
+	font-size: 10px;
+	font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+	line-height: normal;
+	height: 100%;
+	width: 100%;
+	background-color:#f0f0f0;
+	border-right:1px dotted #999;	
+	text-transform:uppercase;
+	color:#666666
+}
+.TGrid select {
+	font-size: 9.5px;
+}
+.TGrid tbody tr {
+	border: 1px solid #999;
+	/*border: inset 0pt;*/
+     border-collapse: 0;
+     border-spacing: 0;
+     border: inset 0;
+     empty-cells: hidden;
+}
+.TGrid tbody tr:nth-child(2n) {
+	background-color: #F5F3E5;
+	color: white
+}
+.TGrid tbody tr:2n {
+	background-color: #D6EEFB;
+	color: white
+}
+.TGrid tbody td {
+	font-size: 10px;
+	background-color:transparent;
+	text-transform:uppercase;
+	border-bottom: 1px solid #ccc;
+	color:#333;
+}
+/** PAGINADOR **/
+.boton_adelante {
+	padding: 0 8px 0 8px;
+	color: #F1F6F7;
+	background: #4E96BE;
+	font-size: 12px;
+	text-align: center;
+}
+.boton_adelante:hover {
+	background:#B0E0E6;
+	color: #4E96BE;
+}
+.boton_anterior {
+	padding: 2px 8px 2px 8px;
+	color: #F1F6F7;
+	background: #4E96BE;
+	text-align: center;
+	font-size: 12px;
+}
+.boton_anterior:hover {
+	background:#B0E0E6;
+	color: #4E96BE;
+}
+.celdas {
+	padding: 2px 8px 2px 8px;
+	color: rgb(255, 255, 255);
+	background: #4E96BE;
+	font-size: 12px;
+}
+
+.paginador li {
+	float: left;
+	background: #4E96BE;
+	padding: 2px 5px 2px 5px;
+	display: block;
+	text-align: center;
+	color: #fff;
+}
+.paginador li:hover {
+	background: #B0E0E6;
+	color: #4E96BE;
+}
+.seleccionado {
+	background: #A7C0DC;
+	border: 1px solid #ffedad;
+}
+.deseleccionado {
+	border: 1px;
+}
+
+.totales{
+	font-family: "Trebuchet MS", sans-serif;
+	color:#fff;
+	font-size: 11px;
+	padding: 5px 5px 5px 5px;
+	background-color:#4E96BE;
+	text-shadow: 1px 1px 1px #444;
+	font-weight:bold;
+	text-transform: uppercase;
+	
+}

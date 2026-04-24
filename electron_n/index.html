@@ -1,0 +1,61 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Sistema De Control</title>
+	<meta name="keywords" content="Cooperativa Electron, Consultar Pagos, Creditos y Prestamos, Prestamo de dinero" > 
+	<link rel='stylesheet' href='system/css/login.css'>
+	</head>
+	<body>
+<div class="capa">
+<input type="hidden" id="dest_uri" value="/" />
+<div id="login-wrapper" class="login-whisp">
+    <div id="notify">
+        <div id='login-status' class="error-notice" style="visibility: hidden">
+            <span class='login-status-icon'></span>
+            <div id="login-status-message">Ha finalizado la sesión</div>
+        </div>
+    </div>
+
+    <div id="content-container">
+        <div id="login-container">
+            <div id="login-sub-container">
+                <div id="login-sub-header">
+                    <img src="system/img/whm.png" alt="logo" />
+                </div>
+                <div id="login-sub">
+                    <div id="forms">
+                        <form id="login_form" action="index.php/cooperativa/verificacion " method="post" target="_top">
+                            <div class="input-req-login"><label for="user"><img src="system/img/usuario.png"></img>&nbsp;Nombre de Usuario</label></div>
+                            <div class="input-field-login icon username-container">
+                                <input name="txtUsuario" id="user" autofocus="autofocus" value="" placeholder="Introduzca su nombre de usuario." class="std_textbox" type="text"  tabindex="1" required>
+                            </div>
+                            <div style="margin-top:30px;" class="input-req-login"><label for="pass"><img src="system/img/clave.png"></img>&nbsp;Contraseña</label></div>
+                            <div class="input-field-login icon password-container">
+                                <input name="txtClave" id="pass" placeholder="Ingrese su contraseña de la cuenta." class="std_textbox" type="password" tabindex="2"  required>
+                            </div>
+                            <div style="width: 285px;">
+                                <div class="login-btn">
+                                    <button name="login" type="submit" id="login_submit" tabindex="3">Acceder</button>
+                                </div>
+
+                             </div>
+                            <div class="clear" id="push"></div>
+                        </form>
+
+                    <!--CLOSE forms -->
+                    </div>
+
+                <!--CLOSE login-sub -->
+                </div>
+            <!--CLOSE login-sub-container -->
+            </div>
+        <!--CLOSE login-container -->
+        </div>
+
+    </div>
+<!--Close login-wrapper -->
+</div>
+<div class="copyright">Cooperativa Electron | Grupo Electron</div>
+</div>
+</body>
+</html>

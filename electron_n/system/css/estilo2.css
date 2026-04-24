@@ -1,0 +1,328 @@
+#menu {
+	top: 100px;
+	background: #4888F0;
+	text-shadow: 1px #fff;
+	width: 795px;
+	height: 30px;
+	z-index: 1;
+}
+#publicidad {
+	top: 0px;
+	background-image: -moz-radial-gradient(20px 20px, circle farthest-side, #AEC8E8 15%, #4888F0 90%);
+	width: 795px;
+	height: 120px;
+	z-index: 1;
+	-moz-border-radius-topleft: 1em;
+	-moz-border-radius-topright: 1em;
+	-webkit-border-top-left-radius: 1em;
+	-webkit-border-top-right-radius: 1em;
+}
+#menuh {
+	font: 80% "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin-top: 5px;
+}
+
+#menuh ul, li {
+	list-style-type: none;
+}
+
+#menuh ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+}
+
+#menuh li {
+	float: left;
+}
+
+#menuh a {
+	text-shadow: 1px 1px 1px #000;
+	font-weight: bold;
+	font-size: 12px;
+	color: #fff;
+	text-decoration: none;
+	background: transparent;
+	display: block;
+	padding: 3px 10px;
+	text-align: center;
+	border: 1px solid transparent;
+	border-width: 1px 1px 1px 0;
+	z-index: 1;
+}
+
+#menuh a#primero {
+	border-left: 1px solid transparent;
+}
+
+#menuh a:hover {
+	color: #fff;
+}
+#izquierda {
+	right: 25%;
+	float : right;
+	
+	top: 178px;
+	width: auto;
+}
+#central {
+
+	background: #fff;
+	top: 125px;
+	width: 795px;
+	height: auto;
+}
+#central table {
+	background: #fff;
+}
+#central a {
+	font-size: 11px;
+	color: #444;
+	text-decoration: none;
+}
+
+hr {
+	color: #444;
+	width: 100%;
+}
+h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14.5px;
+	color: #444;
+}
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 40px;
+}
+.menu {
+	padding: 0;
+	list-style: none;
+	width: 100%;
+	font-size: 13px;
+	background: #c1c1c1;
+	border: 1px solid rgba(0,0,0,0.8);
+	height: auto;
+}
+
+.menu li a {
+	display: block;
+	border-bottom: 1px solid rgba(0,0,0, 0.2);
+	border-top: 1px solid rgba(255,255,255, 0.2);
+	background: #3e3f44;
+	text-decoration: none;
+	color: #FFF;
+	text-shadow: 1px 0px 1px rgba(0,0,0,0.2);
+	filter: dropshadow(color=#000, offx=1, offy=0);
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.menu li ul li a {
+	font-size: 14px;
+	color: #47689d;
+	text-shadow: 1px 0px 1px rgba(255,255,255,0.5);
+}
+
+.menu li a:hover {
+	background: #4a6ba2;
+	-moz-transition: background 0.3s ease-in;
+	-webkit-transition: background 0.3s ease-in;
+	-o-transition: background 0.3s ease-in;
+}
+
+.menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height: 0;
+	overflow: hidden;
+	transition: 1s;
+	-moz-transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.menu li:hover ul {
+	height: 350px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.menu ul li a {
+	background: #fafafa;
+}
+
+.menu ul li a:hover {
+	background: none repeat scroll 0 0 #ccc;
+	color: #fff;
+	-moz-transition: color 0.4s ease;
+	-webkit-transition: color 0.4s ease;
+	-o-transition: color 0.4s ease;
+}
+.contact_form h2 {
+	background: #FED85D;
+	border-radius: 1px;
+	color: #000;
+	display: block;
+	font-family: sans-serif;
+	font-size: 20px;
+	padding: 5px;
+	text-shadow: 1px 1px 1px #fff;
+	width: 433px;
+}
+/*--- estilos para los ul y li del formulario ---*/
+.contact_form ul {
+	width: 450px;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+.contact_form li {
+	padding: 12px;
+	border-bottom: 1px solid #eee;
+	position: relative;
+}
+.contact_form label {
+	color: #555555;
+	display: inline-block;
+	float: left;
+	font-family: sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 3px;
+	padding: 3px;
+	width: 90px;
+}
+.contact_form input {
+	height: 20px;
+	width: 220px;
+	padding: 0px 5px 0px 5px;
+}
+.contact_form textarea {
+	padding: 8px;
+	width: 300px;
+}
+.contact_form button {
+	margin-left: 90px;
+}
+
+/*----- estilos visuales de los elementos --------*/
+
+.contact_form input, .contact_form textarea {
+	border: 1px solid #aaa;
+	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+	border-radius: 2px;
+	color: #888;
+	font-size: 12px;
+	padding-right: 30px;
+	-moz-transition: padding .25s;
+	-webkit-transition: padding .25s;
+	-o-transition: padding .25s;
+	transition: padding .25s;
+}
+.contact_form input:focus, .contact_form textarea:focus {
+	background: #fff;
+	border: 1px solid #555;
+	box-shadow: 0 0 3px #aaa;
+	padding-right: 80px;
+}
+
+/* === Estilos de Validacion === */
+
+.contact_form input:required:valid, .contact_form textarea:required:valid {
+	box-shadow: 0 0 5px #5cd053;
+	border-color: #28921f;
+}
+.contact_form input:focus:invalid, .contact_form textarea:focus:invalid {
+	box-shadow: 0 0 5px #d45252;
+	border-color: #b03535
+}
+
+/* === Estilos del boton de Envio === */
+button.submit {
+	padding: 9px 17px;
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	line-height: 1;
+	color: #444;
+	border: none;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#bbb));
+	background-image: -moz-linear-gradient(0% 100% 90deg, #BBBBBB, #FFFFFF);
+	background-color: #fff;
+	border: 1px solid #f1f1f1;
+	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+button.submit:hover {
+	opacity: .55;
+	cursor: pointer;
+	color: #fff;
+}
+button.submit:active {
+	border: 1px solid #222;
+	box-shadow: 0 0 10px 5px #444 inset;
+}
+table #list {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #444;
+	font-size: 11px;
+}
+#motos input {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #fff;
+	font-size: 12px;
+	background: #000;
+}
+#motos {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #444;
+	font-size: 11px;
+	border-spacing: 0px;
+}
+#motos tr:hover {
+	background: #F0F0F0;
+}
+#enviar {
+	width: 120px;
+	height: auto;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 1px #ccc;
+	background: #4888F0;
+	font-size: 12px;
+	padding: 5px 5px 5px 5px;
+	margin: 35px 5px 5px 5px;
+}
+/* menu nuevo*/
+#button {
+	padding: 0;
+}
+#button li {
+	display: inline;
+}
+#button li a {
+	font-family: Arial;
+	font-size: 11px;
+	text-decoration: none;
+	float: left;
+	padding: 10px;
+	background-color: #2175bc;
+	color: #fff;
+}
+#button li a:hover {
+	background-color: #2586d7;
+	margin-top: -2px;
+	padding-bottom: 12px;
+}
+/* pie de pagina */
+footer {
+	position: fixed;
+	float: left;
+	margin-top: 70%; /* ponga en negativo el alto de su pie de página para nuestro    ejemplo usamos 63, usted debe remplazarlo según su diseño   */
+	left: 14.5%;
+	height: 10px;
+	background: #000;
+	clear: both;
+	width: 71%;
+}

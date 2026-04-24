@@ -1,0 +1,395 @@
+@CHARSET "UTF-8";
+/*
+	-----------------------------------------------------------------------
+		Hoja de Estilo CSS
+		Desarrollado Por: Carlos Peña
+		Cuando defino (*) en el Style llamo a todos los eventos de la páginas
+		Reglas generales
+		Version: 2.0.0
+	------------------------------------------------------------------------
+	*/
+
+* {
+	margin: 0;
+	padding: 0;
+	clear: none;
+	float: none;
+	height: auto;
+	width: auto;
+	margin-left: 0px;
+	margin-top: 0px;
+	
+}
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	color: #333333;
+	border-radius: 5px;
+	font-size: 10px;
+	font-family: Arial, Trebuchet MS, Tahoma, Verdana, sans-serif; 
+	line-height: normal;
+}
+.focus {
+	outline: 0;
+}
+
+
+img,a {
+	border: none;
+	color: #996633;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 11px;
+	line-height: normal;	
+}
+
+
+input, select, textarea{
+	background-color:#fafaf4; 
+	color: #459e00;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-family: Arial, Trebuchet MS, Tahoma, Verdana, sans-serif; 
+	line-height: normal;
+	font-weight: bold;
+	border-bottom: none;
+	border: 1px solid #D4D4D4;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	height: 22px;
+}
+button{
+	height: 27px;
+}
+
+p,table,tr, td {
+	color: #000;
+	font-size: 11px;
+	font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+	border-bottom: none;	
+}
+
+h1 {
+	font-size: 20px;
+	line-height: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+	border-bottom: none;
+	padding: 0px;
+}
+
+h2 {
+	
+	color: #815528;
+	letter-spacing: .1em;
+	font-size: 1.5em;
+	font-weight: bold;
+	line-height: 20px;
+	border-bottom:1px solid  #ccc;
+	text-shadow: 1px 1px 2px #999;
+	text-transform: uppercase;
+
+}
+h3 {
+	color: #999;
+	letter-spacing: .2em;
+	text-transform: uppercase;
+	font-size: .9em;
+	font-weight: bold;
+	line-height: .8px;	
+}
+
+h4 {
+	color: #000;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: .8px;	
+}
+h5 {
+	
+	color: #815528;
+	letter-spacing: .1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	line-height: 15px;
+	border-bottom:1px solid  #ccc;
+	text-shadow: 1px 1px 2px #999;
+	text-transform: uppercase;
+
+}
+
+/*
+--------------------------------------------------------
+	Reglas para los DIV que controlan el ambiente general
+--------------------------------------------------------
+*/
+#cabecera {
+	background-color: #0F994B;
+	text-align: left;
+	width: 100%;
+	border: 1px  solid #3B5998;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+
+#BrBuscar{
+	background-color: #F2F0DD; 
+	width: 100%; 	
+	height: 30px; 
+	border: 1px solid; 
+	border-color: #d5d5d5;
+	padding:5px; 
+	border-bottom:0px;
+	box-shadow: 2px 2px 5px #999;
+  -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+}
+#medio {
+	float:left;
+	background-color: transparent;
+	vertical-align: middle;
+	text-align: left;
+	width: 750px;
+	padding-top: 5px;
+	padding-left: 15px;	
+}
+/*
+	--------------------------------------------------------
+		Login de Usuario
+	--------------------------------------------------------
+	*/
+div#Login {
+	position: absolute;
+	text-align: center;
+	width: 96px;
+	height: 94px;
+	overflow: hidden;
+	left: 904px;
+	top: 264px;
+}
+
+div#buscar {
+	right: 0px;
+	position: absolute;
+}
+
+input.field {	
+	font: 11px Currier, Verdana, Arial, sans-serif;
+	color: #0a7285;
+}
+input.submit {
+	font: 10px Currier, Verdana, Arial, sans-serif;
+	color: #0a7285;
+}
+
+
+.cabUsuario {
+	background-image: url('/system/img/imgUsuario.gif');
+	background-repeat: no-repeat;
+	background-position: center top;
+	margin-bottom: 15px;
+	width: 135px;
+	height: 20px;
+	padding: 4px 2px 0px 25px;
+	overflow: hidden;
+	border: none;
+	color: #646464;
+	font-size: 11px;
+}
+
+
+.cabClave {
+	background-image: url('/system/img/imgClave.gif');
+	background-repeat: no-repeat;
+	background-position: center top;
+	margin-bottom: 15px;
+	width: 135px;
+	height: 20px;
+	padding: 4px 2px 0px 25px;
+	overflow: hidden;
+	border: none;
+	color: #646464;
+	font-size: 11px;
+}
+.mcabUsuario {
+	background-image: url('/system/img/m.input.gif');
+	background-repeat: no-repeat;
+	background-position: center top;
+	margin-bottom: 10px;
+	width: 170px;
+	height: 20px;
+	padding: 2px 2px 0px 25px;
+	overflow: hidden;
+	border: none;
+	color: #646464;
+	font-size: 11px;
+}
+.mcabClave {
+	background-image: url('/system/img/m.input.gif');
+	background-repeat: no-repeat;
+	background-position: center top;
+	margin-bottom: 10px;
+	width: 170px;
+	height: 20px;
+	padding: 2px 2px 0px 25px;
+	overflow: hidden;
+	border: none;
+	color: #646464;
+	font-size: 11px;
+}
+
+
+/*
+	--------------------------------------------------------
+		        Login
+	--------------------------------------------------------
+	*/
+#login {
+color: #333333;
+	font-size: 11px;
+	font-family: Currier, Verdana, sans-serif;
+	float: left;
+	width: 96px;
+	height: 56px;
+	padding: 0;
+	margin: 0;
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	cursor: pointer
+}
+
+#login:hover {
+	background-position: 0px -94px;
+	background-repeat: no-repeat;
+}
+
+
+/*
+ * ESTILO GENERADOR DE VISTA
+ */
+/* llamando a la imagen completa, y creandole un espacio hacia la izquierda donde
+ el texto del placeholder comienza..
+ * */
+.iconos2 input[type=text],
+.iconos2 input[type=password],
+.iconos2 input.text,
+.iconos2 input.title  {
+	background-image: url(../img/iconos.png);
+	background-repeat: no-repeat;
+	padding-left:20px;
+}
+/* Creando las posiciones de cada elemento en cada caja de texto, llamadas por una clase en
+ * especifico
+ * */
+.icon1 { 
+background-position:-2px -56px} /*Lupa*/
+.icon2 { 
+background-position:-2px -88px} /*Carpeta amarilla sin hojas*/
+.icon3{ 
+background-position:-2px -171px} /*Candado*/
+.icon4{ 
+background-position:-2px -203px} /*carpeta amarilla con una hoja*/
+.icon5{ 
+background-position:-2px -284px} /*lapiz*/
+.icon6{ 
+background-position:-0px -316px} /*carpeta amarilla abierta*/
+.icon7{ 
+background-position:-0px -342px} /*nube de mensaje*/
+.icon8{ 
+background-position:-0px -430px} /*disk de guardar*/
+.icon9{ 
+background-position:-0px -512px} /*boton signo menos azul*/
+.icon10{ 
+background-position:-0px -542px} /*check bien*/
+.icon11{ 
+background-position:-0px -624px} /*boton signo mas azul*/
+.icon12{ 
+background-position:-0px -656px} /*x roja*/
+.icon13{ 
+background-position:-0px -736px} /*persona*/
+.icon14{ 
+background-position:-0px -768px} /*signo mas*/
+.icon15{ 
+background-position:-0px -851px} /*hoja en blanco*/
+.icon16{ 
+background-position:-0px -882px} /*signo menos*/
+.icon17{ 
+background-position:-0px -961px} /*descargar icon*/
+.icon18{
+background-position:-0px -996px} /*flecha arriba*/
+.icon19{
+background-position:-0px -1074px} /*reloj*/
+.icon20{
+background-position:-0px -1106px} /*flecha izquierda*/
+.icon21{
+background-position:-0px -1186px} /*sobre */
+.icon22{
+background-position:-0px -1218px} /*flecha derecha*/
+.icon23{
+background-position:-2px -1299px} /*sobre abierto*/
+.icon24{
+background-position:-0px -1330px} /*flecha abajo*/
+.icon25{
+background-position:-2px -1412px} /*ventana*/
+.icon26{ 
+background-position:-2px -1443px} /*rrss*/
+/* hover para cambio de imagen*/
+.icon1:hover{ 
+background-position:-2px -0px}
+.icon2:hover{ 
+background-position:-2px -32px}
+.icon3:hover{ 
+background-position:-2px -115px}
+.icon4:hover{ 
+background-position:-2px -147px}
+.icon5:hover{ 
+background-position:-2px -228px}
+.icon6:hover{ 
+background-position:-0px -260px}
+.icon7:hover{ 
+background-position:-0px -398px}
+.icon8:hover{ 
+background-position:-0px -374px}
+.icon9:hover{ 
+background-position:-0px -456px}
+.icon10:hover{ 
+background-position:-0px -486px}
+.icon11:hover{ 
+background-position:-0px -568px}
+.icon12:hover{ 
+background-position:-0px -600px}
+.icon13:hover{ 
+background-position:-0px -680px}
+.icon14:hover{ 
+background-position:-0px -712px}
+.icon15:hover{ 
+background-position:-0px -795px}
+.icon16:hover{ 
+background-position:-0px -826px}
+.icon17:hover{ 
+background-position:-0px -905px}
+.icon18:hover{ 
+background-position:-0px -940px}
+.icon19:hover{
+background-position:-0px -1018px}
+.icon20:hover{
+background-position:-0px -1050px}
+.icon21:hover{
+background-position:-0px -1130px}
+.icon22:hover{
+background-position:-0px -1162px}
+.icon23:hover{
+background-position:-2px -1243px}
+.icon24:hover{
+background-position:-0px -1274px}
+.icon25:hover{
+background-position:-2px -1356px}
+.icon26:hover{
+background-position:-2px -1387px}

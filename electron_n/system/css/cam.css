@@ -1,0 +1,73 @@
+table{
+	background: #ccc;
+	height:400px;
+	margin:20px;
+	padding:20px; 
+	}
+h2 {
+	
+	color: #815528;
+	letter-spacing: .1em;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 20px;
+	border-bottom:1px solid  #ccc;
+	text-shadow: 1px 1px 2px #999;
+	text-transform: uppercase;
+
+}
+
+.button, .button:visited { /* botones genéricos */
+background: #222;
+display: inline-block;
+padding: 5px 10px 6px;
+color: #FFF;
+text-decoration: none;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+border-bottom: 1px solid rgba(0,0,0,0.25);
+position: relative;
+cursor:pointer;
+width: 100%;
+}
+.btn{
+  height: 23px; background-color: #f5f5f0; border-bottom: 1px solid #555555;
+  border-right:1px solid #555555; border-top:0px; border-left:0px; font-size: 9px;
+  color:black; background-image: url(../img/btns.png);
+  padding-left: 20px; background-repeat: no-repeat; cursor:hand; cursor:pointer;
+  margin-left:5px; margin-right:5px; outline-width:0px;
+}
+
+.btn:hover{
+  height: 23px; background-color: #f5f5f0; border-bottom: 1px solid #AAAAAA;
+  border-right:1px solid #AAAAAA; border-top:0px; border-left:0px;
+  font-size: 9px; color:black;padding-left: 20px; background-repeat: no-repeat;
+  cursor:hand; cursor:pointer; margin-left:5px; margin-right:5px;outline-width:0px;
+  background-image: url(../img/btns_act.png);
+  
+}
+
+.btnadd{ background-position: 0px -92px; }
+.btnfind{ background-position: 0px -115px; }
+.btnprint{ background-position: 0px -69px; }
+.btnmail{ background-position: 0px -138px; }
+.btnsave{ background-position: 0px 0px; }
+.btndelete{ background-position: 0px -46px; }
+.btncancel{ background-position: 0px -23px; }
+.btncopy{ background-position: 0px -161px; }
+.btnnonuser{ background-position: 0px -322px; }
+.btnuser{ background-position: 0px -276px; }
+.btnadmin{ background-position: 0px -299px; }
+.btncheck{ background-position: 0px -207px; }
+.btnuncheck{ background-position: 0px -230px; }
+.btnrefresh{  background-position: 0px -345px;  }
+.btnlogout{ background-position: 0px -368px; }
+.btnapply{ background-position: 0px -184px; }
+
+

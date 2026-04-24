@@ -1,0 +1,258 @@
+/*
+		 *  @author Mauricio Barrios
+		 *  @revisado por: Judelvis Rivas & Carlos Peña
+		 *  @version 2.0.0
+		 */
+
+body { /*lo uso*/
+ background: #5C3A14;
+}
+.capa {/* lo uso*/
+ height:100%;
+ background: -moz-radial-gradient(top, #966D42 , #442602)no-repeat center;
+	font-family: helvetica, arial, sans-serif;
+}
+.clear {
+	clear: both;
+}
+#login-container {
+border: 1px solid #442602;  /*lo uso*/
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	height: 330px;
+	margin: 0 auto;
+	position: relative;
+	width: 356px;
+}
+#login-sub-container { /*lo uso*/
+	border: 1px solid #333;
+	border-color: rgba(0,0,0,0.2);
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	box-shadow: 0 0 10px #000 inset;
+	height: 318px;
+	left: 5px;
+	position: absolute;
+	top: 5px;
+	width: 345px;
+}
+#security-sub-container {/*lo uso*/
+	border: 1px solid gray;
+	border-color: rgba(0,0,0,0.2);
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	box-shadow: 0 0 10px #000 inset;
+	height: 610px;
+	left: 5px;
+	position: absolute;
+	top: 5px;
+	width: 838px;
+}
+#login-sub-header {/*lo uso*/
+ background-color: #442602;
+ background: -webkit-gradient(linear, 0 0, 0 100%, from(#472710),  to(#966D42));
+
+	border-bottom: 1px solid #002F3F;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	-khtml-border-radius: 5px 5px 0 0;
+	height: 65px;
+	padding: 10px 0 0;
+	text-align: center;
+}
+#login-sub, #security-sub {/*lo uso*/
+	background-color: #966D42;
+	
+	border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-khtml-border-radius: 0 0 5px 5px;
+	border-top: 1px solid #442602;
+	height: 212px;
+	padding-left: 30px;
+	padding-top: 30px;
+	color: white;
+	font-size: 12px;
+	padding-right: 5px;
+}
+
+#forms {/*lo uso*/
+	left: 30px;
+	position: absolute;
+	top: 0;
+}
+
+button, button[disabled]:active, input[type=submit], input[type=submit][disabled]:active, input[type=button], input[type=button][disabled]:active, .login-btn a.loginbtn {
+	background: #442602;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#1090b0),to(#096479));
+	border: 1px solid #966D42;
+	-moz-box-shadow: 0 0 2px 2px #fff;
+	-webkit-box-shadow: 0 0 2px 2px #fff;
+	text-shadow: 0 1px 0 #063A46;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	color: #FFF;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 4px 10px;
+	width: auto;
+	overflow: visible;
+}
+button:active, input[type=submit]:active, input[type=button]:active, .login-btn a.loginbtn:hover {
+	background-color: #F90 !important;
+	background-image: -moz-linear-gradient(#096479,#1090b0);
+	-cp-background-image: linear-gradient(#096479,#1090b0);
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#096479),to(#1090b0));
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+button[disabled], button[disabled]:active, input[type=submit][disabled], input[type=submit][disabled]:active, input[type=button][disabled], input[type=button][disabled]:active {
+	border: 1px solid #034c64;
+	color: #034c64;
+	cursor: default;
+}
+input.std_textbox { /*lo uso*/
+	width: 254px;
+	height: 22px;
+	margin: 5px 0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-moz-box-shadow: inset 0 10px 10px;
+	-webkit-box-shadow: inset 0 10px 10px;
+	box-shadow: inset 0 10px 10px;
+	border: 2px solid #024257;
+	color: #000;
+	font-family: helvetica;
+	font-size: 13px;
+}
+div.icon input.std_textbox {/*lo uso*/
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	margin-left: 26px;
+	outline: none;
+}
+
+.input-field-login.icon {/*lo uso*/
+	height: 32px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	background-color: #fff;
+	background-position: 6px 6px;
+	background-repeat: no-repeat;
+}
+.input-field-login.icon:hover {/*lo uso*/
+	border: 2px solid #85BE45;
+	-moz-box-shadow: inset 0 1px 1px #85BE45;
+	-webkit-box-shadow: inset 0 1px 1px #85BE45;
+	box-shadow: inset 0 1px 1px #85BE45;
+}
+
+#login_form, #reset_form { /*lo uso*/
+	position: absolute;
+	left: 0;
+	top: 100px;
+}
+.login-btn, .reset-pass-btn { /*lo uso*/
+	float: left;
+	padding-top: 22px;
+}
+resetpass .login-btn { /*lo uso*/
+	padding-top: 0;
+}
+.locale-container {/*lo uso*/
+	border-top: 1px solid #442602;
+	text-align: center;
+	padding: 5px 0 0 0;
+}
+#locale-footer {/*lo uso*/
+	margin: 40px auto;
+	width: 75%;
+}
+#confirm-submit-btn {/*lo uso*/
+	padding-top: 23px !important;
+}
+#notify {
+	width: 365px;
+	margin: 45px auto;
+}
+#notify a {
+	text-decoration: underline;
+	font-size: 12px;
+}
+#notify a:hover {
+	text-decoration: none;
+}
+#notify p, #failure p {
+	margin: 0 0 10px 0;
+	padding-left: 30px;
+	padding-top: 3px;
+}
+.locale-container ul {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.locale-container ul li, html[dir=rtl] .locale-container ul li:first-child {
+	display: inline;
+	list-style: none;
+	margin-left: 34px;
+}
+.locale-container ul li a {
+color: #442602;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+}
+.locale-container ul li a:hover {
+	color: #fff;
+}
+.copyright {
+	background: url(system/img/usuaio.png) no-repeat scroll center top transparent;
+	color: #fff;
+	font-family: verdana;
+	font-size: 7pt;
+	margin: 10px 0 0;
+	padding-top: 30px;
+	text-align: center;
+}
+input::-webkit-input-placeholder {
+	font-family: Georgia, serif;
+	color: #666;
+	font-style: italic;
+}
+input:focus::-webkit-input-placeholder {
+	color: #bbb;
+	-webkit-transition: color .2s;
+}
+input:-moz-placeholder {
+	font-family: Georgia, serif;
+	color: #666;
+	font-style: italic;
+}
+input:focus:-moz-placeholder {
+	color: #aaa;
+	-moz-transition: color .2s;
+}
+
+.login-btn a.loginbtn {
+	display: block;
+	padding: 7px;
+}	

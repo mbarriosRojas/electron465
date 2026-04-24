@@ -1,0 +1,9 @@
+# Configuración de proyectos PHP
+# Formato: nombre_proyecto|puerto|php_version|estado
+plataforma|8000|7.4|stopped
+phpmyadmin|8081|7.4|running
+electron_plataforma|8000|7.4|stopped
+respaldo_electron|8000|7.4|stopped
+portal-usuarios|8002|8.1|stopped
+sistema_canagua2|8000|7.4|stopped
+wordpress|8003|7.4|stopped
