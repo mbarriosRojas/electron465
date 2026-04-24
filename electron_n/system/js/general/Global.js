@@ -5,9 +5,10 @@
  * FECHA DE ELABORACION: 27/05/2012
  */
 
-var sUrl = 'https://' + window.location.hostname + '/';
+// Usar el origen real (http/https + host + puerto) para php -S y entornos locales
+var sUrl = window.location.origin + '/';
 var sUrlP = sUrl + 'index.php/cooperativa/';
-var sImg = sUrl + '/system/img/';
+var sImg = sUrl + 'system/img/';
 var dblTime;
 
 //setInterval( function () {_getUsrConect();}, 1000); //Funcion de Cargar Usuarios

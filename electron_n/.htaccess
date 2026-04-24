@@ -32,8 +32,10 @@ ExpiresByType text/css "access plus 1 month"
  </IfModule>
  
 </IfModule>
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://grupoelectron465.com/$1 [R,L]
+# IMPORTANTE:
+# No redirigir automáticamente a producción desde entorno local.
+# Si se requiere forzar HTTPS en producción, aplicar por virtualhost
+# o agregar condición específica por host de producción.
 
 # BEGIN cPanel-generated php ini directives, do not edit
 # Manual editing of this file may result in unexpected behavior.

@@ -10,7 +10,12 @@
 |
 */
 
-
+$hook['post_controller_constructor'] = array(
+	'class'    => 'Sql_mode_hook',
+	'function' => 'set_sql_mode',
+	'filename' => 'sql_mode_hook.php',
+	'filepath' => 'hooks'
+);
 
 /* End of file hooks.php */
 /* Location: ./system/application/config/hooks.php */

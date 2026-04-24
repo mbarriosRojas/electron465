@@ -37,10 +37,29 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '204.13.239.170';
-$db['default']['username'] = 'grupoele_admin';
-$db['default']['password'] = 'Za63qj2p';
-$db['default']['database'] = 'grupoele_electron';
+$isLocalHost = isset($_SERVER['HTTP_HOST']) && (
+	stripos($_SERVER['HTTP_HOST'], 'localhost') !== false ||
+	stripos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false
+);
+
+if ($isLocalHost) {
+	// Entorno local (XAMPP / php -S)
+	$dbHost = '127.0.0.1';
+	$dbUser = 'root';
+	$dbPass = '';
+	$dbName = 'grupoele_electron';
+} else {
+	// Entorno servidor
+	$dbHost = '204.13.239.170';
+	$dbUser = 'grupoele_admin';
+	$dbPass = 'Za63qj2p';
+	$dbName = 'grupoele_electron';
+}
+
+$db['default']['hostname'] = $dbHost;
+$db['default']['username'] = $dbUser;
+$db['default']['password'] = $dbPass;
+$db['default']['database'] = $dbName;
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -55,10 +74,10 @@ $db['default']['stricton'] = FALSE;
 
 
 
-$db['consulta']['hostname'] = '204.13.239.170';
-$db['consulta']['username'] = 'grupoele_admin';
-$db['consulta']['password'] = 'Za63qj2p';
-$db['consulta']['database'] = 'grupoele_electron';
+$db['consulta']['hostname'] = $dbHost;
+$db['consulta']['username'] = $dbUser;
+$db['consulta']['password'] = $dbPass;
+$db['consulta']['database'] = $dbName;
 $db['consulta']['dbdriver'] = 'mysqli';
 $db['consulta']['dbprefix'] = '';
 $db['consulta']['pconnect'] = TRUE;

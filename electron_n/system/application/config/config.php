@@ -12,12 +12,18 @@
 |	http://example.com $config['base_url']	= "http://200.75.121.178/cooperativa-electron";
 */
 
-//$config['base_url']	= $IP_SERVER_DYNAMIC."/cooperativa-electron";
-//$config['base_url']="http://143.255.84.179/cooperativaelectron/";
-//$config['base_url']="http://localhost/cooperativaelectron";
-//$config['base_url2']="http://localhost/cooperativaelectron/";
-$config['base_url']="http://localhost:8000";
-$config['base_url2']="http://localhost:8000/";
+$isLocalHost = isset($_SERVER['HTTP_HOST']) && (
+	stripos($_SERVER['HTTP_HOST'], 'localhost') !== false ||
+	stripos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false
+);
+
+if ($isLocalHost) {
+	$config['base_url'] = "http://localhost:8000";
+	$config['base_url2'] = "http://localhost:8000/";
+} else {
+	$config['base_url'] = "https://grupoelectron465.com";
+	$config['base_url2'] = "https://grupoelectron465.com/";
+}
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -28,7 +34,7 @@ $config['base_url2']="http://localhost:8000/";
 | variable so that it is blank.
 |
 */
-$config['index_page'] = "";
+$config['index_page'] = $isLocalHost ? "index.php" : "";
 
 /*
 |--------------------------------------------------------------------------
@@ -93,7 +99,7 @@ $config['charset'] = "UTF-8";
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*
