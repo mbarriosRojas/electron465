@@ -283,6 +283,11 @@ class PHPExcel_Shared_Font
 			$columnWidth += self::getTextWidthPixelsApprox('n', $font, 0);
 		}
 
+		// Ensure Drawing is loaded: Font may load before Shared/Drawing (Drawing.php includes Font.php).
+		if (!class_exists('PHPExcel_Shared_Drawing', false)) {
+			require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/Drawing.php';
+		}
+
 		// Convert from pixel width to column width
 		$columnWidth = PHPExcel_Shared_Drawing::pixelsToCellDimension($columnWidth, $defaultFont);
 

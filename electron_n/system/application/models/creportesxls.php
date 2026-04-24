@@ -101,9 +101,10 @@ class CReportesXls extends Model {
 		$this->_Cuerpo();
 		$this -> PHPExcel -> setActiveSheetIndex(0);
 
-		$objWriter = PHPExcel_IOFactory::createWriter($this -> PHPExcel, 'Excel5');
+		// Excel2007 (.xlsx) se abre de forma fiable en Excel moderno; Excel5 (.xls) OLE a menudo aparece "dañado".
+		$objWriter = PHPExcel_IOFactory::createWriter($this -> PHPExcel, 'Excel2007');
 
-		$strRuta = BASEPATH . "repository/xls/".$this->Nombre.".xls";
+		$strRuta = BASEPATH . "repository/xls/" . $this->Nombre . ".xlsx";
 		$objWriter -> save($strRuta);
 	}
 

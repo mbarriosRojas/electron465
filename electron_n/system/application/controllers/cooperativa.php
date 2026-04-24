@@ -5602,45 +5602,25 @@ class cooperativa extends Controller {
 				$cuerpo   = json_decode($rawCuerpo, TRUE);
 				$cabezera = json_decode($rawCabezera, TRUE);
 
-				// Si por alguna razón falló el decode, no seguimos
 				if (!is_array($cuerpo) || !is_array($cabezera)) {
 					echo "Error al decodificar datos para el XLS.";
 					return;
 				}
 
-				// Construimos un CSV compatible con Excel/Sheets
+				// Orden estable por índice de columna (como espera PHPExcel por fila)
+				ksort($cabezera);
+				foreach ($cuerpo as $k => $fila) {
+					if (is_array($fila)) {
+						ksort($cuerpo[$k]);
+					}
+				}
+
 				$fecha  = Date("U");
 				$nombre = "Reporte_" . $fecha;
-				$ruta   = BASEPATH . "repository/xls/" . $nombre . ".xls";
+				$this->load->model('CReportesXls');
+				$this->CReportesXls->_Generar($cabezera, $cuerpo, $nombre);
 
-				$fh = @fopen($ruta, 'w');
-				if (!$fh) {
-					echo "No se pudo crear el archivo XLS en: " . $ruta;
-					return;
-				}
-
-				// Primera fila: encabezados en orden de índice
-				ksort($cabezera);
-				$headers = array();
-				foreach ($cabezera as $idx => $titulo) {
-					$headers[] = trim($titulo);
-				}
-				fputcsv($fh, $headers, ';');
-
-				// Filas de datos
-				foreach ($cuerpo as $fila) {
-					if (!is_array($fila)) continue;
-					ksort($fila);
-					$line = array();
-					foreach ($fila as $idx => $valor) {
-						$line[] = trim($valor);
-					}
-					fputcsv($fh, $line, ';');
-				}
-
-				fclose($fh);
-
-				echo "<br><center><a href='" . __LOCALWWW__ . "/system/repository/xls/" . $nombre . ".xls' target='top'><img src='" . __IMG__ . "exel1.jpg' style='width:70px'>Click aqui</img></a>";
+				echo "<br><center><a href='" . __LOCALWWW__ . "/system/repository/xls/" . $nombre . ".xlsx' target='top'><img src='" . __IMG__ . "exel1.jpg' style='width:70px'>Click aqui</img></a>";
 				return;
 			}
 		} else {
