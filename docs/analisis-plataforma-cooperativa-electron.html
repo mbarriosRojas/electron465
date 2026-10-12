@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Plataforma Cooperativa Electron — Documentación para Planificación de HUs</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+:root{--bg:#ffffff;--surface:#f8fafc;--surface2:#f1f5f9;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb;--accent2:#059669;--warn:#d97706;--danger:#dc2626}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+.layout{display:flex;min-height:100vh}
+nav.sidebar{width:280px;background:var(--surface);border-right:1px solid var(--border);position:fixed;height:100vh;overflow-y:auto;padding:1.5rem 0;z-index:100}
+nav.sidebar h2{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:.5rem 1.25rem;margin-top:1rem}
+nav.sidebar a{display:block;padding:.45rem 1.25rem;color:var(--muted);text-decoration:none;font-size:.875rem;border-left:3px solid transparent;transition:.15s}
+nav.sidebar a:hover,nav.sidebar a.active{color:var(--accent);background:var(--surface2);border-left-color:var(--accent)}
+main{margin-left:280px;flex:1;padding:2.5rem 3rem;max-width:1100px;background:var(--bg)}
+header.doc-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+header.doc-header h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:var(--accent)}
+header.doc-header .meta{color:var(--muted);font-size:.9rem}
+section{margin-bottom:3rem;scroll-margin-top:1rem}
+section>h2{font-size:1.5rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:.5rem;color:#0f172a}
+section>h3{font-size:1.15rem;margin:1.5rem 0 .75rem;color:#1d4ed8}
+section>h4{font-size:1rem;margin:1rem 0 .5rem;color:var(--muted)}
+p,li{font-size:.95rem}
+p{margin-bottom:.75rem}
+ul,ol{margin:.5rem 0 1rem 1.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin:1rem 0}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:1rem 0}
+.stat-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+.stat-card .num{font-size:1.75rem;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:.8rem;color:var(--muted)}
+.badge{display:inline-block;padding:.2rem .6rem;border-radius:4px;font-size:.75rem;font-weight:600}
+.badge-blue{background:#dbeafe;color:#1d4ed8}
+.badge-green{background:#d1fae5;color:#047857}
+.badge-yellow{background:#fef3c7;color:#b45309}
+.badge-red{background:#fee2e2;color:#b91c1c}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem}
+th,td{border:1px solid var(--border);padding:.6rem .8rem;text-align:left}
+th{background:var(--surface2);color:#1e40af;font-weight:600}
+tr:nth-child(even){background:#f8fafc}
+.mermaid{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin:1rem 0;overflow-x:auto}
+.alert{padding:1rem 1.25rem;border-radius:8px;margin:1rem 0;border-left:4px solid}
+.alert-info{background:#eff6ff;border-color:var(--accent);color:#1e3a8a}
+.alert-warn{background:#fffbeb;border-color:var(--warn);color:#92400e}
+.alert-danger{background:#fef2f2;border-color:var(--danger);color:#991b1b}
+code,pre{background:#f1f5f9;border:1px solid var(--border);border-radius:6px;font-family:'Fira Code',monospace;font-size:.82rem;color:#334155}
+code{padding:.15rem .4rem}
+pre{padding:1rem;overflow-x:auto;margin:1rem 0}
+.uc-card{border-left:4px solid var(--accent2);padding:1rem 1.25rem;background:var(--surface);border-radius:0 8px 8px 0;margin:.75rem 0}
+.uc-card .uc-id{font-weight:700;color:var(--accent2);font-size:.85rem}
+.profile-card{border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin:1rem 0;background:var(--bg)}
+.profile-card h4{color:#1d4ed8;margin-bottom:.5rem}
+.toc-num{color:var(--accent);font-weight:600}
+a{color:var(--accent)}
+@media print{nav.sidebar{display:none}main{margin-left:0}}
+@media(max-width:900px){nav.sidebar{display:none}main{margin-left:0;padding:1.5rem}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <h2>Documento</h2>
+  <a href="#resumen">1. Resumen Ejecutivo</a>
+  <a href="#stack">2. Stack Tecnológico</a>
+  <a href="#arquitectura">3. Arquitectura</a>
+  <a href="#usuarios">4. Tipos de Usuario</a>
+  <a href="#flujo-usuarios">4.7 Flujo Completo Usuarios</a>
+  <a href="#rbac-bd">4.8 RBAC y Base de Datos</a>
+  <a href="#usuarios-especiales">4.9 Usuarios Especiales</a>
+  <a href="#que-ve-cada-perfil">4.10 Qué Ve Cada Perfil</a>
+  <a href="#scoping-datos">4.11 Scoping de Datos</a>
+  <a href="#modulos">5. Módulos</a>
+  <a href="#workflow">6. Motor de Workflow</a>
+  <a href="#bd">7. Base de Datos</a>
+  <a href="#api">8. Endpoints / API</a>
+  <a href="#casos-uso">9. Casos de Uso</a>
+  <a href="#hu-planning">10. Planificación HUs</a>
+  <h2>Módulos</h2>
+  <a href="#mod-auth">Autenticación</a>
+  <a href="#mod-buzon">Buzón / Workflow</a>
+  <a href="#mod-cliente">Clientes</a>
+  <a href="#mod-asistente">Asistente Crédito</a>
+  <a href="#mod-contratos-morosidad">Contratos y morosidad</a>
+  <a href="#mod-cobranza">Cobranza</a>
+  <a href="#mod-inventario">Inventario</a>
+  <a href="#mod-recibos">Recibos</a>
+  <a href="#mod-reportes">Reportes</a>
+  <a href="#mod-panel">Panel Admin</a>
+  <a href="#mod-portal">Portal Cliente</a>
+  <a href="#mod-sumi">SUMI / Triángulo</a>
+</nav>
+
+<main>
+<header class="doc-header">
+  <h1>Cooperativa Electron — Análisis de Plataforma</h1>
+  <p class="meta">Documentación técnica para planificación de Historias de Usuario (HUs) · Generado: Junio 2026 · Versión App: 2.0.0</p>
+</header>
+
+<!-- SECTION 1: RESUMEN -->
+<section id="resumen">
+<h2>1. Resumen Ejecutivo</h2>
+<div class="alert alert-info">
+<strong>Nota importante:</strong> "Electron" en este repositorio <strong>no</strong> es Electron.js (aplicación de escritorio). Es <strong>Cooperativa Electron</strong> (Grupo Electron), un sistema web legacy de gestión de créditos y cooperativa construido en <strong>PHP / CodeIgniter 1.7.2</strong>.
+</div>
+<p>La plataforma gestiona el ciclo completo de créditos al consumo para empleados públicos venezolanos: registro de clientes, solicitud de crédito, flujo de aprobación multi-etapa (buzón), contratos, facturación, cobranza por nómina, inventario de mercancía, recibos contables, reportes y un portal de autogestión para clientes.</p>
+
+<div class="card-grid">
+  <div class="stat-card"><div class="num">464</div><div class="lbl">Métodos en cooperativa.php</div></div>
+  <div class="stat-card"><div class="num">68</div><div class="lbl">Modelos PHP</div></div>
+  <div class="stat-card"><div class="num">61</div><div class="lbl">Módulos JS (view/)</div></div>
+  <div class="stat-card"><div class="num">40+</div><div class="lbl">Tablas en BD</div></div>
+  <div class="stat-card"><div class="num">22</div><div class="lbl">Perfiles de usuario (nivel)</div></div>
+  <div class="stat-card"><div class="num">6</div><div class="lbl">Controladores</div></div>
+</div>
+
+<h3>Propósito del documento</h3>
+<p>Este análisis permite comprender la plataforma a profundidad para:</p>
+<ul>
+  <li>Identificar módulos, dependencias y flujos de negocio</li>
+  <li>Mapear permisos por tipo de usuario</li>
+  <li>Entender el modelo de datos y sus relaciones</li>
+  <li>Definir Historias de Usuario (HUs) con contexto técnico y funcional</li>
+  <li>Evaluar deuda técnica y riesgos en futuras modernizaciones</li>
+</ul>
+
+<h3>Dos portales de acceso</h3>
+<table>
+<tr><th>Portal</th><th>Controlador</th><th>Usuarios</th><th>Autenticación</th></tr>
+<tr><td><strong>Staff / Operadores</strong></td><td><code>cooperativa</code></td><td>Empleados internos con perfil</td><td>Usuario + clave (MD5) → sesión CI</td></tr>
+<tr><td><strong>Autogestión Cliente</strong></td><td><code>electron</code></td><td>Clientes / afiliados</td><td>Cédula + últimos 4 dígitos cuenta bancaria + CAPTCHA</td></tr>
+</table>
+</section>
+
+<!-- SECTION 2: STACK -->
+<section id="stack">
+<h2>2. Stack Tecnológico y Versiones</h2>
+<table>
+<tr><th>Componente</th><th>Versión / Detalle</th><th>Ubicación</th></tr>
+<tr><td>Framework PHP</td><td>CodeIgniter <strong>1.7.2</strong></td><td><code>electron/system/codeigniter/</code></td></tr>
+<tr><td>Versión aplicación</td><td><strong>2.0.0</strong> (constante <code>__VERSION__</code> = 1.0.0.0)</td><td>Headers de controladores</td></tr>
+<tr><td>PHP recomendado</td><td><strong>7.4</strong></td><td><code>README.md</code></td></tr>
+<tr><td>Base de datos</td><td>MySQL/MariaDB — <code>grupoele_electron</code></td><td><code>config/database.php</code></td></tr>
+<tr><td>Schema dump</td><td>Junio 2012 — MySQL 5.1.63</td><td><code>system/script/db.sql</code></td></tr>
+<tr><td>Frontend</td><td>jQuery 1.4–1.7, jQuery UI 1.8, GVista/TGrid custom</td><td><code>system/js/</code></td></tr>
+<tr><td>PDF</td><td>TCPDF</td><td><code>libraries/tcpdf/</code></td></tr>
+<tr><td>Excel</td><td>PHPExcel (legacy)</td><td><code>libraries/excel/</code></td></tr>
+<tr><td>Email</td><td>PHPMailer</td><td><code>libraries/PHPMail/</code></td></tr>
+<tr><td>SOAP</td><td>NuSOAP (demo)</td><td><code>controllers/soapserver.php</code></td></tr>
+<tr><td>URL producción</td><td>https://grupoelectron465.com</td><td><code>config/config.php</code></td></tr>
+<tr><td>Timezone</td><td>America/Caracas</td><td>Controladores</td></tr>
+<tr><td>Licencia</td><td>GPL v2</td><td><code>electron/LICENSE</code></td></tr>
+</table>
+
+<div class="alert alert-warn">
+<strong>Deuda técnica crítica:</strong> Contraseñas MD5, SQL concatenado sin prepared statements, permisos hardcodeados por username, controlador monolítico de 8.600+ líneas, sin migraciones de BD, sin Composer, sin tests automatizados.
+</div>
+</section>
+
+<!-- SECTION 3: ARQUITECTURA -->
+<section id="arquitectura">
+<h2>3. Arquitectura del Sistema</h2>
+
+<h3>3.1 Arquitectura General (MVC Monolítico)</h3>
+<div class="mermaid">
+graph TB
+    subgraph Cliente["Capa Cliente"]
+        BROWSER[Navegador Web]
+        JQUERY[jQuery + GVista/TGrid]
+        AJAX[AJAX / Form POST]
+    end
+    subgraph Servidor["Capa Servidor — PHP 7.4"]
+        INDEX[index.php — Front Controller]
+        CI[CodeIgniter 1.7.2 Bootstrap]
+        CTRL[Controllers — cooperativa / electron / sumi / triangulo]
+        MODEL[Models — 68 archivos]
+        VIEW[Views — PHP Templates]
+        LIB[Libraries — TCPDF, PHPExcel, PHPMailer]
+    end
+    subgraph Datos["Capa Datos"]
+        MYSQL[(MySQL — grupoele_electron)]
+        REPO[Repository — XLS/TXT exports]
+        UPLOAD[Upload — expedientes digitales]
+    end
+    BROWSER --> JQUERY --> AJAX --> INDEX --> CI --> CTRL
+    CTRL --> MODEL --> MYSQL
+    CTRL --> VIEW --> BROWSER
+    CTRL --> LIB
+    MODEL --> REPO
+    MODEL --> UPLOAD
+</div>
+
+<h3>3.2 Estructura de Directorios</h3>
+<pre>
+/Volumes/goku/dev_php/electron/
+├── index.php              # Front controller CodeIgniter
+├── index.html             # Login estático (staff)
+└── system/
+    ├── codeigniter/       # Framework CI 1.7.2
+    ├── application/
+    │   ├── config/        # config, database, routes, autoload
+    │   ├── controllers/   # cooperativa, electron, sumi, triangulo, soapserver
+    │   ├── models/        # 68 modelos (cliente/, cobranza/, inventario/, etc.)
+    │   ├── views/         # ~50 módulos de vistas
+    │   ├── libraries/     # TCPDF, PHPExcel, PHPMailer, gvista
+    │   └── hooks/         # sql_mode_hook.php
+    ├── js/
+    │   ├── view/          # 61 controladores JS por módulo
+    │   ├── gvistas/       # Framework UI custom (TGrid)
+    │   └── electron/      # JS portal cliente
+    ├── script/db.sql      # Schema completo (único dump)
+    └── repository/        # Exports generados
+</pre>
+
+<h3>3.3 Patrón de Comunicación</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Usuario Staff
+    participant JS as jQuery/AJAX
+    participant C as cooperativa.php
+    participant M as Model (MCliente)
+    participant DB as MySQL
+
+    U->>JS: Acción en buzón (aprobar/rechazar)
+    JS->>C: POST /cooperativa/EjecutarVerdadero {objeto: JSON}
+    C->>C: Lee session (destino_verdadero, nivel, linaje)
+    C->>M: EjecutarDisparo(contrato_id, destino, obs, 1)
+    M->>DB: UPDATE t_estadoejecucion
+    DB-->>M: Trigger → _tr_contratos_estadoejecucion
+    M-->>C: OK
+    C-->>JS: HTML link PDF formato
+    JS-->>U: Muestra enlace imprimir
+</div>
+
+<h3>3.4 Controladores y Responsabilidades</h3>
+<table>
+<tr><th>Controlador</th><th>Métodos</th><th>Responsabilidad</th></tr>
+<tr><td><code>cooperativa</code></td><td>~464</td><td>Sistema principal staff: todo el negocio</td></tr>
+<tr><td><code>cooperativa_</code></td><td>~457</td><td>Copia/respaldo del controlador principal</td></tr>
+<tr><td><code>electron</code></td><td>10</td><td>Portal autogestión cliente</td></tr>
+<tr><td><code>sumi</code></td><td>13</td><td>Módulo entrega/asociación SUMI</td></tr>
+<tr><td><code>triangulo</code></td><td>10</td><td>Módulo entrega Triángulo</td></tr>
+<tr><td><code>soapserver</code></td><td>3</td><td>Endpoint SOAP demo</td></tr>
+</table>
+</section>
+
+<!-- SECTION 4: USUARIOS -->
+<section id="usuarios">
+<h2>4. Tipos de Usuario y Permisos</h2>
+
+<div class="alert alert-info">
+El sistema usa un modelo <strong>híbrido RBAC</strong>: perfiles en BD (<code>t_perfil</code>) + privilegios granulares (<code>t_privilegios</code>) + <strong>overrides hardcodeados por username</strong> en <code>cmenu.php</code> y controladores.
+</div>
+
+<h3>4.1 Clasificación de Actores</h3>
+<div class="mermaid">
+graph LR
+    subgraph Internos["Usuarios Internos (Staff)"]
+        ADMIN[Super Admin — nivel 0]
+        OPS[Operaciones — nivel 2,3,4,5]
+        INV[Inventario — nivel 8,9,12]
+        REC[Recibos — nivel 10]
+        DEP[Depósito — nivel 13,14]
+        REV[Revisión — nivel 15,16]
+        PANEL[Panel limitado — nivel 18,19,20]
+        AUD[Auditoría — nivel 21]
+    end
+    subgraph Externos["Usuarios Externos"]
+        CLI[Cliente / Afiliado — portal electron]
+    end
+    subgraph Especiales["Overrides por Username"]
+        USR[carlos, alvaro, alvaroz, judelvis, yuli, poleeth, georly, dmarisol, sbarinas, revision, mvanalista11, cuadre, planificacion, albeida]
+    end
+    ADMIN --> OPS
+    OPS --> INV
+</div>
+
+<h3>4.4 Dimensiones de Scoping de Datos</h3>
+<table>
+<tr><th>Dimensión</th><th>Tabla</th><th>Efecto</th></tr>
+<tr><td><strong>Perfil (nivel)</strong></td><td><code>t_perfil</code> → <code>_tr_usuarioperfil</code></td><td>Menú, acciones de workflow (origen/verdadero/falso)</td></tr>
+<tr><td><strong>Ubicación</strong></td><td><code>t_ubicacion</code> → <code>_tr_usuarioubicacion</code></td><td>Filtra operaciones por oficina (ej. Mérida Principal)</td></tr>
+<tr><td><strong>Linaje (banco)</strong></td><td><code>t_linaje</code> → <code>_tr_usuariolinaje</code></td><td>Filtra contratos por <code>cobrado_en</code></td></tr>
+<tr><td><strong>Dependientes</strong></td><td><code>_tr_usuariousuario</code></td><td>Filtra por subordinados / analistas asignados</td></tr>
+<tr><td><strong>Privilegios botón</strong></td><td><code>t_privilegios</code> → <code>_tr_perfilprivilegios</code></td><td>Botones dinámicos en grillas (funcion='btn')</td></tr>
+</table>
+
+<h3>4.5 Sesión Staff — Variables Clave</h3>
+<pre>
+usuario, seudonimo, nivel, ubicacion, oidu, oidp,
+lista_linaje, origen, destino_verdadero, destino_falso,
+estado_nombre, estado_ejecucion, estado_clase, estado_denominacion
+</pre>
+
+<h3>4.2 Análisis Detallado por Perfil (nivel)</h3>
+<p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem">Los perfiles se identifican por <code>nivel</code> (= <code>t_perfil.oid</code>). El menú y accesos se controlan en <code>cmenu.php</code> con lógica adicional por username.</p>
+
+<div class="profile-card" id="perfil-0">
+<h4>Nivel 0 — Super Administrador <span class="badge badge-red">Máximo acceso</span></h4>
+<p><strong>Capacidades:</strong> Inventario completo, Panel de Control, Acuse Administración, Liquidación, Reportes Generales, Modificaciones, TXT/BFC, Carga Venezuela, Entregar Mercancía, todos los módulos Cliente en Mérida.</p>
+<p><strong>Scoping:</strong> Ve todos los linajes. Usa <code>codigo_n</code> en filtros.</p>
+<p><strong>Override:</strong> Usuario <code>alvaro</code> se fuerza a nivel 0 en <code>MUsuario::_Cargar()</code>.</p>
+</div>
+<div class="profile-card" id="perfil-2"><h4>Nivel 2 — Administración / Reportes</h4><p>Reportes Generales, TXT/BFC. Sin Panel ni Inventario completo.</p></div>
+<div class="profile-card" id="perfil-3"><h4>Nivel 3 — Operaciones</h4><p>Recibos Ingreso, Entregar Mercancía, Reportes, TXT/BFC, Pagos_Factura.</p></div>
+<div class="profile-card" id="perfil-4"><h4>Nivel 4 — Oficina Mérida Principal</h4><p>Recibos Egreso, Cambiar Ubicación Facturas (solo Mérida Principal). Perfil por defecto.</p></div>
+<div class="profile-card" id="perfil-5"><h4>Nivel 5 — Inventario Restringido</h4><p>Vista inventario limitada, Pagos_Factura con ubicación forzada.</p></div>
+<div class="profile-card" id="perfil-8-9"><h4>Nivel 8 / 9 — Inventario + Operaciones</h4><p>Inventario, Acuse, Entregar Mercancía, Reportes, Pagos_Factura.</p></div>
+<div class="profile-card" id="perfil-10"><h4>Nivel 10 — Recibos + Acuse</h4><p>Recibos Ingreso, Acuse Administración, Entregar Mercancía.</p></div>
+<div class="profile-card" id="perfil-12"><h4>Nivel 12 — Solo Expediente</h4><p>Menú: Ver Expediente Digital + Cerrar Sesión.</p></div>
+<div class="profile-card" id="perfil-13-14"><h4>Nivel 13 / 14 — Depósito</h4><p>Buzón, Cliente, Expedientes, Configurar, Reportes. Flujo: PendientesDeposito.</p></div>
+<div class="profile-card" id="perfil-15"><h4>Nivel 15 — Revisión</h4><p>Expedientes Solicitud, Cambiar Ubicación, Expedientes Revisión.</p></div>
+<div class="profile-card" id="perfil-16"><h4>Nivel 16 — Archivo Cliente</h4><p>Vista archivo_cliente.</p></div>
+<div class="profile-card" id="perfil-18"><h4>Nivel 18 — Panel Limitado</h4><p>Buzón, Cliente, Expedientes, Configurar, Reportes, Pagos_Factura.</p></div>
+<div class="profile-card" id="perfil-19"><h4>Nivel 19 — Expediente + Reportes</h4><p>Buzón, Cargar Expediente, Configurar, Reportes. Scoping por <code>codigo_n</code>.</p></div>
+<div class="profile-card" id="perfil-20"><h4>Nivel 20 — Solo Buzón</h4><p>Buzón Principal + Cerrar Sesión.</p></div>
+<div class="profile-card" id="perfil-21"><h4>Nivel 21 — Auditoría</h4><p>Módulo archivosAuditoria.</p></div>
+
+<h3>4.3 Usuario Externo — Cliente (Portal electron)</h3>
+<div class="profile-card">
+<h4>Cliente / Afiliado <span class="badge badge-green">Autogestión</span></h4>
+<p><strong>Auth:</strong> Cédula + últimos 4 dígitos <code>cuenta_1</code> + CAPTCHA. <strong>Sesión:</strong> <code>$_SESSION['cliente']</code>.</p>
+<p><strong>Capacidades:</strong> Consultar contratos, imprimir estado de cuenta (general/por contrato), cerrar sesión.</p>
+</div>
+
+<h3>4.6 Matriz Perfil × Módulo</h3>
+<table>
+<tr><th>Módulo</th><th>0</th><th>2</th><th>3</th><th>4</th><th>5</th><th>8-9</th><th>10</th><th>12</th><th>13-14</th><th>18</th><th>19</th><th>20</th><th>21</th></tr>
+<tr><td>Buzón</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>—</td></tr>
+<tr><td>Registrar Cliente</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Asistente</td><td>✓*</td><td>✓*</td><td>✓*</td><td>✓*</td><td>✓*</td><td>✓*</td><td>✓*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Inventario</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>◐</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Panel Admin</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Recibos Ingreso</td><td>✓</td><td>—</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Recibos Egreso</td><td>✓</td><td>—</td><td>—</td><td>✓†</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Reportes Gen.</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>TXT/BFC (menú)</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Cobranza TXT (UI)</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Control De Pagos</td><td>✓</td><td>—</td><td>✓</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Cobranza BFC</td><td colspan="13">Solo usuario <code>poleeth</code></td></tr>
+<tr><td>Auditoría</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>✓</td></tr>
+</table>
+<p style="font-size:.8rem;color:var(--muted)">* Según ubicación. † Solo Mérida Principal. ◐ Vista limitada. Cobranza TXT en UI: niveles 8-9 ven botones aunque el menú TXT solo aparece si nivel ≤ 3.</p>
+
+<!-- 4.7 FLUJO COMPLETO USUARIOS -->
+<h3 id="flujo-usuarios">4.7 Flujo Completo de Usuarios en la Plataforma</h3>
+<p>La plataforma maneja <strong>dos universos de usuarios</strong> completamente separados: <em>Staff</em> (operadores internos) y <em>Clientes</em> (afiliados en portal de autogestión). No comparten sesión ni tablas de autenticación.</p>
+
+<div class="mermaid">
+flowchart TB
+    subgraph Entrada["Punto de Entrada"]
+        E1[index.html / cooperativa/login]
+        E2[electron/Login]
+    end
+    subgraph Staff["Universo Staff"]
+        S1[verificacion POST]
+        S2[MUsuario.Validar MD5]
+        S3[MUsuario._Cargar]
+        S4[Cargar perfil + linaje + ubicacion + dependientes]
+        S5[set_userdata sesión CI]
+        S6[CMenu.getHtml_Menu nivel]
+        S7[bienvenida.php + menú dinámico]
+    end
+    subgraph Cliente["Universo Cliente"]
+        C1[Verifica_Cliente POST]
+        C2[Validar t_personas + cuenta_1 + CAPTCHA]
+        C3[SESSION cliente = cédula]
+        C4[electron/principal.php]
+    end
+    E1 --> S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7
+    E2 --> C1 --> C2 --> C3 --> C4
+</div>
+
+<h4>Secuencia detallada — Login Staff</h4>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Operador
+    participant C as cooperativa
+    participant MU as MUsuario
+    participant DB as MySQL
+
+    U->>C: POST verificacion (txtUsuario, txtClave)
+    C->>C: validation rules + md5(clave)
+    C->>MU: Validar(usr, clave_md5)
+    MU->>DB: SELECT t_usuario WHERE seudonimo + clave
+    MU->>MU: _Cargar(usr)
+    MU->>DB: JOIN t_perfil, t_ubicacion, t_linaje, t_estadodocumento
+    MU->>DB: SELECT dependientes _tr_usuariousuario
+    Note over MU: Override alvaro → nivel=0
+    C->>C: session->set_userdata(15+ variables)
+    C->>DB: UPDATE t_usuario SET conectado=1
+    C->>U: bienvenida + menú por nivel/username/ubicación
+</div>
+
+<h4>Secuencia detallada — Login Cliente</h4>
+<div class="mermaid">
+sequenceDiagram
+    participant C as Cliente Afiliado
+    participant E as electron.php
+    participant DB as t_personas
+
+    C->>E: POST Verifica_Cliente (cédula, 4 dígitos cuenta, capcha)
+    E->>DB: SELECT documento_id
+    E->>E: substr(cuenta_1,-4) == cuenta AND md5(capcha)
+    E->>E: $_SESSION[cliente] = cédula
+    E->>C: principal.php (nombre, menú consulta)
+    C->>E: Consultar_Cliente AJAX
+    E-->>C: JSON contratos activos
+    C->>E: Imprimir_Estado_Cuenta
+    E-->>C: HTML estado de cuenta
+</div>
+
+<!-- 4.8 RBAC BD -->
+<h3 id="rbac-bd">4.8 Modelo RBAC y Relaciones en Base de Datos</h3>
+<div class="mermaid">
+erDiagram
+    t_usuario ||--o{ _tr_usuarioperfil : tiene
+    _tr_usuarioperfil }o--|| t_perfil : asigna
+    t_perfil ||--o{ _tr_perfilprivilegios : tiene
+    _tr_perfilprivilegios }o--|| t_privilegios : otorga
+    t_usuario ||--o{ _tr_usuarioubicacion : ubicado_en
+    _tr_usuarioubicacion }o--|| t_ubicacion : oficina
+    t_usuario ||--o{ _tr_usuariolinaje : cobra_en
+    _tr_usuariolinaje }o--|| t_linaje : banco
+    t_usuario ||--o{ _tr_usuariousuario : supervisa
+    _tr_usuariousuario }o--|| t_usuario : dependiente
+    t_perfil }o--|| t_estadodocumento : origen_workflow
+    t_perfil ||--|{ t_estadodocumento : verdadero_destino
+    t_perfil ||--|{ t_estadodocumento : falso_destino
+
+    t_usuario {
+        int oid PK
+        int documento_id
+        char seudonimo UK
+        char clave MD5
+        tinyint estatus
+        tinyint conectado
+    }
+    t_perfil {
+        int oid PK
+        char nombre
+        int origen FK
+        int verdadero FK
+        int falso FK
+    }
+    t_privilegios {
+        int oid PK
+        char clase
+        char metodo
+        char accion
+        char funcion
+    }
+    t_linaje {
+        int oid PK
+        char nombre
+    }
+    t_ubicacion {
+        int oid PK
+        char nombre
+        char descripcion
+    }
+</div>
+
+<h4>Tablas de relación usuario (junction)</h4>
+<table>
+<tr><th>Tabla</th><th>Relación</th><th>Campos</th><th>Uso en runtime</th></tr>
+<tr><td><code>_tr_usuarioperfil</code></td><td>Usuario → Perfil</td><td>oidu, oidp</td><td>Define <code>nivel</code> en sesión</td></tr>
+<tr><td><code>_tr_usuarioubicacion</code></td><td>Usuario → Oficina</td><td>oidu, oidb</td><td>Variable <code>ubicacion</code> — filtra menú Mérida</td></tr>
+<tr><td><code>_tr_usuariolinaje</code></td><td>Usuario → Banco(s)</td><td>oidu, oidL</td><td><code>lista_linaje</code> — filtra buzón y cobranza</td></tr>
+<tr><td><code>_tr_usuariousuario</code></td><td>Usuario → Subordinados</td><td>oidu, oidb</td><td><code>lista_dependiente</code> — filtra contratos por analista</td></tr>
+<tr><td><code>_tr_perfilprivilegios</code></td><td>Perfil → Botones</td><td>oidp, oidb</td><td><code>getClientesBtn()</code> — botones en grillas</td></tr>
+</table>
+
+<div class="alert alert-warn">
+<strong>Nota sobre usuarios en BD:</strong> El dump <code>db.sql</code> (2012) define el esquema pero <strong>no incluye datos de usuarios</strong>. Los usuarios reales viven en la BD de producción (<code>grupoele_electron</code>). Los nombres listados en 4.9 son <strong>usuarios referenciados explícitamente en el código fuente</strong> con permisos especiales.
+</div>
+
+<!-- 4.9 USUARIOS ESPECIALES -->
+<h3 id="usuarios-especiales">4.9 Usuarios con Overrides Hardcodeados en Código</h3>
+<p>Además del perfil (<code>nivel</code>), el sistema evalúa el <code>seudonimo</code> en <code>cmenu.php</code>, vistas y controladores. Estos usuarios tienen capacidades que su perfil numérico no refleja completamente.</p>
+
+<table>
+<tr><th>Usuario</th><th>Override principal</th><th>Módulos / pantallas extra</th><th>Archivo fuente</th></tr>
+<tr><td><code>carlos</code> / <code>Carlos</code></td><td>Tratado como super-usuario en múltiples checks</td><td>Inventario, Panel, Liquidación, Acuse, Reportes, Recibos, modificaciones, casi todos los reportes</td><td>cmenu.php, cooperativa.php, reportes.php</td></tr>
+<tr><td><code>alvaro</code></td><td><strong>Forzado a nivel 0</strong> en <code>_Cargar()</code></td><td>Menú Mérida extendido, Liquidación, Expedientes Revisión, Recibos Ingreso</td><td>musuario.php, cmenu.php</td></tr>
+<tr><td><code>alvaroz</code></td><td>Inventario + Panel Alvaro personalizado</td><td>C. Ubicación, Recibos Egreso, Recibos Ingreso, excepción en nivel 5</td><td>cmenu.php, cooperativa.php</td></tr>
+<tr><td><code>poleeth</code></td><td>Único con menú <strong>Cobranza BFC</strong></td><td>Cobranza BFC, Recibos Ingreso</td><td>cmenu.php</td></tr>
+<tr><td><code>judelvis</code></td><td>Menú Mérida + modificaciones</td><td>Calculo Correo, Recep. Documentos, Recibos Egreso, Expedientes Revisión</td><td>cmenu.php</td></tr>
+<tr><td><code>yuli</code></td><td>Recibos + modificaciones</td><td>Recibos Ingreso/Egreso, C. Ubicación</td><td>cmenu.php, lateral.php (Dirección Cobranza)</td></tr>
+<tr><td><code>georly</code></td><td>Recibos Ingreso</td><td>Recibos de Ingreso</td><td>cmenu.php</td></tr>
+<tr><td><code>dmarisol</code></td><td>Recep. Documentos + Recibos</td><td>Recep. Documentos, Recibos Ingreso (excluida de Recibos Egreso nivel 4)</td><td>cmenu.php</td></tr>
+<tr><td><code>sbarinas</code></td><td>Menú correo Barinas</td><td>Calculo Correo, Presupuesto Correo</td><td>cmenu.php</td></tr>
+<tr><td><code>revision</code></td><td>Flujo revisión</td><td>Expedientes Revisión, Liquidación</td><td>cmenu.php</td></tr>
+<tr><td><code>mvanalista11</code></td><td>Reportes ampliados</td><td>Facturas Presupuesto, Facturas Formato Control</td><td>reportes.php, cooperativa.php</td></tr>
+<tr><td><code>cuadre</code></td><td>Dependiente especial</td><td>Scoping por ubicación en vez de seudonimo</td><td>musuario.php getDependientes()</td></tr>
+<tr><td><code>planificacion</code></td><td>Dependiente especial</td><td>Control de anulación de órdenes de entrega</td><td>musuario.php, cooperativa.php</td></tr>
+<tr><td><code>albeida</code></td><td>Dependiente especial</td><td>Scoping por ubicación</td><td>musuario.php</td></tr>
+</table>
+
+<h4>Flujo de decisión del menú (cmenu.php)</h4>
+<div class="mermaid">
+flowchart TD
+    START[getHtml_Menu intNivel] --> A{nivel == 12?}
+    A -->|Sí| M12[Menú mínimo: Expediente + Salir]
+    A -->|No| B{nivel 13 o 14?}
+    B -->|Sí| M1314[Menú Depósito]
+    B -->|No| C{nivel 18?}
+    C -->|Sí| M18[Menú Semi-Admin]
+    C -->|No| D{nivel 19?}
+    D -->|Sí| M19[Menú Analista expediente]
+    D -->|No| E{nivel 20?}
+    E -->|Sí| M20[Menú Solo Buzón]
+    E -->|No| F[Menú estándar completo]
+    F --> G[Evaluar username overrides]
+    G --> H[Evaluar ubicación Mérida]
+    G --> I[Agregar TXT si nivel lte 3]
+    G --> J[poleeth → Cobranza BFC]
+    G --> K[alvaroz → Panel Alvaro]
+    F --> L{nivel 0/8/9?}
+    L -->|Sí| M[Inventario + Panel Admin]
+</div>
+
+<!-- 4.10 QUE VE CADA PERFIL -->
+<h3 id="que-ve-cada-perfil">4.10 Qué Ve Cada Perfil en Pantalla (Árbol de Menú)</h3>
+
+<div class="card-grid">
+<div class="card"><h4>Nivel 0 — Super Admin</h4>
+<ul>
+<li>Lo Nuevo (buzón) + Liquidación + Asociar Entrega</li>
+<li>Cliente completo (Mérida): Registrar, Asistente, Expedientes, Certificar, Pronto Pago, Venta Contado, Cálculos, Plan Corp.</li>
+<li>Factura Control + Reportes (TXT, Venezuela, Reportes Gen., Modificaciones)</li>
+<li>Inventario + Panel Admin + Acuse Administración</li>
+<li>Recibos Ingreso + Entregar Mercancía + Configurar</li>
+</ul></div>
+<div class="card"><h4>Nivel 2 — Reportes/TXT</h4>
+<ul>
+<li>Menú estándar (buzón, cliente básico, factura control, reportes)</li>
+<li>Reportes → Crear/Leer/Ver TXT + Cargar B. Venezuela</li>
+<li>Reportes Generales</li>
+<li>Sin Panel Admin ni Inventario completo</li>
+</ul></div>
+<div class="card"><h4>Nivel 3 — Operaciones</h4>
+<ul>
+<li>Todo lo de nivel 2 (TXT/BFC/Venezuela)</li>
+<li>Recibos de Ingreso + Entregar Mercancía</li>
+<li>Reportes → Control De Pagos, Control Mensual</li>
+</ul></div>
+<div class="card"><h4>Nivel 4 — Mérida Principal</h4>
+<ul>
+<li>Menú estándar base</li>
+<li>Si ubicación = Mérida Principal: Recibos Egreso + C. Ubicación</li>
+<li>Perfil por defecto si no hay match en BD</li>
+</ul></div>
+<div class="card"><h4>Nivel 5 — Inventario limitado</h4>
+<ul>
+<li>Menú estándar + vista inventario restringida</li>
+<li>Control De Pagos (ubicación forzada a la suya)</li>
+<li>Sin acceso completo a expedientes (excepto alvaroz)</li>
+</ul></div>
+<div class="card"><h4>Nivel 8 / 9 — Inventario + Ops</h4>
+<ul>
+<li>Inventario completo + Acuse + Entregar Mercancía</li>
+<li>Reportes Generales + Control De Pagos</li>
+<li>Botones TXT en UI (aunque menú TXT solo si nivel ≤ 3)</li>
+</ul></div>
+<div class="card"><h4>Nivel 10 — Recibos</h4>
+<ul>
+<li>Recibos Ingreso + Acuse Administración</li>
+<li>Entregar Mercancía</li>
+</ul></div>
+<div class="card"><h4>Nivel 12 — Mínimo</h4>
+<ul>
+<li>Solo: Ver Expediente Digital + Cerrar Sesión</li>
+</ul></div>
+<div class="card"><h4>Nivel 13 / 14 — Depósito</h4>
+<ul>
+<li>Principal (buzón) + Registrar Cliente</li>
+<li>Cargar/Ver Expediente + Configurar + Reportes</li>
+<li>Flujo: PendientesDeposito</li>
+</ul></div>
+<div class="card"><h4>Nivel 15 — Revisión</h4>
+<ul>
+<li>Expedientes Solicitud + C. Ubicación</li>
+<li>Override: usuario <code>revision</code> ve Expedientes Revisión</li>
+</ul></div>
+<div class="card"><h4>Nivel 18 — Semi-Admin</h4>
+<ul>
+<li>Buzón + Cliente + Expedientes + Configurar + Reportes</li>
+<li>Control De Pagos + Facturas Formato Control</li>
+</ul></div>
+<div class="card"><h4>Nivel 19 — Analista</h4>
+<ul>
+<li>Buzón + Cargar Expediente + Configurar + Reportes</li>
+<li>Scoping por <code>codigo_n</code> (no expediente_c)</li>
+</ul></div>
+<div class="card"><h4>Nivel 20 — Solo Buzón</h4>
+<ul>
+<li>Principal (buzón) + Cerrar Sesión</li>
+</ul></div>
+<div class="card"><h4>Nivel 21 — Auditoría</h4>
+<ul>
+<li>Módulo archivosAuditoria (sin menú estándar completo)</li>
+</ul></div>
+<div class="card"><h4>Cliente Externo (portal)</h4>
+<ul>
+<li>Consultar contratos (AJAX)</li>
+<li>Imprimir estado de cuenta</li>
+<li>Salir</li>
+<li><strong>No ve</strong> ningún módulo staff</li>
+</ul></div>
+</div>
+
+<h4>Matriz: Reportes visibles por nivel (reportes.php)</h4>
+<table>
+<tr><th>Reporte</th><th>Niveles con acceso</th></tr>
+<tr><td>Cuadre de Caja</td><td>0, 8, 9, 5, Carlos</td></tr>
+<tr><td>Voucher y Transferencias</td><td>0, 9, 11</td></tr>
+<tr><td>Contratos Por Usuario</td><td>0, 3, 5, 9</td></tr>
+<tr><td>Depósitos Pendientes</td><td>0, 13, 3, 8, 9</td></tr>
+<tr><td>Control De Pagos</td><td>0, 8, 9, 5, 3, 18, Carlos</td></tr>
+<tr><td>Control Mensual</td><td>0, 8, 9, 3, 2, Carlos</td></tr>
+<tr><td>Crear TXT (generar envío banco)</td><td>0, 2, 3, 8, 9 (UI) — menú: nivel ≤ 3</td></tr>
+<tr><td>Cargar B. Venezuela</td><td>0, 2, 3, 8, 9 (UI) — menú: nivel ≤ 3</td></tr>
+<tr><td>Facturas Presupuesto</td><td>0, 8, 9, 5, 18, Carlos, mvanalista11</td></tr>
+<tr><td>Cuadre de Vendedores</td><td>0, Carlos</td></tr>
+</table>
+
+<!-- 4.11 SCOPING -->
+<h3 id="scoping-datos">4.11 Scoping de Datos: Qué Contratos Ve Cada Usuario</h3>
+<p>Cuando un usuario abre el <strong>buzón</strong> o listados de cobranza, el sistema filtra <code>t_clientes_creditos</code> combinando hasta 4 dimensiones:</p>
+
+<div class="mermaid">
+flowchart TD
+    U[Usuario autenticado] --> P[Pendientes / Listar]
+    P --> F1{Perfil origen}
+    F1 --> F1A[t_estadodocumento.oid = perfil.origen]
+    P --> F2{Linaje}
+    F2 --> F2A[t_clientes_creditos.cobrado_en IN lista_linaje]
+    P --> F3{Dependientes}
+    F3 --> F3A[expediente_c IN subordinados]
+    P --> F4{Perfil especial}
+    F4 --> F4A[nivel 0 o 19 → codigo_n]
+    F4 --> F4B[otros → expediente_c]
+    F1A --> R[Grilla filtrada GVista]
+    F2A --> R
+    F3A --> R
+    F4A --> R
+    F4B --> R
+</div>
+
+<div class="mermaid">
+erDiagram
+    t_usuario ||--o{ _tr_usuariolinaje : filtra
+    t_linaje ||--o{ t_clientes_creditos : "cobrado_en = nombre"
+    t_usuario ||--o{ _tr_usuariousuario : supervisa
+    t_clientes_creditos {
+        varchar contrato_id PK
+        int documento_id
+        varchar cobrado_en
+        varchar expediente_c
+        varchar codigo_n
+    }
+    t_perfil ||--o{ t_estadodocumento : origen
+    t_estadoejecucion }o--|| t_clientes_creditos : oidc
+    t_estadoejecucion }o--|| t_estadodocumento : oide
+</div>
+
+<h4>Flujo de workflow por perfil (qué puede aprobar/rechazar)</h4>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Usuario perfil X
+    participant B as Buzón
+    participant DB as t_estadoejecucion
+    participant P as t_perfil
+
+    U->>B: Abre buzón
+    B->>P: Lee origen, verdadero, falso del perfil
+    B->>DB: SELECT contratos WHERE oide = perfil.origen AND scoping
+    DB-->>B: Lista pendientes
+    U->>B: EjecutarVerdadero
+    B->>DB: UPDATE oide = perfil.verdadero
+    Note over DB: Trigger → _tr_contratos_estadoejecucion
+    U->>B: EjecutarFalso
+    B->>DB: UPDATE oide = perfil.falso
+</div>
+
+<h4>Resumen: journey completo de un operador típico (nivel 3)</h4>
+<div class="mermaid">
+journey
+    title Journey Operador Nivel 3 (Analista Cobranza)
+    section Login
+      Ingresar credenciales: 5: Operador
+      Ver menú personalizado: 5: Operador
+    section Operación diaria
+      Revisar buzón pendientes: 5: Operador
+      Aprobar/rechazar contratos: 4: Operador
+      Registrar cliente nuevo: 4: Operador
+    section Cobranza
+      Crear TXT envío banco: 5: Operador
+      Leer TXT respuesta banco: 5: Operador
+      Cargar archivo Venezuela: 4: Operador
+      Control mensual pagos: 5: Operador
+    section Cierre
+      Emitir recibo ingreso: 4: Operador
+      Cerrar sesión: 5: Operador
+</div>
+
+</section>
+
+<!-- SECTION 5: MODULOS OVERVIEW -->
+<section id="modulos">
+<h2>5. Mapa de Módulos</h2>
+<div class="mermaid">
+mindmap
+  root((Cooperativa Electron))
+    Autenticación
+      Login Staff
+      Login Cliente
+      Sesión y Cookies
+    Buzón Workflow
+      Pendientes
+      Aprobar/Rechazar
+      Estados Documento
+    Clientes
+      Registro
+      Expediente Digital
+      Certificación
+    Asistente Crédito
+      5 pasos wizard
+      Contratos
+      Facturas
+    Cobranza
+      Pagos Factura
+      BFC TXT
+      Venezuela
+    Inventario
+      Mercancía
+      Entregas
+      Proveedores
+    Recibos
+      Ingreso
+      Egreso
+      Acuse Admin
+    Reportes
+      Generales XLS
+      Factura Control
+      Domiciliación
+    Panel Admin
+      Usuarios
+      Ubicaciones
+      Traslados
+    Portal Cliente
+      Estado Cuenta
+      Consulta Contratos
+    Satélites
+      SUMI
+      Triángulo
+</div>
+
+<table>
+<tr><th>#</th><th>Módulo</th><th>Controller</th><th>Model(s)</th><th>View JS</th></tr>
+<tr><td>1</td><td>Autenticación</td><td>cooperativa::login, verificacion</td><td>MUsuario</td><td>—</td></tr>
+<tr><td>2</td><td>Buzón / Workflow</td><td>buzon, Pendientes, Ejecutar*</td><td>MCliente, CListartareas</td><td>buzon.js</td></tr>
+<tr><td>3</td><td>Registro Cliente</td><td>registrar, Guardar_Cliente</td><td>CClientes, MPersona</td><td>clientes.js</td></tr>
+<tr><td>4</td><td>Asistente Crédito</td><td>Asistente1-5, GV_Asistente*</td><td>MCredito, MCertifica, MVistas</td><td>asistente1-5.js</td></tr>
+<tr><td>5</td><td>Contratos</td><td>Generar/Procesar/Modificar_Contratos</td><td>MContrato, CCreditos</td><td>procesar.js</td></tr>
+<tr><td>6</td><td>Factura Control</td><td>factura_control, AceptarFactura</td><td>MFControl</td><td>fcontrol.js</td></tr>
+<tr><td>7</td><td>Cobranza</td><td>Cobranza, Pagos_Factura</td><td>MCobranza, MProcesar</td><td>detalleCobro.js</td></tr>
+<tr><td>8</td><td>Inventario</td><td>Inventario, Mercancia, Entregar_*</td><td>CInventario, MInventario</td><td>inventario.js, mercancia.js</td></tr>
+<tr><td>9</td><td>Recibos</td><td>Recibo_Ingreso/Egreso</td><td>MRecibo, MReciboEgreso</td><td>recibo_*.js</td></tr>
+<tr><td>10</td><td>Nómina</td><td>Inserta_Nomina, Nomina_Banco</td><td>CNomina, CNominaXls</td><td>—</td></tr>
+<tr><td>11</td><td>Reportes</td><td>reportes, Reporte_General</td><td>CReportesXls, MReporte</td><td>reportes.js, rep_gen.js</td></tr>
+<tr><td>12</td><td>Panel Admin</td><td>panel, Crear_Usuario/Ubicacion</td><td>MUsuario, MUbicacion</td><td>panel.js, usuario.js</td></tr>
+<tr><td>13</td><td>Expediente</td><td>archivo_cliente, subir_solicitud</td><td>MArchivo</td><td>subir_archivo.js</td></tr>
+<tr><td>14</td><td>Auditoría</td><td>archivosAuditoria</td><td>MAuditoria</td><td>auditoria.js</td></tr>
+<tr><td>15</td><td>Portal Cliente</td><td>electron::*</td><td>MClientee, CCreditose</td><td>consultar.js</td></tr>
+<tr><td>16</td><td>SUMI</td><td>sumi::crear/entregar/reporte</td><td>CContrato (sumi)</td><td>sumi/*.js</td></tr>
+<tr><td>17</td><td>Triángulo</td><td>triangulo::lista/crear/detalle</td><td>CTriangulo</td><td>triangulo/*.js</td></tr>
+<tr><td>18</td><td>TXT/BFC</td><td>Crear_Txt, Leer_Txt, cargaVenezuela</td><td>TXT_Bfc, MCargaVenezuela</td><td>crear_txt.js, leer_txt.js</td></tr>
+<tr><td>19</td><td>Sugerencias/Chat</td><td>Sugerencia, HConversaciones</td><td>CSugerencia, CChat</td><td>buzon.js</td></tr>
+<tr><td>20</td><td>Depósito/Liquidación</td><td>Liquidacion, PendientesDeposito</td><td>MCliente</td><td>deposito.js</td></tr>
+</table>
+</section>
+
+<!-- SECTION 6: WORKFLOW -->
+<section id="workflow">
+<h2>6. Motor de Workflow (Buzón)</h2>
+<p>El corazón operativo de la plataforma. Los contratos avanzan por estados definidos en <code>t_estadodocumento</code> y <code>t_estadoejecucion</code>, filtrados por perfil del usuario.</p>
+
+<div class="mermaid">
+stateDiagram-v2
+    [*] --> Creado: INSERT t_clientes_creditos
+    Creado --> EnRevision: Perfil origen ve en buzón
+    EnRevision --> Aprobado: EjecutarVerdadero → destino_verdadero
+    EnRevision --> Rechazado: EjecutarFalso → destino_falso
+    Aprobado --> SiguienteEtapa: Nuevo estado en t_estadoejecucion
+    SiguienteEtapa --> ContratoActivo: Última etapa
+    Rechazado --> EnRevision: Re-proceso manual
+    ContratoActivo --> Cobranza: t_lista_cobros generada
+    Cobranza --> Cancelado: DELETE trigger cascade
+    Cancelado --> [*]
+</div>
+
+<h3>Flujo técnico del Buzón</h3>
+<div class="mermaid">
+flowchart TD
+    A[Usuario abre buzón] --> B[Pendientes]
+    B --> C{Filtrar por}
+    C --> D[origen del perfil]
+    C --> E[lista_linaje bancos]
+    C --> F[dependientes subordinados]
+    C --> G[ubicación oficina]
+    D --> H[Grilla GVista con contratos pendientes]
+    H --> I{Acción usuario}
+    I -->|Aprobar| J[EjecutarVerdadero]
+    I -->|Rechazar| K[EjecutarFalso]
+    J --> L[MCliente.EjecutarDisparo]
+    K --> L
+    L --> M[UPDATE t_estadoejecucion]
+    M --> N[Trigger historial _tr_contratos_estadoejecucion]
+    J --> O[Generar PDF formato ipdf]
+</div>
+
+<h3>Perfil → Estados (t_perfil)</h3>
+<table>
+<tr><th>Campo</th><th>Descripción</th></tr>
+<tr><td><code>origen</code></td><td>Estado documento que el perfil puede VER en buzón (FK → t_estadodocumento.oid)</td></tr>
+<tr><td><code>verdadero</code></td><td>Estado destino al APROBAR</td></tr>
+<tr><td><code>falso</code></td><td>Estado destino al RECHAZAR</td></tr>
+</table>
+</section>
+
+<!-- SECTION 7: DATABASE -->
+<section id="bd">
+<h2>7. Base de Datos</h2>
+<p>Base: <code>grupoele_electron</code> · Motor: MyISAM · Sin sistema de migraciones — schema en <code>system/script/db.sql</code></p>
+
+<h3>7.1 Diagrama Entidad-Relación Principal</h3>
+<div class="mermaid">
+erDiagram
+    t_personas ||--o{ t_clientes : "solicita"
+    t_personas ||--o{ t_clientes_creditos : "tiene contratos"
+    t_clientes_creditos ||--|| t_estadoejecucion : "estado actual"
+    t_clientes_creditos ||--o{ t_lista_cobros : "plan pagos"
+    t_estadoejecucion }o--|| t_estadodocumento : "tipo estado"
+    t_clientes_creditos }o--|| t_creditos : "producto"
+    t_usuario ||--o{ _tr_usuarioperfil : ""
+    _tr_usuarioperfil }o--|| t_perfil : ""
+    t_perfil ||--o{ _tr_perfilprivilegios : ""
+    _tr_perfilprivilegios }o--|| t_privilegios : ""
+    t_usuario ||--o{ _tr_usuarioubicacion : ""
+    _tr_usuarioubicacion }o--|| t_ubicacion : ""
+    t_usuario ||--o{ _tr_usuariolinaje : ""
+    _tr_usuariolinaje }o--|| t_linaje : ""
+    t_usuario ||--o{ _tr_usuariousuario : "dependientes"
+    t_inventario }o--|| t_proveedores : ""
+    t_inventario }o--|| t_artefactos : ""
+    t_productos }o--|| t_inventario : ""
+    t_clientes_creditos ||--o{ _th_clientes_creditos : "auditoría"
+    t_estadoejecucion ||--o{ _tr_contratos_estadoejecucion : "historial"
+</div>
+
+<h3>7.2 Tablas Principales</h3>
+<table>
+<tr><th>Tabla</th><th>PK</th><th>Descripción</th><th>Campos clave</th></tr>
+<tr><td><code>t_personas</code></td><td>documento_id</td><td>Datos demográficos del cliente/afiliado</td><td>nombres, bancos (cuenta_1..3), codigo_nomina, ubicacion</td></tr>
+<tr><td><code>t_clientes</code></td><td>documento_id + credito_id</td><td>Solicitud de crédito (pre-contrato)</td><td>monto_total, numerocuotas, periocidad</td></tr>
+<tr><td><code>t_clientes_creditos</code></td><td>contrato_id</td><td>Contrato activo</td><td>numero_factura, cobrado_en, monto_cuota, estatus</td></tr>
+<tr><td><code>t_lista_cobros</code></td><td>—</td><td>Cronograma de cobro mensual</td><td>credito_id, mes, monto, fecha</td></tr>
+<tr><td><code>t_estadoejecucion</code></td><td>oidc (contrato)</td><td>Estado workflow actual</td><td>oide, observacion, estatus</td></tr>
+<tr><td><code>t_estadodocumento</code></td><td>oid</td><td>Catálogo de estados</td><td>nombre, clase, denominacion, accion</td></tr>
+<tr><td><code>t_usuario</code></td><td>oid</td><td>Usuarios staff</td><td>seudonimo, clave (MD5), estatus</td></tr>
+<tr><td><code>t_perfil</code></td><td>oid</td><td>Perfiles/roles</td><td>origen, verdadero, falso</td></tr>
+<tr><td><code>t_privilegios</code></td><td>oid</td><td>Permisos granulares</td><td>clase, metodo, accion, funcion</td></tr>
+<tr><td><code>t_linaje</code></td><td>oid</td><td>Bancos de cobranza</td><td>nombre</td></tr>
+<tr><td><code>t_ubicacion</code></td><td>oid</td><td>Oficinas</td><td>nombre, descripcion</td></tr>
+<tr><td><code>t_inventario</code></td><td>inventario_id</td><td>Catálogo inventario</td><td>proveedor, artefacto, marca, modelo</td></tr>
+<tr><td><code>t_productos</code></td><td>serial</td><td>Unidades individuales</td><td>estatus, compra, venta, ubicacion</td></tr>
+<tr><td><code>t_nominas</code></td><td>codigo</td><td>Entidades de nómina</td><td>nombre, descripcion</td></tr>
+<tr><td><code>chat</code></td><td>—</td><td>Mensajería interna</td><td>—</td></tr>
+<tr><td><code>t_sugerencias</code></td><td>—</td><td>Tickets de sugerencia</td><td>—</td></tr>
+</table>
+
+<h3>7.3 Tablas de Auditoría e Historial</h3>
+<table>
+<tr><th>Tabla</th><th>Trigger/Evento</th></tr>
+<tr><td><code>_th_clientes_creditos</code></td><td>UPDATE/DELETE en t_clientes_creditos</td></tr>
+<tr><td><code>_tr_contratos_estadoejecucion</code></td><td>UPDATE en t_estadoejecucion</td></tr>
+<tr><td><code>_th_lista_cobros</code></td><td>DELETE en t_lista_cobros</td></tr>
+<tr><td><code>_th_sistema</code></td><td>Eliminaciones generales</td></tr>
+<tr><td><code>t_his_cancelados</code></td><td>Clientes cancelados</td></tr>
+<tr><td><code>t_his_contratos</code></td><td>Historial contratos</td></tr>
+</table>
+
+<h3>7.4 Triggers Automáticos</h3>
+<ul>
+<li><strong>INSERT t_clientes_creditos</strong> → crea registro en t_estadoejecucion (estado inicial oid=1)</li>
+<li><strong>UPDATE t_clientes_creditos</strong> → copia a _th_clientes_creditos</li>
+<li><strong>DELETE t_clientes_creditos</strong> → historial + cascade delete t_lista_cobros + t_estadoejecucion</li>
+<li><strong>UPDATE t_estadoejecucion</strong> → historial en _tr_contratos_estadoejecucion</li>
+<li><strong>DELETE t_lista_cobros</strong> → historial en _th_lista_cobros</li>
+</ul>
+</section>
+
+<!-- MODULE DETAILS -->
+<h2 id="modulos-detalle" style="margin-top:2rem">5. Detalle por Módulo</h2>
+<div id="mod-auth">
+<h3>5.1 Módulo: Autenticación</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Operador
+    participant V as login.php
+    participant C as cooperativa
+    participant M as MUsuario
+    participant DB as t_usuario
+
+    U->>V: txtUsuario + txtClave
+    V->>C: POST verificacion
+    C->>C: validation (md5 clave)
+    C->>M: Validar(usr, md5clave)
+    M->>DB: SELECT seudonimo + clave
+    DB-->>M: usuario activo
+    M->>M: _Cargar → perfil, linaje, ubicacion
+    C->>C: set_userdata(session)
+    C->>U: bienvenida + menú por nivel
+</div>
+<div class="uc-card"><span class="uc-id">UC-AUTH-01</span> — Iniciar sesión como operador con credenciales válidas</div>
+<div class="uc-card"><span class="uc-id">UC-AUTH-02</span> — Rechazar login con credenciales inválidas (destruye sesión)</div>
+<div class="uc-card"><span class="uc-id">UC-AUTH-03</span> — Cargar menú dinámico según nivel + overrides username</div>
+<div class="uc-card"><span class="uc-id">UC-AUTH-04</span> — Cliente inicia sesión en portal con cédula + cuenta + CAPTCHA</div>
+</div>
+
+<div id="mod-buzon">
+<h3>5.2 Módulo: Buzón / Workflow</h3>
+<p><strong>Archivos:</strong> <code>cooperativa::buzon, Pendientes, EjecutarVerdadero, EjecutarFalso</code> · <code>models/cliente/mcliente.php</code> · <code>js/view/buzon.js</code></p>
+<div class="uc-card"><span class="uc-id">UC-BUZ-01</span> — Ver contratos pendientes filtrados por origen de perfil, linaje y dependientes</div>
+<div class="uc-card"><span class="uc-id">UC-BUZ-02</span> — Aprobar contrato → avanza a destino_verdadero + genera PDF</div>
+<div class="uc-card"><span class="uc-id">UC-BUZ-03</span> — Rechazar contrato → avanza a destino_falso</div>
+<div class="uc-card"><span class="uc-id">UC-BUZ-04</span> — Contador "Lo Nuevo (N)" en menú vía Pendientes(1)</div>
+<div class="uc-card"><span class="uc-id">UC-BUZ-05</span> — Ver rechazos históricos (Rechazos)</div>
+<div class="uc-card"><span class="uc-id">UC-BUZ-06</span> — Workflow depósito: PendientesDeposito con EjecutarVerdaderoF/FalsoF</div>
+</div>
+
+<div id="mod-cliente">
+<h3>5.3 Módulo: Gestión de Clientes</h3>
+<p><strong>Archivos:</strong> <code>registrar, Guardar_Cliente, TG_Cedula</code> · <code>cclientes.php, mpersona.php</code> · <code>clientes.js</code></p>
+<div class="mermaid">
+flowchart LR
+    A[Buscar cédula] --> B{Existe en t_personas?}
+    B -->|No| C[Formulario registro completo]
+    B -->|Sí| D[Cargar datos existentes]
+    C --> E[Guardar t_personas]
+    D --> F[Actualizar datos]
+    E --> G[Expediente digital]
+    F --> G
+    G --> H[Certificar requisitos]
+</div>
+<div class="uc-card"><span class="uc-id">UC-CLI-01</span> — Registrar nuevo cliente en t_personas</div>
+<div class="uc-card"><span class="uc-id">UC-CLI-02</span> — Consultar cliente por cédula (TG_Cedula)</div>
+<div class="uc-card"><span class="uc-id">UC-CLI-03</span> — Cargar/ver expediente digital (documentos escaneados)</div>
+<div class="uc-card"><span class="uc-id">UC-CLI-04</span> — Certificar y enviar requisitos al cliente</div>
+<div class="uc-card"><span class="uc-id">UC-CLI-05</span> — Gestionar archivo físico/digital (archivo_cliente)</div>
+</div>
+
+<div id="mod-asistente">
+<h3>5.4 Módulo: Asistente de Crédito (Wizard 5 pasos)</h3>
+<div class="mermaid">
+flowchart TD
+    S1[Asistente1: Datos Persona] --> S2[Asistente2: Datos Laborales]
+    S2 --> S3[Asistente3: Selección Producto]
+    S3 --> S4[Asistente4: Simulación Cuotas]
+    S4 --> S5[Asistente5: Confirmación y Contrato]
+    S5 --> C[INSERT t_clientes_creditos]
+    C --> T[Trigger: t_estadoejecucion inicial]
+    T --> B[Aparece en Buzón del perfil origen]
+</div>
+<div class="uc-card"><span class="uc-id">UC-ASI-01</span> — Paso 1: Registrar/validar persona (Guarda_Asistente1)</div>
+<div class="uc-card"><span class="uc-id">UC-ASI-02</span> — Paso 2-3: Datos laborales, nómina, banco cobranza</div>
+<div class="uc-card"><span class="uc-id">UC-ASI-03</span> — Paso 4: Calcular cuotas, vacaciones, aguinaldo</div>
+<div class="uc-card"><span class="uc-id">UC-ASI-04</span> — Paso 5: Generar contrato y factura</div>
+<div class="uc-card"><span class="uc-id">UC-ASI-05</span> — Venta de contado (Venta_Contado)</div>
+<div class="uc-card"><span class="uc-id">UC-ASI-06</span> — Plan corporativo y presupuesto compuesto</div>
+</div>
+
+<div id="mod-contratos-morosidad">
+<h3>5.4.1 Guía: Contratos, periodicidad, morosidad y cobro acumulado</h3>
+
+<div class="alert alert-info">
+<strong>Propósito de esta guía:</strong> Documentar cómo la plataforma define un contrato, cuándo un afiliado se considera moroso según su <strong>periodicidad</strong>, y por qué al generar el <strong>TXT de cobranza</strong> debe incluirse no solo la cuota del periodo actual sino también <strong>saldo pendiente de periodos anteriores</strong> (incluyendo abonos parciales).
+</div>
+
+<h4>Dimensiones de un contrato (<code>t_clientes_creditos</code>)</h4>
+<p>Un contrato no es un solo “tipo”. Es la combinación de varios campos que definen <em>qué</em> se cobra, <em>cada cuánto</em>, <em>dónde</em> y <em>cuánto</em>:</p>
+<table>
+<tr><th>Campo</th><th>Catálogo / valores</th><th>Qué define</th></tr>
+<tr><td><code>forma_contrato</code></td><td><code>t_formacontrato</code></td><td><strong>Qué línea de cobro</strong> es: cuota regular, aguinaldo, vacaciones, extra, pronto pago, bonoexpress.</td></tr>
+<tr><td><code>periocidad</code></td><td><code>t_periodicidad</code></td><td><strong>Cada cuánto vence</strong> una cuota: semanal, quincenal, mensual, trimestral, etc.</td></tr>
+<tr><td><code>cobrado_en</code></td><td>Texto libre (linaje)</td><td><strong>Dónde se debita</strong>: Bicentenario, Provincial, Venezuela, DOMICILIACION, VOUCHER…</td></tr>
+<tr><td><code>numero_cuotas</code></td><td>Entero</td><td>Cantidad de periodos del plan.</td></tr>
+<tr><td><code>monto_cuota</code></td><td>Decimal</td><td>Monto esperado <strong>por periodo</strong>.</td></tr>
+<tr><td><code>monto_total</code></td><td>Decimal</td><td>Deuda total del contrato.</td></tr>
+<tr><td><code>fecha_inicio_cobro</code></td><td>Fecha</td><td>Inicio del cronograma; junto con periodicidad define las fechas de cada cuota.</td></tr>
+<tr><td><code>numero_factura</code></td><td>Char(16)</td><td>Agrupa varios contratos bajo una misma factura de venta.</td></tr>
+<tr><td><code>condicion</code></td><td>Código</td><td>Tipo de producto (moto, artefacto, préstamo, etc.).</td></tr>
+</table>
+
+<h4>Forma de contrato (<code>forma_contrato</code>)</h4>
+<table>
+<tr><th>Código</th><th>Nombre</th><th>Uso típico</th></tr>
+<tr><td>0</td><td>UNICO</td><td>Cuota regular del crédito (la más común en domiciliación y nómina).</td></tr>
+<tr><td>1</td><td>AGUINALDOS – CUOTA ESPECIAL</td><td>Descuento en mes de aguinaldo (contrato aparte en la misma factura).</td></tr>
+<tr><td>2</td><td>VACACIONES – CUOTA ESPECIAL</td><td>Descuento en mes de vacaciones.</td></tr>
+<tr><td>3</td><td>CUOTA EXTRAORDINARIA / EXTRA</td><td>Cobro adicional fuera del plan regular.</td></tr>
+<tr><td>4</td><td>UNICO – EXTRA</td><td>Variante extra del plan único.</td></tr>
+<tr><td>5</td><td>ESPECIAL – EXTRA</td><td>Cuota especial combinada con extra.</td></tr>
+<tr><td>6</td><td>UNICO – PRONTO PAGO</td><td>Condición de pronto pago.</td></tr>
+<tr><td>7</td><td>BONOEXPRESS</td><td>Modalidad Bonoexpress.</td></tr>
+</table>
+<p><strong>Nota:</strong> Una factura puede tener <strong>varios contratos</strong> (uno por producto/línea). Cada uno tiene su propio <code>contrato_id</code> y control de pagos independiente.</p>
+
+<h4>Periodicidad (<code>periocidad</code>) — define el calendario de morosidad</h4>
+<table>
+<tr><th>Código</th><th>Periodicidad</th><th>Intervalo entre cuotas (lógica <code>GPlanCobro</code>)</th></tr>
+<tr><td>0</td><td>SEMANAL</td><td>~1/4 de mes</td></tr>
+<tr><td>1</td><td>CATORCENAL</td><td>~1/2 mes</td></tr>
+<tr><td>2</td><td>QUINCENAL 15 – 30</td><td>~1/2 mes</td></tr>
+<tr><td>3</td><td>QUINCENAL 10 – 25</td><td>~1/2 mes</td></tr>
+<tr><td>4</td><td>MENSUAL</td><td>1 mes</td></tr>
+<tr><td>5</td><td>TRIMESTRAL</td><td>3 meses</td></tr>
+<tr><td>6</td><td>SEMESTRAL</td><td>6 meses</td></tr>
+<tr><td>7</td><td>ANUAL</td><td>12 meses</td></tr>
+<tr><td>8</td><td>MENSUAL-10</td><td>1 mes (corte día 10)</td></tr>
+<tr><td>9</td><td>MENSUAL-25 / BONOEXPRESS</td><td>1 mes (corte día 25)</td></tr>
+</table>
+
+<div class="alert alert-warn">
+<strong>Morosidad según periodicidad:</strong> Un cliente <em>no se vuelve moroso “cada mes”</em> de forma genérica. Se evalúa contra el <strong>plan de cuotas</strong> generado desde <code>fecha_inicio_cobro</code> + <code>numero_cuotas</code> + <code>periocidad</code>. Si es <strong>semanal</strong>, una cuota vence cada semana; si es <strong>quincenal</strong>, cada 15 días según el calendario del contrato; si es <strong>mensual</strong>, cada mes. El atraso se mide cuota por cuota, no solo por calendario civil.
+</div>
+
+<h4>Domiciliación: ¿cuál es la “meta” del contrato?</h4>
+<p>Cuando el canal es <strong>domiciliación</strong> (<code>cobrado_en</code> = DOMICILIACION / DOMICILIACION POR OFICINA), la meta de cobro la definen <strong>todos</strong> estos campos juntos:</p>
+<ul>
+  <li><strong>Cuánto por periodo:</strong> <code>monto_cuota</code></li>
+  <li><strong>Cuántos periodos:</strong> <code>numero_cuotas</code></li>
+  <li><strong>Total a pagar:</strong> <code>monto_total</code></li>
+  <li><strong>Desde cuándo:</strong> <code>fecha_inicio_cobro</code></li>
+  <li><strong>Calendario:</strong> <code>periocidad</code> (no hay un campo suelto “día de cobro”; se calcula)</li>
+  <li><strong>Tipo de cuota:</strong> <code>forma_contrato</code> (regular vs aguinaldo/vacaciones)</li>
+  <li><strong>Cuenta a debitar:</strong> datos en <code>t_personas</code> + <code>t_clientes_domiciliacion</code></li>
+</ul>
+
+<h4>Flujo: crédito → factura → plan → pagos</h4>
+<div class="mermaid">
+flowchart TD
+    A[Asistente / venta] --> B[INSERT t_clientes_creditos]
+    B --> C[numero_factura agrupa contratos]
+    B --> D[t_estadoejecucion workflow]
+    C --> E[Contrato activo]
+    E --> F[GPlanCobro en memoria]
+    F --> G[Cuotas teóricas 1..N con fechas]
+    G --> H{Canal de cobro}
+    H -->|TXT banco| I[Crear TXT Gtxt C++]
+    H -->|Respuesta| J[Leer TXT / Venezuela]
+    H -->|Manual| K[Control Mensual]
+    I --> Banco((Banco))
+    Banco --> J
+    J --> L[t_lista_cobros]
+    K --> L
+    L --> M[CPagos: Pagada / Abonada / Pendiente]
+</div>
+
+<h4>Cómo se registran los pagos y los abonos parciales</h4>
+<p>Los pagos reales se acumulan en <code>t_lista_cobros</code> por <code>credito_id</code> (= <code>contrato_id</code>). El método <code>MCobranza::CPagos()</code> reparte el total pagado secuencialmente sobre el plan teórico:</p>
+<table>
+<tr><th>Estado cuota</th><th>Condición</th></tr>
+<tr><td><strong>Pagada</strong></td><td>El acumulado cubrió el <code>monto_cuota</code> completo de esa cuota del plan.</td></tr>
+<tr><td><strong>Abonada</strong></td><td>Hay pago parcial: cubrió algo pero no llegó al <code>monto_cuota</code>.</td></tr>
+<tr><td><strong>Pendiente</strong></td><td>Sin pago aplicado a esa cuota del plan.</td></tr>
+</table>
+<p>Saldo global del contrato:</p>
+<pre style="background:var(--surface2);padding:1rem;border-radius:8px;border:1px solid var(--border);font-size:.85rem">resta = monto_total − SUM(t_lista_cobros.monto)</pre>
+
+<h4>Regla de negocio: cobro del periodo = pendiente anterior + cuota nueva</h4>
+<p>Al generar el archivo de cobranza (TXT) para un periodo, <strong>en teoría</strong> el monto a debitar por contrato debe ser:</p>
+<pre style="background:var(--surface2);padding:1rem;border-radius:8px;border:1px solid var(--border);font-size:.85rem">Monto a cobrar = Saldo pendiente de cuotas vencidas + Cuota(s) del periodo actual aún no cubiertas</pre>
+
+<div class="card">
+<h4>Ejemplo numérico (mensual, abono parcial)</h4>
+<table>
+<tr><th>Concepto</th><th>Valor</th></tr>
+<tr><td>Cuota mensual (<code>monto_cuota</code>)</td><td>100 Bs.</td></tr>
+<tr><td>Mes anterior (cuota 1 del plan)</td><td>Debía 100 Bs., el banco solo descontó <strong>40 Bs.</strong></td></tr>
+<tr><td>Saldo arrastrado del mes anterior</td><td>100 − 40 = <strong>60 Bs.</strong> (cuota <strong>Abonada</strong>, no Pagada)</td></tr>
+<tr><td>Cuota del mes actual (cuota 2)</td><td><strong>100 Bs.</strong> (nueva cuota del plan)</td></tr>
+<tr><td><strong>Total a incluir en TXT de este mes</strong></td><td>60 + 100 = <strong>160 Bs.</strong></td></tr>
+</table>
+<p>Si el cliente hubiera pagado <strong>0</strong> el mes anterior, serían 100 + 100 = <strong>200 Bs.</strong> Si hubiera pagado las <strong>100</strong> completas, solo <strong>100 Bs.</strong> del mes nuevo.</p>
+</div>
+
+<h4>Ejemplos de morosidad según periodicidad</h4>
+<table>
+<tr><th>Periodicidad</th><th>Plan</th><th>Escenario de mora</th><th>Qué acumula al siguiente cobro</th></tr>
+<tr><td>Mensual (4)</td><td>100 Bs./mes</td><td>No pagó enero; llega febrero</td><td>100 (enero) + 100 (febrero) = 200, menos abonos parciales</td></tr>
+<tr><td>Quincenal (2/3)</td><td>50 Bs./quincena</td><td>Pagó solo 20 de la 1.ª quincena</td><td>30 restantes + 50 de la 2.ª quincena = 80</td></tr>
+<tr><td>Semanal (0)</td><td>25 Bs./semana</td><td>Faltan 2 semanas del mes</td><td>Suma de cada semana Pendiente/Abonada + semana actual</td></tr>
+<tr><td>Aguinaldo (forma 1)</td><td>1 cuota especial en nov/dic</td><td>No aplica lógica mensual regular</td><td>Se cobra solo en el mes configurado del plan especial</td></tr>
+</table>
+
+<h4>Dónde implementa la plataforma cada parte</h4>
+<table>
+<tr><th>Capa</th><th>Archivo / componente</th><th>Responsabilidad</th></tr>
+<tr><td>Plan teórico de cuotas</td><td><code>models/cobranza/mcobranza.php</code> → <code>GPlanCobro()</code></td><td>Genera fechas y número de cuota según periodicidad.</td></tr>
+<tr><td>Estado cuota a cuota</td><td><code>MCobranza::CPagos()</code></td><td>Distribuye pagos: Pagada / Abonada / Pendiente.</td></tr>
+<tr><td>Registro de pagos</td><td><code>t_lista_cobros</code></td><td>Histórico real de montos cobrados (incluye parciales).</td></tr>
+<tr><td>Control Mensual (manual)</td><td><code>MCobranza::CrearGrid()</code></td><td>Propone <code>monto_cuota</code> o <code>resta</code> si queda poco saldo; editable antes de <code>Guardar_Lote</code>.</td></tr>
+<tr><td>TXT envío al banco</td><td><code>system/repository/grupo/src/Gtxt</code> (C++)</td><td>Calcula montos del archivo según corte “Hasta la fecha”, forma, periodicidad y plan vs pagos. Incluye lógica de <em>recobro cuotas atrasadas</em> (evidencia en histórico <code>cpp_banco</code>).</td></tr>
+<tr><td>Consulta morosidad</td><td><code>MCliente::Pagos_Factura()</code>, reportes Sin Pago</td><td>Lista facturas/contratos con total, pagado y resta.</td></tr>
+</table>
+
+<div class="alert alert-warn">
+<strong>Limitación local:</strong> El binario <code>Gtxt</code> no está en el repositorio de desarrollo. La fórmula exacta del TXT (cómo suma atrasados + parciales + cuota nueva) vive en ese C++. En PHP se ve el plan, el saldo (<code>resta</code>) y el estado por cuota; el operador puede corregir montos en <strong>Control Mensual</strong> si el TXT no refleja lo esperado.
+</div>
+
+<h4>Parámetros del TXT que afectan el corte de deuda</h4>
+<p>Al usar <strong>Reportes → Crear TXT</strong> (<code>MProcesar::Gtxt()</code>), además de linaje y nómina, importan:</p>
+<ul>
+  <li><strong>Tipo C (Cobranza):</strong> archivo de descuento de cuotas (no afiliación).</li>
+  <li><strong>Forma contrato y Periodicidad:</strong> filtran qué contratos entran al lote.</li>
+  <li><strong>Hasta la fecha (día / mes / año):</strong> corte hasta el cual se evalúan cuotas vencidas y pendientes.</li>
+  <li><strong>Método picar:</strong> divide montos grandes en varios débitos (ej. 302 Bs. con picar 100 → 100+100+100+2).</li>
+</ul>
+
+<h4>Domiciliación vs cobranza por TXT de nómina</h4>
+<table>
+<tr><th>Aspecto</th><th>Domiciliación</th><th>Nómina / TXT banco</th></tr>
+<tr><td><code>cobrado_en</code></td><td>DOMICILIACION</td><td>Bicentenario, Provincial, Fondo Común, etc.</td></tr>
+<tr><td>Generación TXT salida</td><td>No (débito directo a cuenta)</td><td>Sí — Crear TXT</td></tr>
+<tr><td>Registro de pago</td><td>Recibos, Control Mensual, confirmación domiciliación</td><td>Leer TXT respuesta → <code>t_lista_cobros</code></td></tr>
+<tr><td>Regla de acumulación</td><td>Igual en concepto: debe cobrarse lo pendiente + lo del periodo</td><td>Lo calcula Gtxt al armar el archivo</td></tr>
+</table>
+
+<div class="uc-card"><span class="uc-id">REF-CON-01</span> — Una factura puede agrupar varios contratos con distinta forma_contrato</div>
+<div class="uc-card"><span class="uc-id">REF-CON-02</span> — La morosidad se mide contra el plan según periodicidad, no solo “mes calendario”</div>
+<div class="uc-card"><span class="uc-id">REF-CON-03</span> — Abono parcial deja saldo arrastrable: cuota Abonada, no Pagada</div>
+<div class="uc-card"><span class="uc-id">REF-CON-04</span> — TXT de cobranza debe incluir pendiente anterior + cuota nueva (ej. 60 + 100 = 160)</div>
+</div>
+
+<div id="mod-cobranza">
+<h3>5.5 Módulo: Cobranza</h3>
+
+<div class="alert alert-info">
+<strong>Importante:</strong> Cobranza <strong>no es un módulo único</strong>. Está distribuido en varias pantallas bajo el menú <strong>Reportes</strong>, más <strong>Factura Control</strong> y <strong>Cobranza BFC</strong> (usuario <code>poleeth</code>). Venezuela y BFC son flujos distintos.
+</div>
+
+<h4>5.5.1 ¿Quiénes pueden usar cobranza?</h4>
+<table>
+<tr><th>Funcionalidad</th><th>Acceso menú</th><th>Validación UI (vista)</th><th>Validación backend</th></tr>
+<tr><td><strong>Crear TXT / Leer TXT / Ver TXT / Cargar B. Venezuela</strong></td><td><code>nivel &lt;= 3</code> (0, 1, 2, 3)</td><td>Botones: <strong>0, 2, 3, 8, 9</strong></td><td>Solo sesión activa</td></tr>
+<tr><td><strong>Cobranza BFC</strong></td><td>Solo usuario <code>poleeth</code></td><td>—</td><td>Sin chequeo de nivel en controller</td></tr>
+<tr><td><strong>Control de Pagos</strong> (<code>Pagos_Factura</code>)</td><td>Menú Reportes (casi todos)</td><td><strong>0, 3, 5, 8, 9, 18</strong> + Carlos</td><td><code>cooperativa::Pagos_Factura()</code></td></tr>
+<tr><td><strong>Control Mensual</strong> (<code>GenerarControlPagos</code>)</td><td>Menú Reportes</td><td><strong>0, 2, 3, 8, 9</strong> + Carlos</td><td>Edición lote: <strong>0, 3, 8, 9</strong></td></tr>
+<tr><td><strong>Factura Control</strong></td><td>Menú principal (todos con reportes)</td><td>Según vista</td><td>Sesión activa</td></tr>
+</table>
+<p><strong>Usuarios principales de cobranza:</strong> Nivel <strong>0</strong> (completo), <strong>2 y 3</strong> (TXT/BFC/Venezuela), <strong>8 y 9</strong> (UI de TXT aunque menú solo si nivel ≤ 3), <strong>5 y 18</strong> (consultas Control De Pagos), <strong>poleeth</strong> (BFC dedicado), <strong>Carlos</strong> (overrides).</p>
+
+<h4>5.5.2 Mapa de navegación en la plataforma</h4>
+<div class="mermaid">
+flowchart TB
+    subgraph Menu["Menú Principal"]
+        R[Reportes]
+        FC[Factura Control]
+        BFC[Cobranza BFC - solo poleeth]
+    end
+    subgraph ReportesSub["Reportes → Sub-opciones Cobranza"]
+        CT[Crear Txt → genera TXT envío]
+        LT[Leer Txt → procesa respuesta banco]
+        VT[Ver Txt → archivos procesados]
+        CV[Cargar B. Venezuela → respuesta BD Venezuela]
+        CP[Control De Pagos → Pagos_Factura]
+        CM[Control Mensual → GenerarControlPagos]
+    end
+    R --> CT & LT & VT & CV & CP & CM
+    FC --> FCV[fcontrol.php → control facturas]
+    BFC --> NOM[nomina/cobranza.php → BFC legacy]
+</div>
+
+<table>
+<tr><th>Ruta UI</th><th>URL</th><th>Dirección del flujo</th></tr>
+<tr><td>Reportes → Crear Txt</td><td><code>/cooperativa/Crear_Txt</code></td><td><strong>Salida</strong> — genera TXT para enviar al banco</td></tr>
+<tr><td>Reportes → Pendientes Por Procesar</td><td><code>/cooperativa/Leer_Txt</code></td><td><strong>Entrada</strong> — procesa TXT respuesta del banco</td></tr>
+<tr><td>Reportes → Archivos Procesados</td><td><code>/cooperativa/Ver_Txt</code></td><td>Consulta histórico</td></tr>
+<tr><td>Reportes → Cargar B. Venezuela</td><td><code>/cooperativa/cargaVenezuela</code></td><td><strong>Entrada</strong> — solo respuesta BD Venezuela</td></tr>
+<tr><td>Reportes → Control De Pagos</td><td><code>/cooperativa/reportes</code> → <code>Pagos_Factura</code></td><td>Consulta contratos sin pago</td></tr>
+<tr><td>Reportes → Control Mensual</td><td><code>/cooperativa/reportes</code> → <code>GenerarControlPagos</code></td><td>Grilla editable → <code>t_lista_cobros</code></td></tr>
+<tr><td>Factura Control</td><td><code>/cooperativa/factura_control</code></td><td>Control de facturas</td></tr>
+<tr><td>Cobranza BFC</td><td><code>/cooperativa/Cobranza</code></td><td>Módulo BFC legacy (poleeth)</td></tr>
+</table>
+
+<h4>5.5.3 Flujo A — Generar TXT para enviar al banco (Crear Txt)</h4>
+<p>Genera archivos de texto para <strong>enviar al banco</strong> (formato Bicentenario/BFC vía binario C++). <strong>No aplica a Venezuela.</strong></p>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Usuario nivel 0-3
+    participant V as crea_txt.php
+    participant C as cooperativa/Gtxt
+    participant MP as MProcesar
+    participant CPP as Gtxt C++ binary
+    participant DB as cpp_banco
+
+    U->>V: Reportes → Crear Txt → Generar TXT
+    U->>V: Selecciona tipo A/C/M, banco, nómina, periodicidad
+    V->>C: POST Gtxt (banco, empresa, fecha, nomina, picar...)
+    C->>MP: Gtxt(param)
+    MP->>CPP: exec system/repository/grupo/src/Gtxt
+    CPP-->>MP: archivo tmp/cobranza/{md5}.txt
+    MP->>DB: INSERT cpp_banco (control + md5)
+    MP-->>U: Link descarga TXT
+</div>
+<p><strong>Parámetros del formulario</strong> (<code>reportes/form_archivos.php</code>): Tipo (Afiliación/Cobranza/Manual), Empresa (Cooperativa/Grupo/Ambas), Linaje (banco), Nómina, Forma contrato, Periodicidad, Fecha, Método de picar cuotas.</p>
+<p>Véase la guía completa en <a href="#mod-contratos-morosidad">§5.4.1 Contratos, periodicidad y morosidad</a>: el TXT de cobranza debe, en principio, sumar <strong>saldo pendiente de cuotas vencidas (incluidos abonos parciales) + cuota(s) del periodo actual</strong>.</p>
+<p><strong>Archivos clave:</strong> <code>crear_txt.js</code>, <code>mprocesar.php::Gtxt()</code>, <code>system/repository/grupo/src/Gtxt</code></p>
+
+<h4>5.5.4 Flujo B — Procesar respuesta TXT del banco (Leer Txt)</h4>
+<div class="mermaid">
+flowchart LR
+    A[Leer_Txt pantalla] --> B[Seleccionar banco/archivo]
+    B --> C[Ltxt POST]
+    C --> D[MProcesar parsea TXT respuesta]
+    D --> E[Actualiza t_lista_cobros]
+    E --> F[Ver_Txt consulta procesados]
+</div>
+<p><strong>Archivos clave:</strong> <code>leer_txt.js</code>, <code>mprocesar.php::Ltxt()</code>, tabla <code>cpp_banco</code></p>
+
+<h4>5.5.5 Flujo C — Banco de Venezuela (cargaVenezuela)</h4>
+<div class="alert alert-warn">
+<strong>Venezuela NO genera TXT para enviar.</strong> Solo <strong>procesa el archivo de respuesta</strong> que devuelve el Banco de Venezuela después del descuento por nómina.
+</div>
+<div class="mermaid">
+flowchart TD
+    A[subirVenezuela] --> B[Guardar en repository/txt/venezuela/]
+    B --> C[INSERT t_archivos_venezuela]
+    C --> D[leerArchivoVenezuela]
+    D --> E[Parsear líneas tipo 02 codigos RG010/RG012]
+    E --> F[INSERT t_cargar_txt_venezuela]
+    F --> G[Asignar contrato cobrado_en=VENEZUELA]
+    G --> H[modCuotaVenezuela]
+    H --> I[Guardar_Lote_Venezuela]
+    I --> J[INSERT t_lista_cobros mes=CARGA VENEZUELA]
+</div>
+<div class="mermaid">
+erDiagram
+    t_archivos_venezuela ||--o{ t_cargar_txt_venezuela : contiene
+    t_cargar_txt_venezuela }o--|| t_clientes_creditos : "contrato asignado"
+    t_clientes_creditos ||--o{ t_lista_cobros : "pagos registrados"
+    t_archivos_venezuela {
+        int oid PK
+        char archivo
+        decimal monto
+        tinyint estatus
+    }
+    t_cargar_txt_venezuela {
+        int oid PK
+        int oida FK
+        int cedula
+        varchar contrato
+        decimal monto
+        date fenv
+        date fpro
+    }
+    t_lista_cobros {
+        int documento_id
+        varchar credito_id
+        varchar mes
+        decimal monto
+        int moda
+    }
+</div>
+<p><strong>Endpoints Venezuela:</strong> <code>subirVenezuela</code>, <code>leerArchivoVenezuela</code>, <code>cmbArchivosVenezuela</code>, <code>listarArchivoVenezuela</code>, <code>cmbContratosVenezuela</code>, <code>modCuotaVenezuela</code>, <code>Guardar_Lote_Venezuela</code></p>
+<p><strong>Archivos clave:</strong> <code>cargaVenezuela.php</code>, <code>cargaVenezuela.js</code>, <code>mcargavenezuela.php</code></p>
+
+<h4>5.5.6 Flujo D — Control de Pagos y Control Mensual</h4>
+<div class="mermaid">
+flowchart TD
+    subgraph Consulta["Control De Pagos - solo lectura"]
+        P1[reportes → rep_sinpago] --> P2[Pagos_Factura AJAX]
+        P2 --> P3[MCliente.Pagos_Factura]
+        P3 --> P4[Lista contratos sin pago en mes]
+    end
+    subgraph Edicion["Control Mensual - editable"]
+        M1[reportes → ControlMensual] --> M2[GenerarControlPagos AJAX]
+        M2 --> M3[MCobranza.CrearGrid]
+        M3 --> M4{Guardar_Lote nivel 0,3,8,9}
+        M4 --> M5[INSERT t_lista_cobros]
+    end
+</div>
+
+<h4>5.5.7 Flujo E — Cobranza BFC (usuario poleeth)</h4>
+<p>Pantalla legacy en <code>nomina/cobranza.php</code> con enlaces a generación de archivos Banco Fondo Común (TXT nómina y aguinaldos). Acceso exclusivo vía menú para <code>poleeth</code>.</p>
+
+<h4>5.5.8 Diagrama general de cobranza</h4>
+<div class="mermaid">
+flowchart LR
+    subgraph Salida["TXT Salida al banco"]
+        G1[Crear Txt / Gtxt]
+        G2[Binario C++ Bicentenario/BFC]
+    end
+    subgraph Entrada["TXT Entrada del banco"]
+        E1[Leer Txt / Ltxt]
+        E2[cargaVenezuela / Venezuela]
+    end
+    subgraph Destino["Base de Datos"]
+        DB1[t_lista_cobros]
+        DB2[cpp_banco]
+        DB3[t_archivos_venezuela]
+        DB4[t_cargar_txt_venezuela]
+    end
+    G1 --> G2 --> Banco((Banco))
+    Banco --> E1 --> DB1
+    Banco --> E2 --> DB3 --> DB4 --> DB1
+    G2 --> DB2
+</div>
+
+<h4>5.5.9 Casos de uso</h4>
+<div class="uc-card"><span class="uc-id">UC-COB-01</span> — Consultar pagos por factura: Reportes → Control De Pagos (nivel 0,3,5,8,9,18)</div>
+<div class="uc-card"><span class="uc-id">UC-COB-02</span> — Generar TXT envío banco: Reportes → Crear Txt → Gtxt (nivel 0,2,3 — UI también 8,9)</div>
+<div class="uc-card"><span class="uc-id">UC-COB-03</span> — Procesar respuesta TXT banco genérico: Reportes → Leer Txt → Ltxt</div>
+<div class="uc-card"><span class="uc-id">UC-COB-04</span> — Cobranza BFC dedicada: menú Cobranza BFC (solo poleeth)</div>
+<div class="uc-card"><span class="uc-id">UC-COB-05</span> — Cargar respuesta Banco Venezuela: Reportes → Cargar B. Venezuela (NO genera TXT)</div>
+<div class="uc-card"><span class="uc-id">UC-COB-06</span> — Registrar cuotas manualmente: Reportes → Control Mensual → Guardar_Lote</div>
+<div class="uc-card"><span class="uc-id">UC-COB-07</span> — Control de facturas: menú Factura Control</div>
+<div class="uc-card"><span class="uc-id">UC-COB-08</span> — Vouchers y domiciliación: CProgramadas (sesión + linaje)</div>
+
+<h4>5.5.10 Archivos fuente del módulo</h4>
+<table>
+<tr><th>Componente</th><th>Ruta</th></tr>
+<tr><td>Menú permisos</td><td><code>models/cmenu.php</code> líneas 50-52, 164-171</td></tr>
+<tr><td>Controller endpoints</td><td><code>controllers/cooperativa.php</code> — Crear_Txt, Leer_Txt, Gtxt, Ltxt, cargaVenezuela, Pagos_Factura, GenerarControlPagos</td></tr>
+<tr><td>Generación TXT</td><td><code>models/cobranza/mprocesar.php</code></td></tr>
+<tr><td>Plan de cobro / grid</td><td><code>models/cobranza/mcobranza.php</code></td></tr>
+<tr><td>Venezuela parser</td><td><code>models/cargar/mcargavenezuela.php</code></td></tr>
+<tr><td>JS Crear TXT</td><td><code>js/view/crear_txt.js</code></td></tr>
+<tr><td>JS Venezuela</td><td><code>js/view/cargaVenezuela.js</code></td></tr>
+<tr><td>JS Reportes/Cobranza</td><td><code>js/view/reportes.js</code> — Pagos_Factura, GControlMensual</td></tr>
+</table>
+</div>
+
+<div id="mod-inventario">
+<h3>5.6 Módulo: Inventario y Mercancía</h3>
+<div class="uc-card"><span class="uc-id">UC-INV-01</span> — Registrar mercancía en inventario (proveedor, artefacto, serial)</div>
+<div class="uc-card"><span class="uc-id">UC-INV-02</span> — Ver mercancía disponible (Mercancia_Inventario)</div>
+<div class="uc-card"><span class="uc-id">UC-INV-03</span> — Orden de entrega a oficina (Entregar_Inventario_Oficina)</div>
+<div class="uc-card"><span class="uc-id">UC-INV-04</span> — Entregar mercancía a cliente (Entregar_Inventario_Cliente)</div>
+<div class="uc-card"><span class="uc-id">UC-INV-05</span> — Material de oficina (Mercancia/1)</div>
+</div>
+
+<div id="mod-recibos">
+<h3>5.7 Módulo: Recibos Contables</h3>
+<div class="uc-card"><span class="uc-id">UC-REC-01</span> — Crear recibo de ingreso (vinculado a contrato/factura)</div>
+<div class="uc-card"><span class="uc-id">UC-REC-02</span> — Crear recibo de egreso (Mérida Principal, nivel 4)</div>
+<div class="uc-card"><span class="uc-id">UC-REC-03</span> — Acuse de recibo administración</div>
+<div class="uc-card"><span class="uc-id">UC-REC-04</span> — Comprobante de pago</div>
+</div>
+
+<div id="mod-reportes">
+<h3>5.8 Módulo: Reportes</h3>
+<div class="uc-card"><span class="uc-id">UC-REP-01</span> — Reportes generales exportados a XLS (Reporte_General)</div>
+<div class="uc-card"><span class="uc-id">UC-REP-02</span> — Control de facturas (factura_control)</div>
+<div class="uc-card"><span class="uc-id">UC-REP-03</span> — Generar control de pagos</div>
+<div class="uc-card"><span class="uc-id">UC-REP-04</span> — Descargas de archivos generados</div>
+<div class="uc-card"><span class="uc-id">UC-REP-05</span> — Modificaciones históricas (modificaciones)</div>
+<div class="uc-card"><span class="uc-id">UC-REP-06</span> — Domiciliación bancaria</div>
+</div>
+
+<div id="mod-panel">
+<h3>5.9 Módulo: Panel de Administración</h3>
+<div class="uc-card"><span class="uc-id">UC-PAN-01</span> — Crear/editar usuario (t_usuario + relaciones)</div>
+<div class="uc-card"><span class="uc-id">UC-PAN-02</span> — Crear ubicación de oficina</div>
+<div class="uc-card"><span class="uc-id">UC-PAN-03</span> — Cambiar ubicación de facturas masivamente</div>
+<div class="uc-card"><span class="uc-id">UC-PAN-04</span> — Traslados masivos de contratos (Panel_Traslado)</div>
+<div class="uc-card"><span class="uc-id">UC-PAN-05</span> — Configurar plan corporativo (panelPlanes)</div>
+<div class="uc-card"><span class="uc-id">UC-PAN-06</span> — Modificar linaje de usuario (mod_linaje)</div>
+</div>
+
+<div id="mod-portal">
+<h3>5.10 Módulo: Portal Cliente (electron)</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant C as Cliente
+    participant P as electron.php
+    participant DB as t_personas
+
+    C->>P: cédula + 4 dígitos cuenta + CAPTCHA
+    P->>DB: SELECT documento_id
+    P->>P: Validar substr(cuenta_1,-4) + capcha
+    P->>C: principal.php (nombre, menú)
+    C->>P: Consultar_Cliente (AJAX)
+    P-->>C: JSON contratos y saldos
+    C->>P: Imprimir_Estado_Cuenta
+    P-->>C: PDF/HTML estado cuenta
+</div>
+<div class="uc-card"><span class="uc-id">UC-POR-01</span> — Login cliente con validación CAPTCHA</div>
+<div class="uc-card"><span class="uc-id">UC-POR-02</span> — Consultar contratos activos y saldos</div>
+<div class="uc-card"><span class="uc-id">UC-POR-03</span> — Imprimir estado de cuenta (general o por contrato)</div>
+</div>
+
+<div id="mod-sumi">
+<h3>5.11 Módulos Satélite: SUMI y Triángulo</h3>
+<p>Módulos de entrega/asociación independientes que comparten autenticación staff.</p>
+<table>
+<tr><th>Módulo</th><th>Funciones</th><th>Vistas</th></tr>
+<tr><td><strong>SUMI</strong></td><td>crear, entregar, reporte, BuscaContratos, Guardar</td><td>sumi/dashboart + crear/entregar/reporte.js</td></tr>
+<tr><td><strong>Triángulo</strong></td><td>lista, crear, detalle, entregar</td><td>triangulo/dashboart + lista/crear/detalle.js</td></tr>
+</table>
+<div class="uc-card"><span class="uc-id">UC-SUM-01</span> — Crear contrato de entrega SUMI</div>
+<div class="uc-card"><span class="uc-id">UC-SUM-02</span> — Entregar bien asociado a contrato</div>
+<div class="uc-card"><span class="uc-id">UC-TRI-01</span> — Listar y gestionar entregas Triángulo</div>
+</div>
+
+<!-- SECTION 8: API -->
+<section id="api">
+<h2>8. Endpoints y Patrones de API</h2>
+<p>No existe API REST formal. Los endpoints son métodos de controlador CodeIgniter:</p>
+<p><code>https://grupoelectron465.com/index.php/{controlador}/{metodo}/{parametros}</code></p>
+
+<h3>8.1 Endpoints Críticos</h3>
+<table>
+<tr><th>Endpoint</th><th>Método</th><th>Entrada</th><th>Salida</th></tr>
+<tr><td><code>cooperativa/verificacion</code></td><td>POST</td><td>txtUsuario, txtClave</td><td>Redirect bienvenida</td></tr>
+<tr><td><code>cooperativa/Pendientes</code></td><td>POST/AJAX</td><td>session</td><td>JSON grilla buzón</td></tr>
+<tr><td><code>cooperativa/EjecutarVerdadero</code></td><td>POST</td><td>objeto JSON</td><td>HTML link PDF</td></tr>
+<tr><td><code>cooperativa/EjecutarFalso</code></td><td>POST</td><td>objeto JSON</td><td>—</td></tr>
+<tr><td><code>cooperativa/getClientesBtn</code></td><td>GET</td><td>session oidp</td><td>JSON privilegios</td></tr>
+<tr><td><code>cooperativa/Pagos_Factura</code></td><td>POST</td><td>tipo, ubicacion, ano, mes, linaje</td><td>JSON pagos</td></tr>
+<tr><td><code>cooperativa/GV_Asistente1</code></td><td>GET</td><td>—</td><td>JSON esquema formulario GVista</td></tr>
+<tr><td><code>cooperativa/Guarda_Asistente1</code></td><td>POST</td><td>documento_id + campos</td><td>Texto mensaje</td></tr>
+<tr><td><code>electron/Verifica_Cliente</code></td><td>POST</td><td>txtCliente, txtCuenta, capcha</td><td>View principal</td></tr>
+<tr><td><code>electron/Consultar_Cliente</code></td><td>POST</td><td>cedula</td><td>JSON contratos</td></tr>
+<tr><td><code>electron/Imprimir_Estado_Cuenta</code></td><td>GET</td><td>session cliente</td><td>HTML estado cuenta</td></tr>
+</table>
+
+<h3>8.2 Patrón GVista (Formularios Dinámicos)</h3>
+<p>El framework GVista/TGrid genera formularios y grillas desde esquemas JSON definidos en <code>mvistas.php</code>. Los métodos <code>GV_*</code> retornan el esquema; el JS en <code>system/js/gvistas/</code> renderiza la UI.</p>
+</section>
+
+<!-- SECTION 9: CASOS DE USO GLOBALES -->
+<section id="casos-uso">
+<h2>9. Casos de Uso — Flujos de Negocio Principales</h2>
+
+<h3>9.1 Flujo Completo: Nuevo Crédito</h3>
+<div class="mermaid">
+flowchart TD
+    subgraph F1["Fase 1: Registro"]
+        A1[Analista registra cliente] --> A2[Carga expediente digital]
+    end
+    subgraph F2["Fase 2: Solicitud"]
+        B1[Asistente 5 pasos] --> B2[Crear t_clientes_creditos]
+        B2 --> B3[Trigger estado inicial]
+    end
+    subgraph F3["Fase 3: Aprobación"]
+        C1[Perfil origen ve en buzón] --> C2{Aprobar?}
+        C2 -->|Sí| C3[Siguiente perfil en cadena]
+        C2 -->|No| C4[Rechazo → corrección]
+        C3 --> C5{Última etapa?}
+        C5 -->|No| C1
+        C5 -->|Sí| C6[Contrato activo]
+    end
+    subgraph F4["Fase 4: Operación"]
+        D1[Generar factura] --> D2[Entregar mercancía]
+        D2 --> D3[Recibo ingreso]
+    end
+    subgraph F5["Fase 5: Cobranza"]
+        E1[Generar lista cobros mensual] --> E2[TXT BFC al banco]
+        E2 --> E3[Procesar respuesta] --> E4[Actualizar pagos]
+    end
+    F1 --> F2 --> F3 --> F4 --> F5
+</div>
+
+<h3>9.2 Actores × Casos de Uso (Diagrama)</h3>
+<div class="mermaid">
+graph TB
+    subgraph Actores
+        ANA[Analista — 13-14,18]
+        SUP[Supervisor — 0,2]
+        CONT[Contador — 10,4]
+        INV[Inventario — 8,9,5]
+        AUD[Auditor — 21]
+        CLI[Cliente Externo]
+    end
+    subgraph CasosDeUso
+        UC1[Registrar Cliente]
+        UC2[Solicitar Crédito]
+        UC3[Aprobar en Buzón]
+        UC4[Gestionar Cobranza]
+        UC5[Entregar Mercancía]
+        UC6[Emitir Recibos]
+        UC7[Generar Reportes]
+        UC8[Administrar Usuarios]
+        UC9[Consultar Estado Cuenta]
+        UC10[Auditar Archivos]
+    end
+    ANA --> UC1 & UC2
+    SUP --> UC3 & UC7 & UC8
+    CONT --> UC6
+    INV --> UC5
+    AUD --> UC10
+    CLI --> UC9
+    SUP --> UC4
+</div>
+
+<h3>9.3 Catálogo Completo de Casos de Uso</h3>
+<table>
+<tr><th>ID</th><th>Caso de Uso</th><th>Actor Principal</th><th>Precondición</th><th>Resultado</th></tr>
+<tr><td>UC-001</td><td>Autenticarse en sistema staff</td><td>Cualquier operador</td><td>Credenciales en t_usuario</td><td>Sesión activa con menú por nivel</td></tr>
+<tr><td>UC-002</td><td>Registrar nuevo afiliado</td><td>Analista (Mérida)</td><td>Sesión activa, nivel con acceso cliente</td><td>Registro en t_personas</td></tr>
+<tr><td>UC-003</td><td>Crear solicitud de crédito</td><td>Analista</td><td>Cliente registrado</td><td>Contrato en t_clientes_creditos + buzón</td></tr>
+<tr><td>UC-004</td><td>Aprobar contrato en buzón</td><td>Supervisor (perfil origen)</td><td>Contrato en estado origen del perfil</td><td>Avance a destino_verdadero</td></tr>
+<tr><td>UC-005</td><td>Rechazar contrato</td><td>Supervisor</td><td>Contrato pendiente</td><td>Avance a destino_falso</td></tr>
+<tr><td>UC-006</td><td>Procesar cobranza mensual</td><td>Operaciones (0,2,3)</td><td>Contratos activos con lista cobros</td><td>TXT generado/procesado</td></tr>
+<tr><td>UC-007</td><td>Entregar mercancía a cliente</td><td>Inventario (0,3,5,8,9,10)</td><td>Contrato aprobado con factura</td><td>Producto entregado, serial actualizado</td></tr>
+<tr><td>UC-008</td><td>Emitir recibo de ingreso</td><td>Contador (0,3,10)</td><td>Pago registrado</td><td>Recibo generado</td></tr>
+<tr><td>UC-009</td><td>Consultar estado de cuenta</td><td>Cliente externo</td><td>Cédula + cuenta válida</td><td>Estado cuenta impreso</td></tr>
+<tr><td>UC-010</td><td>Administrar usuarios</td><td>Super Admin (0)</td><td>Acceso panel</td><td>Usuario creado con perfil/ubicación</td></tr>
+<tr><td>UC-011</td><td>Generar reporte general XLS</td><td>Supervisor (0,2,3,8,9)</td><td>Parámetros de filtro</td><td>Archivo en repository/xls/</td></tr>
+<tr><td>UC-012</td><td>Auditar expedientes</td><td>Auditor (21)</td><td>Archivos cargados</td><td>Estado auditoría actualizado</td></tr>
+<tr><td>UC-013</td><td>Liquidar contratos</td><td>Admin (0, revision)</td><td>Contratos elegibles</td><td>Liquidación procesada</td></tr>
+<tr><td>UC-014</td><td>Trasladar contratos masivamente</td><td>Super Admin</td><td>Panel traslado</td><td>Ubicación/linaje actualizado</td></tr>
+<tr><td>UC-015</td><td>Enviar sugerencia/ticket</td><td>Cualquier staff</td><td>Sesión activa</td><td>Registro en t_sugerencias</td></tr>
+</table>
+</section>
+
+<!-- SECTION 10: HU PLANNING -->
+<section id="hu-planning">
+<h2>10. Guía para Planificación de Historias de Usuario</h2>
+
+<div class="alert alert-info">
+<strong>Objetivo:</strong> Usar este documento como base para escribir HUs con contexto completo. Cada HU debe referenciar módulo, actor (nivel), endpoints afectados y tablas de BD involucradas.
+</div>
+
+<h3>10.1 Plantilla de Historia de Usuario</h3>
+<div class="card">
+<pre>
+## HU-XXX: [Título descriptivo]
+
+**Como** [actor / nivel de usuario]
+**Quiero** [acción concreta]
+**Para** [beneficio de negocio]
+
+### Contexto técnico
+- Módulo: [ej. Buzón / Cobranza]
+- Controlador: cooperativa::{método}
+- Modelo: [ej. MCliente]
+- Tablas BD: [ej. t_estadoejecucion, t_clientes_creditos]
+- JS: [ej. buzon.js]
+- Perfiles afectados: [ej. 0, 3, 8]
+
+### Criterios de aceptación
+1. Dado que [precondición], cuando [acción], entonces [resultado]
+2. ...
+
+### Dependencias
+- Depende de: HU-YYY
+- Bloquea: HU-ZZZ
+
+### Notas de deuda técnica
+- [ej. Permiso hardcodeado para usuario 'alvaro' en cmenu.php línea 59]
+
+### Estimación sugerida
+- Backend: Xh | Frontend: Xh | QA: Xh
+</pre>
+</div>
+
+<h3>10.2 Épicas Sugeridas para Modernización</h3>
+<table>
+<tr><th>Épica</th><th>Alcance</th><th>Módulos</th><th>Prioridad</th><th>Riesgo</th></tr>
+<tr><td>E-01 Autenticación</td><td>Migrar MD5 → bcrypt, JWT/session segura</td><td>Auth</td><td>Alta</td><td>Alto — afecta todo</td></tr>
+<tr><td>E-02 RBAC Limpio</td><td>Eliminar hardcodes username, centralizar permisos</td><td>cmenu, cooperativa</td><td>Alta</td><td>Alto — 22 perfiles</td></tr>
+<tr><td>E-03 API REST</td><td>Extraer endpoints de cooperativa.php</td><td>Todos</td><td>Media</td><td>Muy alto — 464 métodos</td></tr>
+<tr><td>E-04 Buzón/Workflow</td><td>Motor de estados configurable</td><td>Buzón</td><td>Alta</td><td>Medio</td></tr>
+<tr><td>E-05 Portal Cliente</td><td>Rediseño UX, 2FA, app móvil</td><td>electron</td><td>Media</td><td>Bajo</td></tr>
+<tr><td>E-06 Cobranza</td><td>Integración bancaria moderna</td><td>Cobranza, TXT</td><td>Alta</td><td>Medio</td></tr>
+<tr><td>E-07 Reportes</td><td>Reemplazar PHPExcel, dashboards</td><td>Reportes</td><td>Media</td><td>Bajo</td></tr>
+<tr><td>E-08 BD</td><td>Migraciones, InnoDB, prepared statements</td><td>db.sql</td><td>Alta</td><td>Alto</td></tr>
+<tr><td>E-09 Inventario</td><td>Trazabilidad serial, QR</td><td>Inventario</td><td>Baja</td><td>Bajo</td></tr>
+<tr><td>E-10 Tests</td><td>Suite PHPUnit + E2E críticos</td><td>Transversal</td><td>Alta</td><td>Medio</td></tr>
+</table>
+
+<h3>10.3 Backlog Inicial de HUs (Ejemplos)</h3>
+<table>
+<tr><th>ID</th><th>Historia</th><th>Épica</th><th>Actor</th></tr>
+<tr><td>HU-001</td><td>Como super admin quiero crear usuarios con perfil y ubicación desde UI sin SQL manual</td><td>E-02</td><td>nivel 0</td></tr>
+<tr><td>HU-002</td><td>Como analista quiero ver solo contratos de mi linaje en el buzón</td><td>E-04</td><td>3, 13-14</td></tr>
+<tr><td>HU-003</td><td>Como cliente quiero consultar mi estado de cuenta desde móvil</td><td>E-05</td><td>Cliente</td></tr>
+<tr><td>HU-004</td><td>Como operador quiero procesar TXT BFC con validación de formato automática</td><td>E-06</td><td>0, 2, 3</td></tr>
+<tr><td>HU-005</td><td>Como contador quiero emitir recibo de ingreso con numeración secuencial auditada</td><td>E-04</td><td>10</td></tr>
+<tr><td>HU-006</td><td>Como auditor quiero ver historial completo de cambios en un contrato</td><td>E-08</td><td>21</td></tr>
+<tr><td>HU-007</td><td>Como supervisor quiero configurar flujo de aprobación sin modificar código PHP</td><td>E-04</td><td>0</td></tr>
+<tr><td>HU-008</td><td>Como analista quiero completar asistente de crédito con validación de montos en tiempo real</td><td>E-03</td><td>Mérida</td></tr>
+</table>
+
+<h3>10.4 Riesgos y Consideraciones para HUs</h3>
+<ul>
+<li><strong>Monolito:</strong> Un cambio en <code>cooperativa.php</code> puede afectar múltiples módulos — priorizar tests de regresión.</li>
+<li><strong>Permisos duplicados:</strong> Validar tanto en <code>cmenu.php</code> (menú) como en controlador (acceso real) — pueden divergir.</li>
+<li><strong>Triggers BD:</strong> Cambios en <code>t_clientes_creditos</code> disparan cascadas — documentar en cada HU de BD.</li>
+<li><strong>GVista legacy:</strong> Formularios JSON en <code>mvistas.php</code> — difícil de mantener, considerar reemplazo gradual.</li>
+<li><strong>cooperativa_:</strong> Existe copia del controlador — verificar cuál está activo en producción antes de modificar.</li>
+<li><strong>Sin migraciones:</strong> Cambios de schema requieren scripts SQL manuales y coordinación con DBA.</li>
+</ul>
+
+<h3>10.5 Archivos Clave de Referencia</h3>
+<table>
+<tr><th>Archivo</th><th>Ruta absoluta</th></tr>
+<tr><td>Front controller</td><td><code>/Volumes/goku/dev_php/electron/index.php</code></td></tr>
+<tr><td>Controlador principal</td><td><code>/Volumes/goku/dev_php/electron/system/application/controllers/cooperativa.php</code></td></tr>
+<tr><td>Portal cliente</td><td><code>/Volumes/goku/dev_php/electron/system/application/controllers/electron.php</code></td></tr>
+<tr><td>Menú y permisos UI</td><td><code>/Volumes/goku/dev_php/electron/system/application/models/cmenu.php</code></td></tr>
+<tr><td>Modelo usuario/auth</td><td><code>/Volumes/goku/dev_php/electron/system/application/models/usuario/musuario.php</code></td></tr>
+<tr><td>Schema BD</td><td><code>/Volumes/goku/dev_php/electron/system/script/db.sql</code></td></tr>
+<tr><td>Config app</td><td><code>/Volumes/goku/dev_php/electron/system/application/config/config.php</code></td></tr>
+<tr><td>JS módulos</td><td><code>/Volumes/goku/dev_php/electron/system/js/view/</code></td></tr>
+</table>
+</section>
+
+<footer style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem">
+<p>Documento generado mediante análisis estático del repositorio <code>/Volumes/goku/dev_php/electron</code>.</p>
+<p>Cooperativa Electron v2.0.0 · CodeIgniter 1.7.2 · Grupo Electron</p>
+</footer>
+
+</main>
+</div>
+<script>
+mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose'});
+document.querySelectorAll('nav.sidebar a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.querySelectorAll('nav.sidebar a').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

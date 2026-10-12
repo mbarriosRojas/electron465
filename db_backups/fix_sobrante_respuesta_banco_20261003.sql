@@ -1,0 +1,791 @@
+-- =====================================================================
+-- CORRECCIÓN: sobrante de cobros bancarios NO registrado (Respuesta Banco)
+-- Bicentenario / Banfan — 108 clientes — 1,104.85 USD (según copia 03/10 16:18)
+--
+-- NO reemplaza la base: solo INSERTA una fila de ajuste por cliente en
+-- t_lista_cobros. Seguro de correr con usuarios trabajando.
+--
+-- Protecciones por cliente:
+--   * Solo inserta si los cobros originales de ese archivo siguen IGUALES
+--     (misma cantidad de filas y mismo monto). Si alguien los tocó, se salta.
+--   * No duplica: si el ajuste ya existe, se salta (se puede correr 2 veces).
+--
+-- Cómo correrlo: phpMyAdmin → base grupoele_electron → pestaña SQL →
+-- pegar todo el archivo (o Importar) → Continuar.
+-- Al final muestra: resumen + lista de clientes SALTADOS para revisar a mano.
+-- =====================================================================
+
+DROP TEMPORARY TABLE IF EXISTS tmp_fix_sobrante;
+CREATE TEMPORARY TABLE tmp_fix_sobrante (
+  documento_id INT, farc DATE, faltante_estimado DECIMAL(15,2), insertado INT
+);
+
+START TRANSACTION;
+
+-- 15516283 FRANKLIN GARCIA | 312,30 BS REF 855,66 BCV | esperado 0.36 USD, guardado 0.330, faltan 0.03
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 15516283,'N-00005059','RESPUESTA BICENTENARIO:N-00005059','312,30 BS REF 855,66 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(0.36 - g.s, 2),'2026-09-29 11:12:53',9,2026,25,'2026-09-25',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=15516283 AND farc='2026-09-25' AND modificado='2026-09-29 11:12:53' AND SUBSTRING_INDEX(descripcion,' | ',1)='312,30 BS REF 855,66 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=0.330 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=15516283 AND farc='2026-09-25' AND descripcion='312,30 BS REF 855,66 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (15516283,'2026-09-25',0.03,ROW_COUNT());
+
+-- 17875401 RHAINER MONCADA | 45.000,00 BS REF 859,06 BCV | esperado 52.38 USD, guardado 3.650, faltan 48.73
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 17875401,'N-00002918','RESPUESTA BANFAN:N-00002918','45.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(52.38 - g.s, 2),'2026-10-03 12:28:12',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=17875401 AND farc='2026-09-30' AND modificado='2026-10-03 12:28:12' AND SUBSTRING_INDEX(descripcion,' | ',1)='45.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=3.650 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=17875401 AND farc='2026-09-30' AND descripcion='45.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (17875401,'2026-09-30',48.73,ROW_COUNT());
+
+-- 19134538 NEYDY CARDENAS | 5.000,00 BS REF 859,06 BCV | esperado 5.82 USD, guardado 1.870, faltan 3.95
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19134538,'N-00002955','RESPUESTA BANFAN:N-00002955','5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.82 - g.s, 2),'2026-10-03 12:28:12',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19134538 AND farc='2026-09-30' AND modificado='2026-10-03 12:28:12' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.870 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19134538 AND farc='2026-09-30' AND descripcion='5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19134538,'2026-09-30',3.95,ROW_COUNT());
+
+-- 19657851 JESUS TAIPE | 5.022,60 BS REF 859,06 BCV | esperado 5.85 USD, guardado 2.910, faltan 2.94
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19657851,'N-00003331','RESPUESTA BANFAN:N-00003331','5.022,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.85 - g.s, 2),'2026-10-03 12:28:12',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19657851 AND farc='2026-09-30' AND modificado='2026-10-03 12:28:12' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.022,60 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=2.910 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19657851 AND farc='2026-09-30' AND descripcion='5.022,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19657851,'2026-09-30',2.94,ROW_COUNT());
+
+-- 22288033 EDZAR AGUILAR | 5.022,60 BS REF 859,06 BCV | esperado 5.85 USD, guardado 2.910, faltan 2.94
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 22288033,'N-00002935','RESPUESTA BANFAN:N-00002935','5.022,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.85 - g.s, 2),'2026-10-03 12:28:12',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=22288033 AND farc='2026-09-30' AND modificado='2026-10-03 12:28:12' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.022,60 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=2.910 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=22288033 AND farc='2026-09-30' AND descripcion='5.022,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (22288033,'2026-09-30',2.94,ROW_COUNT());
+
+-- 24879432 MAYERI HERNANDEZ | 5.000,00 BS REF 859,06 BCV | esperado 5.82 USD, guardado 5.630, faltan 0.19
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 24879432,'N-00002946','RESPUESTA BANFAN:N-00002946','5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.82 - g.s, 2),'2026-10-03 12:28:12',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=24879432 AND farc='2026-09-30' AND modificado='2026-10-03 12:28:12' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=5.630 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=24879432 AND farc='2026-09-30' AND descripcion='5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (24879432,'2026-09-30',0.19,ROW_COUNT());
+
+-- 12898737 JAIRO ORTEGA | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 12898737,'N-00004903','RESPUESTA BANFAN:N-00004903','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=12898737 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=12898737 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (12898737,'2026-09-30',5.82,ROW_COUNT());
+
+-- 13273934 MIGUEL MAZA | 25.886,00 BS REF 860,00 COBRANZA | esperado 30.10 USD, guardado 24.280, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 13273934,'N-00003714','RESPUESTA BANFAN:N-00003714','25.886,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(30.10 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=13273934 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='25.886,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=24.280 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=13273934 AND farc='2026-09-30' AND descripcion='25.886,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (13273934,'2026-09-30',5.82,ROW_COUNT());
+
+-- 13551755 EDGARDO BRICEÑO | 11.457,00 BS REF 859,06 BCV | esperado 13.34 USD, guardado 0.450, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 13551755,'N-00003900','RESPUESTA BANFAN:N-00003900','11.457,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(13.34 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=13551755 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='11.457,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=0.450 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=13551755 AND farc='2026-09-30' AND descripcion='11.457,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (13551755,'2026-09-30',12.89,ROW_COUNT());
+
+-- 13571605 NESTOR CAMPOS | 23.194,20 BS REF 860,00 COBRANZA | esperado 26.97 USD, guardado 18.220, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 13571605,'N-00005080','RESPUESTA BANFAN:N-00005080','23.194,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.97 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=13571605 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='23.194,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=18.220 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=13571605 AND farc='2026-09-30' AND descripcion='23.194,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (13571605,'2026-09-30',8.75,ROW_COUNT());
+
+-- 14962135 PEDRO PUERTA | 42.045,40 BS REF 860,00 COBRANZA | esperado 48.89 USD, guardado 16.890, faltan 32.00
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 14962135,'N-00003545','RESPUESTA BANFAN:N-00003545','42.045,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(48.89 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=14962135 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='42.045,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=16.890 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=14962135 AND farc='2026-09-30' AND descripcion='42.045,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (14962135,'2026-09-30',32.00,ROW_COUNT());
+
+-- 16779484 JOSE ZAMBRANO | 25.894,60 BS REF 860,00 COBRANZA | esperado 30.11 USD, guardado 24.290, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 16779484,'N-00004822','RESPUESTA BANFAN:N-00004822','25.894,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(30.11 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=16779484 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='25.894,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=24.290 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=16779484 AND farc='2026-09-30' AND descripcion='25.894,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (16779484,'2026-09-30',5.82,ROW_COUNT());
+
+-- 17469214 RHONNY RIVERO | 24.656,20 BS REF 860,00 COBRANZA | esperado 28.67 USD, guardado 22.850, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 17469214,'N-00004731','RESPUESTA BANFAN:N-00004731','24.656,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(28.67 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=17469214 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='24.656,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=22.850 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=17469214 AND farc='2026-09-30' AND descripcion='24.656,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (17469214,'2026-09-30',5.82,ROW_COUNT());
+
+-- 17513702 FRANCISCO FUENMAYOR | 21.070,00 BS REF 860,00 COBRANZA | esperado 24.50 USD, guardado 11.610, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 17513702,'N-00006073','RESPUESTA BANFAN:N-00006073','21.070,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(24.50 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=17513702 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.070,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=11.610 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=17513702 AND farc='2026-09-30' AND descripcion='21.070,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (17513702,'2026-09-30',12.89,ROW_COUNT());
+
+-- 17628094 JASON CASTEJON | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 17628094,'N-00006080','RESPUESTA BANFAN:N-00006080','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=17628094 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=17628094 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (17628094,'2026-09-30',5.82,ROW_COUNT());
+
+-- 17700262 FRANKLYN MACHADO | 22.652,40 BS REF 860,00 COBRANZA | esperado 26.34 USD, guardado 17.590, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 17700262,'N-00004729','RESPUESTA BANFAN:N-00004729','22.652,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.34 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=17700262 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='22.652,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.590 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=17700262 AND farc='2026-09-30' AND descripcion='22.652,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (17700262,'2026-09-30',8.75,ROW_COUNT());
+
+-- 18070212 ALEXIS BLANCO | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 18070212,'N-00004671','RESPUESTA BANFAN:N-00004671','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=18070212 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=18070212 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (18070212,'2026-09-30',5.82,ROW_COUNT());
+
+-- 18077508 ANTONIO TINEO | 57.671,60 BS REF 860,00 COBRANZA | esperado 67.06 USD, guardado 35.060, faltan 32.00
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 18077508,'N-00003933','RESPUESTA BANFAN:N-00003933','57.671,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(67.06 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=18077508 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='57.671,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=35.060 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=18077508 AND farc='2026-09-30' AND descripcion='57.671,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (18077508,'2026-09-30',32.00,ROW_COUNT());
+
+-- 19109267 JESUS SAAVEDRA | 16.047,60 BS REF 860,00 COBRANZA | esperado 18.66 USD, guardado 17.410, faltan 1.25
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19109267,'N-00005077','RESPUESTA BANFAN:N-00005077','16.047,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(18.66 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19109267 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.047,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.410 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19109267 AND farc='2026-09-30' AND descripcion='16.047,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19109267,'2026-09-30',1.25,ROW_COUNT());
+
+-- 19330303 JOSE BELLO | 5.000,00 BS REF 859,06 BCV | esperado 5.82 USD, guardado 5.180, faltan 0.64
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19330303,'N-00004597','RESPUESTA BANFAN:N-00004597','5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.82 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19330303 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=5.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19330303 AND farc='2026-09-30' AND descripcion='5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19330303,'2026-09-30',0.64,ROW_COUNT());
+
+-- 19476047 YULIE TORREZ | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19476047,'N-00006075','RESPUESTA BANFAN:N-00006075','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19476047 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19476047 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19476047,'2026-09-30',5.82,ROW_COUNT());
+
+-- 19585887 RENATO NARVAEZ | 22.428,80 BS REF 860,00 COBRANZA | esperado 26.08 USD, guardado 17.330, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19585887,'N-00003878','RESPUESTA BANFAN:N-00003878','22.428,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.08 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19585887 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='22.428,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.330 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19585887 AND farc='2026-09-30' AND descripcion='22.428,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19585887,'2026-09-30',8.75,ROW_COUNT());
+
+-- 19622420 DARWIN ZERPA | 16.701,20 BS REF 860,00 COBRANZA | esperado 19.42 USD, guardado 13.600, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19622420,'N-00005694','RESPUESTA BANFAN:N-00005694','16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19622420 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.701,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=13.600 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19622420 AND farc='2026-09-30' AND descripcion='16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19622420,'2026-09-30',5.82,ROW_COUNT());
+
+-- 19625933 FREDDY CHIRINOS | 5.000,00 BS REF 859,06 BCV | esperado 5.82 USD, guardado 0.430, faltan 5.39
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19625933,'N-00003679','RESPUESTA BANFAN:N-00003679','5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.82 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19625933 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=0.430 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19625933 AND farc='2026-09-30' AND descripcion='5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19625933,'2026-09-30',5.39,ROW_COUNT());
+
+-- 19696414 JOSE PIÑA | 16.168,00 BS REF 860,00 COBRANZA | esperado 18.80 USD, guardado 1.340, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19696414,'N-00003669','RESPUESTA BANFAN:N-00003669','16.168,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(18.80 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19696414 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.168,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.340 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19696414 AND farc='2026-09-30' AND descripcion='16.168,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19696414,'2026-09-30',17.46,ROW_COUNT());
+
+-- 19716088 CARLOS D VIAZZO | 18.859,80 BS REF 860,00 COBRANZA | esperado 21.93 USD, guardado 7.360, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 19716088,'N-00004894','RESPUESTA BANFAN:N-00004894','18.859,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.93 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=19716088 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.859,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.360 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=19716088 AND farc='2026-09-30' AND descripcion='18.859,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (19716088,'2026-09-30',14.57,ROW_COUNT());
+
+-- 20170607 ANA NATERA | 4.119,60 BS REF 859,06 BCV | esperado 4.80 USD, guardado 1.860, faltan 2.94
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 20170607,'N-00003733','RESPUESTA BANFAN:N-00003733','4.119,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(4.80 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=20170607 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='4.119,60 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.860 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=20170607 AND farc='2026-09-30' AND descripcion='4.119,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (20170607,'2026-09-30',2.94,ROW_COUNT());
+
+-- 20443959 DELANY FIGUEREDO | 19.410,20 BS REF 860,00 COBRANZA | esperado 22.57 USD, guardado 8.000, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 20443959,'N-00003709','RESPUESTA BANFAN:N-00003709','19.410,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(22.57 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=20443959 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='19.410,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=8.000 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=20443959 AND farc='2026-09-30' AND descripcion='19.410,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (20443959,'2026-09-30',14.57,ROW_COUNT());
+
+-- 20693034 ROXIBEL DEL CAMBERO | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 20693034,'N-00005894','RESPUESTA BANFAN:N-00005894','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=20693034 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=20693034 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (20693034,'2026-09-30',5.82,ROW_COUNT());
+
+-- 22447267 POOL VANEGAS | 36.825,20 BS REF 860,00 COBRANZA | esperado 42.82 USD, guardado 18.320, faltan 24.50
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 22447267,'N-00004623','RESPUESTA BANFAN:N-00004623','36.825,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(42.82 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=22447267 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='36.825,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=18.320 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=22447267 AND farc='2026-09-30' AND descripcion='36.825,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (22447267,'2026-09-30',24.50,ROW_COUNT());
+
+-- 22455437 WILMER GONZALEZ | 18.859,80 BS REF 860,00 COBRANZA | esperado 21.93 USD, guardado 7.360, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 22455437,'N-00004271','RESPUESTA BANFAN:N-00004271','18.859,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.93 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=22455437 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.859,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.360 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=22455437 AND farc='2026-09-30' AND descripcion='18.859,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (22455437,'2026-09-30',14.57,ROW_COUNT());
+
+-- 22789024 ALVARO FLOREZ | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 29.070, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 22789024,'N-00006032','RESPUESTA BANFAN:N-00006032','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=22789024 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=29.070 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=22789024 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (22789024,'2026-09-30',2.93,ROW_COUNT());
+
+-- 22927981 GREGORY AVILA | 3.655,20 BS REF 859,06 BCV | esperado 4.25 USD, guardado 1.320, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 22927981,'N-00003451','RESPUESTA BANFAN:N-00003451','3.655,20 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(4.25 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=22927981 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='3.655,20 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.320 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=22927981 AND farc='2026-09-30' AND descripcion='3.655,20 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (22927981,'2026-09-30',2.93,ROW_COUNT());
+
+-- 23292331 MIRLA GIL | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 29.070, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 23292331,'N-00005041','RESPUESTA BANFAN:N-00005041','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=23292331 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=29.070 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=23292331 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (23292331,'2026-09-30',2.93,ROW_COUNT());
+
+-- 23568291 LUIS GARCIA | 28.543,40 BS REF 860,00 COBRANZA | esperado 33.19 USD, guardado 27.370, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 23568291,'N-00003839','RESPUESTA BANFAN:N-00003839','28.543,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(33.19 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=23568291 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='28.543,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=27.370 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=23568291 AND farc='2026-09-30' AND descripcion='28.543,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (23568291,'2026-09-30',5.82,ROW_COUNT());
+
+-- 24628535 ANDY SUAREZ | 24.802,40 BS REF 860,00 COBRANZA | esperado 28.84 USD, guardado 20.090, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 24628535,'N-00004239','RESPUESTA BANFAN:N-00004239','24.802,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(28.84 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=24628535 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='24.802,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=20.090 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=24628535 AND farc='2026-09-30' AND descripcion='24.802,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (24628535,'2026-09-30',8.75,ROW_COUNT());
+
+-- 24731406 ANGEL CAMUÑAS | 10.208,20 BS REF 860,00 COBRANZA | esperado 11.87 USD, guardado 8.940, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 24731406,'N-00005315','RESPUESTA BANFAN:N-00005315','10.208,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(11.87 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=24731406 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='10.208,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=8.940 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=24731406 AND farc='2026-09-30' AND descripcion='10.208,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (24731406,'2026-09-30',2.93,ROW_COUNT());
+
+-- 24800820 ALEJANDRO MORENO | 18.868,40 BS REF 860,00 COBRANZA | esperado 21.94 USD, guardado 7.370, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 24800820,'N-0005128','RESPUESTA BANFAN:N-0005128','18.868,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.94 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=24800820 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.868,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.370 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=24800820 AND farc='2026-09-30' AND descripcion='18.868,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (24800820,'2026-09-30',14.57,ROW_COUNT());
+
+-- 24837635 HENRRY HIGUERA | 10.251,20 BS REF 860,00 COBRANZA | esperado 11.92 USD, guardado 10.670, faltan 1.25
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 24837635,'N-00004672','RESPUESTA BANFAN:N-00004672','10.251,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(11.92 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=24837635 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='10.251,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=10.670 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=24837635 AND farc='2026-09-30' AND descripcion='10.251,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (24837635,'2026-09-30',1.25,ROW_COUNT());
+
+-- 24896268 LUISA PEREZ | 18.868,40 BS REF 860,00 COBRANZA | esperado 21.94 USD, guardado 7.370, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 24896268,'N-00004678','RESPUESTA BANFAN:N-00004678','18.868,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.94 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=24896268 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.868,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.370 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=24896268 AND farc='2026-09-30' AND descripcion='18.868,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (24896268,'2026-09-30',14.57,ROW_COUNT());
+
+-- 25002935 SARINA BOLIVAR | 25.352,80 BS REF 860,00 COBRANZA | esperado 29.48 USD, guardado 23.660, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25002935,'N-00004439','RESPUESTA BANFAN:N-00004439','25.352,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(29.48 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25002935 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='25.352,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=23.660 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25002935 AND farc='2026-09-30' AND descripcion='25.352,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25002935,'2026-09-30',5.82,ROW_COUNT());
+
+-- 25073842 BORIS NUÑEZ | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25073842,'N-00006005','RESPUESTA BANFAN:N-00006005','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25073842 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25073842 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25073842,'2026-09-30',5.82,ROW_COUNT());
+
+-- 25206776 JOSE PERNIA | 24.793,80 BS REF 860,00 COBRANZA | esperado 28.83 USD, guardado 20.080, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25206776,'N-00003862','RESPUESTA BANFAN:N-00003862','24.793,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(28.83 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25206776 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='24.793,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=20.080 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25206776 AND farc='2026-09-30' AND descripcion='24.793,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25206776,'2026-09-30',8.75,ROW_COUNT());
+
+-- 25314405 ANTHONY REBOLLEDO | 18.902,80 BS REF 860,00 COBRANZA | esperado 21.98 USD, guardado 9.090, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25314405,'N-00004548','RESPUESTA BANFAN:N-00004548','18.902,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.98 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25314405 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.902,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=9.090 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25314405 AND farc='2026-09-30' AND descripcion='18.902,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25314405,'2026-09-30',12.89,ROW_COUNT());
+
+-- 25425535 GABRIEL GUZMAN | 25.894,60 BS REF 860,00 COBRANZA | esperado 30.11 USD, guardado 21.360, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25425535,'N-00005170','RESPUESTA BANFAN:N-00005170','25.894,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(30.11 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25425535 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='25.894,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=21.360 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25425535 AND farc='2026-09-30' AND descripcion='25.894,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25425535,'2026-09-30',8.75,ROW_COUNT());
+
+-- 25542690 NIKOLLE HERNANDEZ | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 29.070, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25542690,'N-00006065','RESPUESTA BANFAN:N-00006065','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25542690 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=29.070 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25542690 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25542690,'2026-09-30',2.93,ROW_COUNT());
+
+-- 25557920 DAVID VILLAROEL | 16.701,20 BS REF 860,00 COBRANZA | esperado 19.42 USD, guardado 1.960, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25557920,'N-00004402','RESPUESTA BANFAN:N-00004402','16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25557920 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.701,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.960 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25557920 AND farc='2026-09-30' AND descripcion='16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25557920,'2026-09-30',17.46,ROW_COUNT());
+
+-- 25635309 CARLOS TORREALBA | 24.828,20 BS REF 860,00 COBRANZA | esperado 28.87 USD, guardado 21.800, faltan 7.07
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25635309,'N-00004622','RESPUESTA BANFAN:N-00004622','24.828,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(28.87 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25635309 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='24.828,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=21.800 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25635309 AND farc='2026-09-30' AND descripcion='24.828,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25635309,'2026-09-30',7.07,ROW_COUNT());
+
+-- 25894626 KLEIBER BARRIOS | 11.866,40 BS REF 859,06 BCV | esperado 13.81 USD, guardado 6.740, faltan 7.07
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25894626,'N-00004513','RESPUESTA BANFAN:N-00004513','11.866,40 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(13.81 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25894626 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='11.866,40 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=6.740 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25894626 AND farc='2026-09-30' AND descripcion='11.866,40 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25894626,'2026-09-30',7.07,ROW_COUNT());
+
+-- 25908217 MARCOS CORDOVA | 29.128,20 BS REF 860,00 COBRANZA | esperado 33.87 USD, guardado 28.050, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25908217,'N-00004851','RESPUESTA BANFAN:N-00004851','29.128,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(33.87 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25908217 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='29.128,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=28.050 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25908217 AND farc='2026-09-30' AND descripcion='29.128,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25908217,'2026-09-30',5.82,ROW_COUNT());
+
+-- 25928241 GILBER PERAZA | 15.075,80 BS REF 860,00 COBRANZA | esperado 17.53 USD, guardado 0.070, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25928241,'N-00005724','RESPUESTA BANFAN:N-00005724','15.075,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(17.53 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25928241 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='15.075,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=0.070 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25928241 AND farc='2026-09-30' AND descripcion='15.075,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25928241,'2026-09-30',17.46,ROW_COUNT());
+
+-- 25954706 OSWALDO BERRIO | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25954706,'N-00006008','RESPUESTA BANFAN:N-00006008','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25954706 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25954706 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25954706,'2026-09-30',5.82,ROW_COUNT());
+
+-- 26039052 KENNY CAROLINA PERALTA | 18.868,40 BS REF 860,00 COBRANZA | esperado 21.94 USD, guardado 7.370, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26039052,'N-00005088','RESPUESTA BANFAN:N-00005088','18.868,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.94 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26039052 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.868,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.370 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26039052 AND farc='2026-09-30' AND descripcion='18.868,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26039052,'2026-09-30',14.57,ROW_COUNT());
+
+-- 26429590 LUIS PINTO | 11.826,80 BS REF 859,06 BCV | esperado 13.77 USD, guardado 6.380, faltan 7.39
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26429590,'N-00004449','RESPUESTA BANFAN:N-00004449','11.826,80 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(13.77 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26429590 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='11.826,80 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=6.380 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26429590 AND farc='2026-09-30' AND descripcion='11.826,80 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26429590,'2026-09-30',7.39,ROW_COUNT());
+
+-- 26505980 JOSE RUIZ | 16.340,00 BS REF 860,00 COBRANZA | esperado 19.00 USD, guardado 17.440, faltan 1.56
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26505980,'N-00006078','RESPUESTA BANFAN:N-00006078','16.340,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26505980 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.340,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.440 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26505980 AND farc='2026-09-30' AND descripcion='16.340,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26505980,'2026-09-30',1.56,ROW_COUNT());
+
+-- 26506402 KAHTERINNE PEÑA | 14.542,60 BS REF 860,00 COBRANZA | esperado 16.91 USD, guardado 2.340, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26506402,'N-00005424','RESPUESTA BANFAN:N-00005424','14.542,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(16.91 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26506402 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='14.542,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=2.340 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26506402 AND farc='2026-09-30' AND descripcion='14.542,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26506402,'2026-09-30',14.57,ROW_COUNT());
+
+-- 26579853 HERMIRELIA FLORES | 16.701,20 BS REF 860,00 COBRANZA | esperado 19.42 USD, guardado 1.960, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26579853,'N-00004764','RESPUESTA BANFAN:N-00004764','16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26579853 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.701,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.960 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26579853 AND farc='2026-09-30' AND descripcion='16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26579853,'2026-09-30',17.46,ROW_COUNT());
+
+-- 26669976 ISMAEL MENDOZA | 10.000,00 BS REF 859,06 BCV | esperado 11.64 USD, guardado 9.360, faltan 2.28
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26669976,'N-00004661','RESPUESTA BANFAN:N-00004661','10.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(11.64 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26669976 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='10.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=9.360 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26669976 AND farc='2026-09-30' AND descripcion='10.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26669976,'2026-09-30',2.28,ROW_COUNT());
+
+-- 26680966 NORKENDY COLMENARES | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 23.250, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26680966,'N-00006082','RESPUESTA BANFAN:N-00006082','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26680966 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=23.250 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26680966 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26680966,'2026-09-30',8.75,ROW_COUNT());
+
+-- 26704208 JOSE BASTARDO | 80.917,40 BS REF 860,00 COBRANZA | esperado 94.09 USD, guardado 70.810, faltan 23.28
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26704208,'N-00004707','RESPUESTA BANFAN:N-00004707','80.917,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(94.09 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26704208 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='80.917,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=70.810 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26704208 AND farc='2026-09-30' AND descripcion='80.917,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26704208,'2026-09-30',23.28,ROW_COUNT());
+
+-- 26717086 ARGENIS QUINTERO | 16.150,80 BS REF 860,00 COBRANZA | esperado 18.78 USD, guardado 1.320, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26717086,'N-00003426','RESPUESTA BANFAN:N-00003426','16.150,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(18.78 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26717086 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.150,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.320 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26717086 AND farc='2026-09-30' AND descripcion='16.150,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26717086,'2026-09-30',17.46,ROW_COUNT());
+
+-- 26834447 JOSE SALAZAR | 18.214,80 BS REF 860,00 COBRANZA | esperado 21.18 USD, guardado 8.290, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26834447,'N-00004721','RESPUESTA BANFAN:N-00004721','18.214,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.18 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26834447 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.214,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=8.290 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26834447 AND farc='2026-09-30' AND descripcion='18.214,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26834447,'2026-09-30',12.89,ROW_COUNT());
+
+-- 26942878 DOUGLAS DELGADO | 16.168,00 BS REF 860,00 COBRANZA | esperado 18.80 USD, guardado 1.340, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26942878,'N-00004726','RESPUESTA BANFAN:N-00004726','16.168,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(18.80 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26942878 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.168,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.340 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26942878 AND farc='2026-09-30' AND descripcion='16.168,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26942878,'2026-09-30',17.46,ROW_COUNT());
+
+-- 26977211 NACARY CURE | 14.542,60 BS REF 860,00 COBRANZA | esperado 16.91 USD, guardado 8.160, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 26977211,'N-00005457','RESPUESTA BANFAN:N-00005457','14.542,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(16.91 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=26977211 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='14.542,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=8.160 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=26977211 AND farc='2026-09-30' AND descripcion='14.542,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (26977211,'2026-09-30',8.75,ROW_COUNT());
+
+-- 27035990 STEWART LOVERA | 16.340,00 BS REF 860,00 COBRANZA | esperado 19.00 USD, guardado 17.440, faltan 1.56
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27035990,'N-00006066','RESPUESTA BANFAN:N-00006066','16.340,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27035990 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.340,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.440 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27035990 AND farc='2026-09-30' AND descripcion='16.340,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27035990,'2026-09-30',1.56,ROW_COUNT());
+
+-- 27121402 RONALD MENESES | 5.000,00 BS REF 859,06 BCV | esperado 5.82 USD, guardado 2.710, faltan 3.11
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27121402,'N-00004761','RESPUESTA BANFAN:N-00004761','5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.82 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27121402 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=2.710 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27121402 AND farc='2026-09-30' AND descripcion='5.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27121402,'2026-09-30',3.11,ROW_COUNT());
+
+-- 27163397 JESUS GALATON | 18.859,80 BS REF 860,00 COBRANZA | esperado 21.93 USD, guardado 7.360, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27163397,'N-00004675','RESPUESTA BANFAN:N-00004675','18.859,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.93 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27163397 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.859,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.360 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27163397 AND farc='2026-09-30' AND descripcion='18.859,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27163397,'2026-09-30',14.57,ROW_COUNT());
+
+-- 27193217 RICARDO RODRIGUEZ | 22.652,40 BS REF 860,00 COBRANZA | esperado 26.34 USD, guardado 17.590, faltan 8.75
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27193217,'N-00004727','RESPUESTA BANFAN:N-00004727','22.652,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.34 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27193217 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='22.652,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.590 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27193217 AND farc='2026-09-30' AND descripcion='22.652,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27193217,'2026-09-30',8.75,ROW_COUNT());
+
+-- 27230047 CHRISTIAN VASQUEZ | 21.560,20 BS REF 860,00 COBRANZA | esperado 25.07 USD, guardado 10.500, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27230047,'N-00005697','RESPUESTA BANFAN:N-00005697','21.560,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(25.07 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27230047 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.560,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=10.500 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27230047 AND farc='2026-09-30' AND descripcion='21.560,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27230047,'2026-09-30',14.57,ROW_COUNT());
+
+-- 27307848 ANGELSON MEDINA | 14.577,00 BS REF 860,00 COBRANZA | esperado 16.95 USD, guardado 4.060, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27307848,'N-00004723','RESPUESTA BANFAN:N-00004723','14.577,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(16.95 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27307848 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='14.577,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=4.060 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27307848 AND farc='2026-09-30' AND descripcion='14.577,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27307848,'2026-09-30',12.89,ROW_COUNT());
+
+-- 27420174 YADIERFESON ZARRAGA | 12.072,80 BS REF 859,06 BCV | esperado 14.05 USD, guardado 6.980, faltan 7.07
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27420174,'N-00004842','RESPUESTA BANFAN:N-00004842','12.072,80 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(14.05 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27420174 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='12.072,80 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=6.980 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27420174 AND farc='2026-09-30' AND descripcion='12.072,80 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27420174,'2026-09-30',7.07,ROW_COUNT());
+
+-- 27447679 ROXYBEL VILLANUEVA | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 29.070, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27447679,'N-00005290','RESPUESTA BANFAN:N-00005290','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27447679 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=29.070 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27447679 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27447679,'2026-09-30',2.93,ROW_COUNT());
+
+-- 27560267 ELVIMAR COLORADO | 21.027,00 BS REF 860,00 COBRANZA | esperado 24.45 USD, guardado 9.880, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27560267,'N-00004322','RESPUESTA BANFAN:N-00004322','21.027,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(24.45 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27560267 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.027,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=9.880 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27560267 AND farc='2026-09-30' AND descripcion='21.027,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27560267,'2026-09-30',14.57,ROW_COUNT());
+
+-- 27819006 GERSON RIVERA | 15.961,60 BS REF 860,00 COBRANZA | esperado 18.56 USD, guardado 3.990, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27819006,'N-00004691','RESPUESTA BANFAN:N-00004691','15.961,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(18.56 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27819006 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='15.961,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=3.990 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27819006 AND farc='2026-09-30' AND descripcion='15.961,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27819006,'2026-09-30',14.57,ROW_COUNT());
+
+-- 27829416 OSCAR SAAVEDRA | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27829416,'N-00006000','RESPUESTA BANFAN:N-00006000','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27829416 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27829416 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27829416,'2026-09-30',5.82,ROW_COUNT());
+
+-- 27863633 CARLOS ARIAS | 11.551,60 BS REF 859,06 BCV | esperado 13.45 USD, guardado 0.560, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27863633,'N-00003843','RESPUESTA BANFAN:N-00003843','11.551,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(13.45 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27863633 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='11.551,60 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=0.560 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27863633 AND farc='2026-09-30' AND descripcion='11.551,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27863633,'2026-09-30',12.89,ROW_COUNT());
+
+-- 27885679 LUIS TAVERAS | 16.701,20 BS REF 860,00 COBRANZA | esperado 19.42 USD, guardado 1.960, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27885679,'N-00004421','RESPUESTA BANFAN:N-00004421','16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27885679 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.701,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.960 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27885679 AND farc='2026-09-30' AND descripcion='16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27885679,'2026-09-30',17.46,ROW_COUNT());
+
+-- 27924009 ORIMAR ROMERO | 12.409,80 BS REF 860,00 COBRANZA | esperado 14.43 USD, guardado 1.540, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27924009,'N-00004506','RESPUESTA BANFAN:N-00004506','12.409,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(14.43 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27924009 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='12.409,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.540 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27924009 AND farc='2026-09-30' AND descripcion='12.409,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27924009,'2026-09-30',12.89,ROW_COUNT());
+
+-- 27979282 JESUS MEDINA | 21.147,40 BS REF 860,00 COBRANZA | esperado 24.59 USD, guardado 17.210, faltan 7.38
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 27979282,'N-00004908','RESPUESTA BANFAN:N-00004908','21.147,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(24.59 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=27979282 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.147,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=17.210 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=27979282 AND farc='2026-09-30' AND descripcion='21.147,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (27979282,'2026-09-30',7.38,ROW_COUNT());
+
+-- 28001357 EDGAR CAMEJO | 21.560,20 BS REF 860,00 COBRANZA | esperado 25.07 USD, guardado 13.430, faltan 11.64
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28001357,'N-00004502','RESPUESTA BANFAN:N-00004502','21.560,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(25.07 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28001357 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.560,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=13.430 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28001357 AND farc='2026-09-30' AND descripcion='21.560,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28001357,'2026-09-30',11.64,ROW_COUNT());
+
+-- 28105250 YINESCA SALAZAR | 12.375,40 BS REF 860,00 COBRANZA | esperado 14.39 USD, guardado 2.750, faltan 11.64
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28105250,'N-00005029','RESPUESTA BANFAN:N-00005029','12.375,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(14.39 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28105250 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='12.375,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=2.750 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28105250 AND farc='2026-09-30' AND descripcion='12.375,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28105250,'2026-09-30',11.64,ROW_COUNT());
+
+-- 28122307 DIEGO GUTIERREZ | 17.827,80 BS REF 860,00 COBRANZA | esperado 20.73 USD, guardado 3.270, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28122307,'N-00004686','RESPUESTA BANFAN:N-00004686','17.827,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(20.73 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28122307 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='17.827,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=3.270 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28122307 AND farc='2026-09-30' AND descripcion='17.827,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28122307,'2026-09-30',17.46,ROW_COUNT());
+
+-- 28179727 LEONARDO ROJAS | 24.656,20 BS REF 860,00 COBRANZA | esperado 28.67 USD, guardado 25.740, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28179727,'N-00004647','RESPUESTA BANFAN:N-00004647','24.656,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(28.67 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28179727 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='24.656,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=25.740 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28179727 AND farc='2026-09-30' AND descripcion='24.656,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28179727,'2026-09-30',2.93,ROW_COUNT());
+
+-- 28253596 JOSE HERNANDEZ | 21.070,00 BS REF 860,00 COBRANZA | esperado 24.50 USD, guardado 11.610, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28253596,'N-00005777','RESPUESTA BANFAN:N-00005777','21.070,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(24.50 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28253596 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.070,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=11.610 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28253596 AND farc='2026-09-30' AND descripcion='21.070,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28253596,'2026-09-30',12.89,ROW_COUNT());
+
+-- 28434767 BYAN JIMENEZ | 18.146,00 BS REF 860,00 COBRANZA | esperado 21.10 USD, guardado 6.530, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28434767,'N-00004720','RESPUESTA BANFAN:N-00004720','18.146,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(21.10 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28434767 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='18.146,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=6.530 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28434767 AND farc='2026-09-30' AND descripcion='18.146,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28434767,'2026-09-30',14.57,ROW_COUNT());
+
+-- 28509291 JORGE CASTILLO | 75.181,20 BS REF 860,00 COBRANZA | esperado 87.42 USD, guardado 55.420, faltan 32.00
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28509291,'N-00004326','RESPUESTA BANFAN:N-00004326','75.181,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(87.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28509291 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='75.181,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=55.420 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28509291 AND farc='2026-09-30' AND descripcion='75.181,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28509291,'2026-09-30',32.00,ROW_COUNT());
+
+-- 28529504 ANGELICA ALEN | 7.308,40 BS REF 859,06 BCV | esperado 8.51 USD, guardado 1.440, faltan 7.07
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 28529504,'N-00004438','RESPUESTA BANFAN:N-00004438','7.308,40 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(8.51 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=28529504 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='7.308,40 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.440 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=28529504 AND farc='2026-09-30' AND descripcion='7.308,40 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (28529504,'2026-09-30',7.07,ROW_COUNT());
+
+-- 29804435 DANIEL GARCIA | 22.764,20 BS REF 860,00 COBRANZA | esperado 26.47 USD, guardado 7.470, faltan 19.00
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 29804435,'N-00004089','RESPUESTA BANFAN:N-00004089','22.764,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.47 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=29804435 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='22.764,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=7.470 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=29804435 AND farc='2026-09-30' AND descripcion='22.764,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (29804435,'2026-09-30',19.00,ROW_COUNT());
+
+-- 29943630 AUDIO PARRA | 16.168,00 BS REF 860,00 COBRANZA | esperado 18.80 USD, guardado 1.340, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 29943630,'N-00004770','RESPUESTA BANFAN:N-00004770','16.168,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(18.80 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=29943630 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.168,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.340 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=29943630 AND farc='2026-09-30' AND descripcion='16.168,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (29943630,'2026-09-30',17.46,ROW_COUNT());
+
+-- 30005033 DAYLOR CASTILLO | 21.560,20 BS REF 860,00 COBRANZA | esperado 25.07 USD, guardado 13.430, faltan 11.64
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30005033,'N-00005081','RESPUESTA BANFAN:N-00005081','21.560,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(25.07 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30005033 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.560,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=13.430 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30005033 AND farc='2026-09-30' AND descripcion='21.560,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30005033,'2026-09-30',11.64,ROW_COUNT());
+
+-- 30009867 RITZABETH MARVEZ | 23.194,20 BS REF 860,00 COBRANZA | esperado 26.97 USD, guardado 15.330, faltan 11.64
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30009867,'N-00005289','RESPUESTA BANFAN:N-00005289','23.194,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.97 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30009867 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='23.194,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=15.330 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30009867 AND farc='2026-09-30' AND descripcion='23.194,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30009867,'2026-09-30',11.64,ROW_COUNT());
+
+-- 30126042 SIMON TAMBO | 22.626,60 BS REF 860,00 COBRANZA | esperado 26.31 USD, guardado 13.420, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30126042,'N-00004730','RESPUESTA BANFAN:N-00004730','22.626,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.31 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30126042 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='22.626,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=13.420 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30126042 AND farc='2026-09-30' AND descripcion='22.626,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30126042,'2026-09-30',12.89,ROW_COUNT());
+
+-- 30169367 FRENYER VALLENILLA | 12.375,40 BS REF 860,00 COBRANZA | esperado 14.39 USD, guardado 8.570, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30169367,'N-00005770','RESPUESTA BANFAN:N-00005770','12.375,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(14.39 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30169367 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='12.375,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=8.570 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30169367 AND farc='2026-09-30' AND descripcion='12.375,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30169367,'2026-09-30',5.82,ROW_COUNT());
+
+-- 30295290 ANTONIO MEDINA | 17.234,40 BS REF 860,00 COBRANZA | esperado 20.04 USD, guardado 5.470, faltan 14.57
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30295290,'N-00004461','RESPUESTA BANFAN:N-00004461','17.234,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(20.04 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30295290 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='17.234,40 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=5.470 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30295290 AND farc='2026-09-30' AND descripcion='17.234,40 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30295290,'2026-09-30',14.57,ROW_COUNT());
+
+-- 30327287 ROIBERT RAMOS | 32.473,60 BS REF 860,00 COBRANZA | esperado 37.76 USD, guardado 36.200, faltan 1.56
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30327287,'N-00004432','RESPUESTA BANFAN:N-00004432','32.473,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(37.76 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30327287 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='32.473,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=36.200 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30327287 AND farc='2026-09-30' AND descripcion='32.473,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30327287,'2026-09-30',1.56,ROW_COUNT());
+
+-- 30499391 CRISTOBAL SANCHEZ | 16.701,20 BS REF 860,00 COBRANZA | esperado 19.42 USD, guardado 1.960, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30499391,'N-00004595','RESPUESTA BANFAN:N-00004595','16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30499391 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.701,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.960 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30499391 AND farc='2026-09-30' AND descripcion='16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30499391,'2026-09-30',17.46,ROW_COUNT());
+
+-- 30577013 RONALD ZURITA | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30577013,'N-00005997','RESPUESTA BANFAN:N-00005997','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30577013 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30577013 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30577013,'2026-09-30',5.82,ROW_COUNT());
+
+-- 30594970 LINDA OJEDA | 10.000,00 BS REF 859,06 BCV | esperado 11.64 USD, guardado 3.730, faltan 7.91
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30594970,'N-00003990','RESPUESTA BANFAN:N-00003990','10.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(11.64 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30594970 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='10.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=3.730 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30594970 AND farc='2026-09-30' AND descripcion='10.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30594970,'2026-09-30',7.91,ROW_COUNT());
+
+-- 30691835 EMERSON ROMERO | 21.070,00 BS REF 860,00 COBRANZA | esperado 24.50 USD, guardado 11.610, faltan 12.89
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30691835,'N-00006029','RESPUESTA BANFAN:N-00006029','21.070,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(24.50 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30691835 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='21.070,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=11.610 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30691835 AND farc='2026-09-30' AND descripcion='21.070,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30691835,'2026-09-30',12.89,ROW_COUNT());
+
+-- 30995035 NATALIZ MARTINEZ | 16.701,20 BS REF 860,00 COBRANZA | esperado 19.42 USD, guardado 1.960, faltan 17.46
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 30995035,'N-00004404','RESPUESTA BANFAN:N-00004404','16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(19.42 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=30995035 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='16.701,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=1.960 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=30995035 AND farc='2026-09-30' AND descripcion='16.701,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (30995035,'2026-09-30',17.46,ROW_COUNT());
+
+-- 31218640 ALAN MARTINEZ | 23.194,20 BS REF 860,00 COBRANZA | esperado 26.97 USD, guardado 15.330, faltan 11.64
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 31218640,'N-00004966','RESPUESTA BANFAN:N-00004966','23.194,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.97 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=31218640 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='23.194,20 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=15.330 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=31218640 AND farc='2026-09-30' AND descripcion='23.194,20 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (31218640,'2026-09-30',11.64,ROW_COUNT());
+
+-- 31567622 ARLY RONDON | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 26.180, faltan 5.82
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 31567622,'N-00006014','RESPUESTA BANFAN:N-00006014','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=31567622 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=26.180 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=31567622 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (31567622,'2026-09-30',5.82,ROW_COUNT());
+
+-- 31786326 RAINY RODRIGUEZ | 27.520,00 BS REF 860,00 COBRANZA | esperado 32.00 USD, guardado 29.070, faltan 2.93
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 31786326,'N-00006002','RESPUESTA BANFAN:N-00006002','27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(32.00 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=31786326 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='27.520,00 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=29.070 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=31786326 AND farc='2026-09-30' AND descripcion='27.520,00 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (31786326,'2026-09-30',2.93,ROW_COUNT());
+
+-- 32144683 WILKER MEDINA | 25.000,00 BS REF 859,06 BCV | esperado 29.10 USD, guardado 28.260, faltan 0.84
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 32144683,'N-00004104','RESPUESTA BANFAN:N-00004104','25.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(29.10 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=32144683 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='25.000,00 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=28.260 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=32144683 AND farc='2026-09-30' AND descripcion='25.000,00 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (32144683,'2026-09-30',0.84,ROW_COUNT());
+
+-- 32178977 IRWIN GOMEZ | 5.323,60 BS REF 859,06 BCV | esperado 6.20 USD, guardado 3.260, faltan 2.94
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 32178977,'N-00003687','RESPUESTA BANFAN:N-00003687','5.323,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(6.20 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=32178977 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.323,60 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=3.260 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=32178977 AND farc='2026-09-30' AND descripcion='5.323,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (32178977,'2026-09-30',2.94,ROW_COUNT());
+
+-- 34146535 ABDON CARABALLO | 5.022,60 BS REF 859,06 BCV | esperado 5.85 USD, guardado 2.910, faltan 2.94
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 34146535,'N-00003538','RESPUESTA BANFAN:N-00003538','5.022,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(5.85 - g.s, 2),'2026-10-03 12:29:19',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=34146535 AND farc='2026-09-30' AND modificado='2026-10-03 12:29:19' AND SUBSTRING_INDEX(descripcion,' | ',1)='5.022,60 BS REF 859,06 BCV' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=2.910 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=34146535 AND farc='2026-09-30' AND descripcion='5.022,60 BS REF 859,06 BCV | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (34146535,'2026-09-30',2.94,ROW_COUNT());
+
+-- 9476892 WILDER CONTRERAS | 23.056,60 BS REF 860,00 COBRANZA | esperado 26.81 USD, guardado 14.560, faltan 12.25
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 9476892,'N-00005158','RESPUESTA BICENTENARIO:N-00005158','23.056,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(26.81 - g.s, 2),'2026-10-03 13:11:30',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=9476892 AND farc='2026-09-30' AND modificado='2026-10-03 13:11:30' AND SUBSTRING_INDEX(descripcion,' | ',1)='23.056,60 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=14.560 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=9476892 AND farc='2026-09-30' AND descripcion='23.056,60 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (9476892,'2026-09-30',12.25,ROW_COUNT());
+
+-- 25617915 ORANGEL RAMIREZ | 17.268,80 BS REF 860,00 COBRANZA | esperado 20.08 USD, guardado 3.780, faltan 16.30
+INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,modificado,mesp,anop,moda,farc,usua)
+SELECT 25617915,'N-00004178','RESPUESTA BICENTENARIO:N-00004178','17.268,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)','2026-09-01',ROUND(20.08 - g.s, 2),'2026-10-03 13:11:30',9,2026,25,'2026-09-30',0
+FROM (SELECT IFNULL(SUM(monto),0) s, COUNT(*) n FROM t_lista_cobros WHERE documento_id=25617915 AND farc='2026-09-30' AND modificado='2026-10-03 13:11:30' AND SUBSTRING_INDEX(descripcion,' | ',1)='17.268,80 BS REF 860,00 COBRANZA' AND descripcion NOT LIKE '%AJUSTE SOBRANTE NO REGISTRADO%') g
+WHERE g.n=1 AND ROUND(g.s,3)=3.780 AND NOT EXISTS (SELECT 1 FROM t_lista_cobros WHERE documento_id=25617915 AND farc='2026-09-30' AND descripcion='17.268,80 BS REF 860,00 COBRANZA | AJUSTE SOBRANTE NO REGISTRADO (fix 2026-10-03)');
+INSERT INTO tmp_fix_sobrante VALUES (25617915,'2026-09-30',16.30,ROW_COUNT());
+
+COMMIT;
+
+-- Resumen
+SELECT SUM(insertado=1) AS ajustes_insertados, SUM(insertado=0) AS saltados,
+       ROUND(SUM(CASE WHEN insertado=1 THEN faltante_estimado END),2) AS usd_abonados
+FROM tmp_fix_sobrante;
+
+-- Clientes SALTADOS (sus cobros cambiaron desde la copia o ya tenían ajuste): revisar a mano
+SELECT documento_id, farc, faltante_estimado FROM tmp_fix_sobrante WHERE insertado=0;
+
+DROP TEMPORARY TABLE IF EXISTS tmp_fix_sobrante;

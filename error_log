@@ -1,0 +1,1905 @@
+[24-Apr-2024 15:45:04 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6211): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000006')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[07-May-2024 09:10:06 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5604): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[23-May-2024 15:30:07 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5604): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[25-May-2024 13:59:11 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6211): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000008')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[03-Jun-2024 17:20:38 America/Caracas] PHP Fatal error:  Constant expression contains invalid operations in /home/grupoele/public_html/system/application/models/ccreditos.php on line 145
+[03-Jun-2024 17:21:34 America/Caracas] PHP Fatal error:  Constant expression contains invalid operations in /home/grupoele/public_html/system/application/models/ccreditos.php on line 145
+[03-Jun-2024 17:21:35 America/Caracas] PHP Fatal error:  Constant expression contains invalid operations in /home/grupoele/public_html/system/application/models/ccreditos.php on line 145
+[03-Jun-2024 17:21:37 America/Caracas] PHP Fatal error:  Constant expression contains invalid operations in /home/grupoele/public_html/system/application/models/ccreditos.php on line 145
+[10-Jun-2024 18:38:54 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000009')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[10-Jun-2024 19:05:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000011')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[13-Jun-2024 09:58:32 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('8696181')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[13-Jun-2024 11:45:10 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('8710067')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[26-Jun-2024 09:47:45 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('22986680')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[28-Jun-2024 17:28:02 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000012')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[02-Jul-2024 12:11:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('26073054')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[02-Jul-2024 12:11:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('26073054')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[02-Jul-2024 16:14:48 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('21181444')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[03-Jul-2024 15:45:32 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('17521053')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[03-Jul-2024 16:58:54 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('7226333')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[10-Jul-2024 09:47:33 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('17550488')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[23-Jul-2024 11:05:49 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('18798080')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[24-Jul-2024 11:31:14 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('14267962')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[24-Jul-2024 12:57:46 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('13677434')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[26-Jul-2024 16:16:44 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[26-Jul-2024 16:23:29 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[26-Jul-2024 16:23:52 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[27-Jul-2024 10:13:37 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000014')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[27-Jul-2024 10:13:42 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000014')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[27-Jul-2024 10:15:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000014')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[27-Jul-2024 10:15:50 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000014')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[01-Aug-2024 11:34:18 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15920680')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[01-Aug-2024 11:34:20 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15920680')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[01-Aug-2024 16:03:13 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('31837358')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[01-Aug-2024 16:08:29 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000014')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[05-Aug-2024 11:47:03 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('9471108')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[06-Aug-2024 16:03:11 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('26344690')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[06-Aug-2024 16:03:11 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('26344690')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[06-Aug-2024 19:34:20 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('14267069')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[12-Aug-2024 09:43:05 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15031243')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[12-Aug-2024 10:45:40 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('11465326')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[17-Aug-2024 14:14:26 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[26-Aug-2024 11:34:28 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('16444115')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[31-Aug-2024 12:58:55 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30803285')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Sep-2024 10:37:24 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('23583865')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Sep-2024 11:06:34 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000017')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[09-Sep-2024 09:47:52 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('23724636')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[11-Sep-2024 09:38:25 America/Caracas] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php:73
+Stack trace:
+#0 /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php(73): mysqli_connect()
+#1 /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php(88): CI_DB_mysqli_driver->db_connect()
+#2 /home/grupoele/public_html/system/database/DB_driver.php(115): CI_DB_mysqli_driver->db_pconnect()
+#3 /home/grupoele/public_html/system/database/DB.php(138): CI_DB_driver->initialize()
+#4 /home/grupoele/public_html/system/libraries/Loader.php(224): DB()
+#5 /home/grupoele/public_html/system/libraries/Loader.php(985): CI_Loader->database()
+#6 /home/grupoele/public_html/system/libraries/Controller.php(83): CI_Loader->_ci_autoloader()
+#7 /home/grupoele/public_html/system/libraries/Controller.php(43): Controller->_ci_initialize()
+#8 /home/grupoele/public_html/system/application/controllers/cooperativa.php(13): Controller->__construct()
+#9 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(201): cooperativa->__construct()
+#10 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#11 {main}
+  thrown in /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php on line 73
+[11-Sep-2024 09:39:13 America/Caracas] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php:73
+Stack trace:
+#0 /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php(73): mysqli_connect('158.69.5.191', 'grupoele_admin', Object(SensitiveParameterValue), 'grupoele_electr...')
+#1 /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php(88): CI_DB_mysqli_driver->db_connect()
+#2 /home/grupoele/public_html/system/database/DB_driver.php(115): CI_DB_mysqli_driver->db_pconnect()
+#3 /home/grupoele/public_html/system/database/DB.php(138): CI_DB_driver->initialize()
+#4 /home/grupoele/public_html/system/libraries/Loader.php(224): DB(Array, false)
+#5 /home/grupoele/public_html/system/libraries/Loader.php(985): CI_Loader->database()
+#6 /home/grupoele/public_html/system/libraries/Controller.php(83): CI_Loader->_ci_autoloader()
+#7 /home/grupoele/public_html/system/libraries/Controller.php(43): Controller->_ci_initialize()
+#8 /home/grupoele/public_html/system/application/controllers/cooperativa.php(13): Controller->__construct()
+#9 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(201): cooperativa->__construct()
+#10 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#11 {main}
+  thrown in /home/grupoele/public_html/system/database/drivers/mysqli/mysqli_driver.php on line 73
+[14-Sep-2024 18:09:47 America/Caracas] PHP Parse error:  syntax error, unexpected '$Consulta' (T_VARIABLE) in /home/grupoele/public_html/system/application/models/reporte/preciboingreso.php on line 34
+[14-Sep-2024 19:00:18 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:00:18 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:03:28 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:03:28 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:16:33 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:16:33 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('17456121')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:17:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[14-Sep-2024 19:18:13 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[14-Sep-2024 19:18:27 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('17456121', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[14-Sep-2024 19:19:51 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[14-Sep-2024 19:19:55 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[14-Sep-2024 19:25:00 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[14-Sep-2024 19:25:02 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[14-Sep-2024 19:29:08 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:29:08 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:33:43 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:33:43 America/Caracas] PHP Fatal error:  Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:34:21 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:34:21 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('17456121')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:45:57 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[14-Sep-2024 19:46:01 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('17456121', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[14-Sep-2024 19:46:16 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:46:16 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('17456121')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:47:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:47:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('17456121')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[14-Sep-2024 19:59:58 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[14-Sep-2024 19:59:58 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('17456121')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 08:54:56 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 08:54:56 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('17456121')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:29:28 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[16-Sep-2024 09:31:59 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('11034917', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:32:39 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[16-Sep-2024 09:32:54 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('11034917', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:34:27 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('11034917', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:35:05 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('11034917', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:35:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('11034917', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:35:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('11034917', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:35:42 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:35:42 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('11034917')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:36:18 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:36:18 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('11034917')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:36:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:36:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('12331211')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:36:52 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:202
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7583): MBuscar->Listar_Facturas('12331211', ' > 0')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarActivos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 202
+[16-Sep-2024 09:36:57 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:36:57 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('31837358')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:37:20 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:202
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7583): MBuscar->Listar_Facturas('31837358', ' > 0')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarActivos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 202
+[16-Sep-2024 09:37:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:37:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('31837358')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:38:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:38:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('31837358')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:41:19 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:41:19 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('20394171')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:43:02 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:43:02 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('31837358')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:43:12 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 09:43:12 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('20394171')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 09:43:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[16-Sep-2024 09:43:20 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/controllers/cooperativa.php:129
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->getClientesBtn()
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 129
+[16-Sep-2024 09:43:25 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('20394171', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:43:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('31837358', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:48:41 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/persona/mpersona.php:47
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(3144): MPersona->jsPersona('31837358', Object(CPersonas))
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->DataSource_Cliente()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/persona/mpersona.php on line 47
+[16-Sep-2024 09:59:51 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/vistas/mvistas.php:453
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7406): MVistas->Filtro_Solicitud()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->GV_FSoli()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/vistas/mvistas.php on line 453
+[16-Sep-2024 10:00:18 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/vistas/mvistas.php:453
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7406): MVistas->Filtro_Solicitud()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->GV_FSoli()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/vistas/mvistas.php on line 453
+[16-Sep-2024 10:00:39 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/vistas/mvistas.php:453
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7406): MVistas->Filtro_Solicitud()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->GV_FSoli()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/vistas/mvistas.php on line 453
+[16-Sep-2024 10:00:42 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/vistas/mvistas.php:453
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7406): MVistas->Filtro_Solicitud()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->GV_FSoli()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/vistas/mvistas.php on line 453
+[16-Sep-2024 10:00:52 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/vistas/mvistas.php:453
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7406): MVistas->Filtro_Solicitud()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->GV_FSoli()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/vistas/mvistas.php on line 453
+[16-Sep-2024 10:01:56 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 10:01:56 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('31837358')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 10:04:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 10:04:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('20394171')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 10:04:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('20394171')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[16-Sep-2024 10:04:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 10:04:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:202
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7583): MBuscar->Listar_Facturas('20394171', ' > 0')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarActivos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 202
+[16-Sep-2024 10:04:39 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:202
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7589): MBuscar->Listar_Facturas('20394171', ' <=0')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarCancelado()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 202
+[16-Sep-2024 10:04:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:1653
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7682): MBuscar->Combo_Modalidad()
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Combo_Modalidad()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 1653
+[16-Sep-2024 10:04:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function json_encode() in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php:59
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(7566): MBuscar->Datos_Basicos('20394171')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ProcesarDatosBasicos()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/application/models/buscar/mbuscar.php on line 59
+[18-Sep-2024 09:32:50 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[19-Sep-2024 16:27:24 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('23838568')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[23-Sep-2024 12:50:03 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[02-Oct-2024 18:15:27 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('17290809')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[05-Oct-2024 11:43:07 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('10718615')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[06-Oct-2024 16:24:27 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000021')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[21-Oct-2024 15:59:17 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('10106893')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[22-Oct-2024 10:04:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15751049')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[22-Oct-2024 10:32:07 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('19997832')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[22-Oct-2024 10:32:21 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('19996997')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[28-Oct-2024 10:49:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('12351753')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[30-Oct-2024 18:40:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('9477403')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[02-Nov-2024 11:07:07 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30533828')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[12-Nov-2024 10:27:34 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000022')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[27-Nov-2024 10:34:03 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('21332096')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[10-Dec-2024 15:59:11 America/Caracas] PHP Fatal error:  Uncaught Error: Method name must be a string in /home/grupoele/public_html/system/application/controllers/cooperativa.php:297
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ipdf('VENEZUELA', 'N-00000817')
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 297
+[11-Dec-2024 17:51:28 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('16199117')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[11-Dec-2024 17:58:08 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15920624')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[18-Dec-2024 17:13:09 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000025')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[19-Dec-2024 16:04:49 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('6948149')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[17-Jan-2025 18:09:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000026')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[18-Jan-2025 11:47:22 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[24-Jan-2025 10:17:01 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[24-Jan-2025 10:21:42 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[30-Jan-2025 10:16:18 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000027')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[04-Feb-2025 15:12:39 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('19997832')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[06-Feb-2025 18:03:31 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('23579750')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[14-Feb-2025 18:19:57 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('16908408')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[15-Feb-2025 11:58:25 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[20-Feb-2025 17:26:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to a member function () on null in /home/grupoele/public_html/system/application/controllers/cooperativa.php:297
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ipdf('VENEZUELA', 'N-00001655')
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 297
+[24-Feb-2025 20:49:33 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('19996997')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[24-Feb-2025 20:57:45 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('5108257')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[14-Mar-2025 10:03:49 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[28-Mar-2025 09:40:20 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000029')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[28-Mar-2025 12:47:14 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[01-Apr-2025 18:36:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('7805371')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[01-Apr-2025 19:16:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('8024050')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Apr-2025 12:29:16 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000030')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[07-Apr-2025 18:05:41 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('11952026')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[07-Apr-2025 22:54:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('18577833')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[07-Apr-2025 23:02:41 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('17456121')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[13-Apr-2025 18:22:07 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000031')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[25-Apr-2025 18:48:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('14623895')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[05-May-2025 17:09:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('28209462')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[05-May-2025 17:14:04 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('28209462')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[05-May-2025 19:07:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000032')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[14-May-2025 16:09:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000033')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[16-May-2025 09:43:03 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000035')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[16-May-2025 18:37:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[19-May-2025 10:13:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('17130130')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[23-May-2025 10:29:11 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000036')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[23-May-2025 10:29:24 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000036')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[23-May-2025 10:29:39 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000036')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[02-Jun-2025 11:25:00 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000036')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[05-Jun-2025 11:28:52 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('11463878')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[13-Jun-2025 16:56:16 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('27364429')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[13-Jun-2025 19:23:01 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('8045915')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[20-Jun-2025 11:32:54 America/Caracas] PHP Fatal error:  Uncaught Error: Method name must be a string in /home/grupoele/public_html/system/application/controllers/cooperativa.php:297
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ipdf('VENEZUELA', 'N-00001992')
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 297
+[25-Jun-2025 11:51:36 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[01-Jul-2025 12:27:08 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000040')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[02-Jul-2025 09:35:17 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('31734241')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[03-Jul-2025 12:32:44 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('17456121')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[07-Jul-2025 12:21:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000041')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[07-Jul-2025 12:21:41 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000041')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[11-Jul-2025 10:16:32 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15854551')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[16-Jul-2025 12:22:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000042')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[22-Jul-2025 12:18:19 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('14805359')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[27-Jul-2025 20:00:21 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('16013258')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[27-Jul-2025 20:03:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('16013258')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[15-Aug-2025 18:32:40 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[23-Aug-2025 11:16:02 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000048')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[31-Aug-2025 14:48:31 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[05-Sep-2025 18:56:50 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('18619298')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[09-Sep-2025 00:00:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('18619298')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[25-Sep-2025 12:11:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000050')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[29-Sep-2025 14:18:04 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('16664112')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Oct-2025 11:26:49 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000052')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[17-Oct-2025 10:35:44 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30885541')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[17-Oct-2025 10:35:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30885541')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[22-Oct-2025 17:39:58 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000057')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[22-Oct-2025 17:56:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000058')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[29-Oct-2025 10:36:33 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[03-Nov-2025 11:07:45 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('21181444')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[07-Nov-2025 14:54:11 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('13099608')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[10-Nov-2025 10:41:35 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('19500498')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[26-Nov-2025 13:05:46 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000061')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[09-Dec-2025 09:00:26 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('27011256')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[16-Dec-2025 19:38:17 America/Caracas] PHP Fatal error:  Uncaught Error: Call to a member function () on null in /home/grupoele/public_html/system/application/controllers/cooperativa.php:297
+Stack trace:
+#0 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->ipdf('BICENTENARIO', 'N-00002737')
+#1 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#2 {main}
+  thrown in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 297
+[07-Jan-2026 22:49:12 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000062')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[08-Jan-2026 14:55:39 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000063')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[09-Jan-2026 19:18:14 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000064')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[20-Jan-2026 17:43:19 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000066')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[26-Jan-2026 08:57:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('10109939')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Feb-2026 12:19:25 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[04-Feb-2026 12:19:29 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[10-Feb-2026 10:05:13 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[10-Feb-2026 18:20:26 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[10-Feb-2026 18:20:40 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[10-Feb-2026 18:35:38 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[13-Feb-2026 19:51:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000068')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[17-Feb-2026 14:49:13 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[18-Feb-2026 17:29:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000071')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[20-Feb-2026 17:53:28 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000072')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[25-Feb-2026 09:11:29 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[25-Feb-2026 09:11:43 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[25-Feb-2026 13:13:35 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000073')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[26-Feb-2026 18:06:03 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php:19
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): PReeciboegreso->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(6213): CI_Loader->model('Preeciboegreso', 'PReciboegreso')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Imprime_Recibo_Egreso('RE-000074')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/reporte/preeciboegreso.php on line 19
+[03-Mar-2026 10:02:49 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[04-Mar-2026 09:31:04 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('22347198')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Mar-2026 09:45:09 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('25549674')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[04-Mar-2026 13:27:51 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('29957609')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[09-Mar-2026 08:03:42 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('28150023')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[10-Mar-2026 15:39:52 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8287): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('11463652')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[10-Mar-2026 16:44:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[16-Mar-2026 15:40:29 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[16-Mar-2026 18:47:01 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[16-Mar-2026 21:09:14 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[16-Mar-2026 21:16:48 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/creportesxls.php:49
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): CReportesXls->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(5606): CI_Loader->model('Creportesxls')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->Exporta_Exel()
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/creportesxls.php on line 49
+[17-Mar-2026 07:08:19 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8323): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('19997832')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[17-Mar-2026 16:30:47 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8323): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('27310946')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[15-Apr-2026 11:05:12 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8323): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('15174422')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[24-Apr-2026 17:24:07 America/Caracas] PHP Parse error:  syntax error, unexpected '$objWˆiter' (T_VARIABLE) in /home/grupoele/public_html/system/application/libraries/excel/Classes/PHPExcel/Writer/Excel2007/Drawing.php on line 130
+[24-Apr-2026 17:27:23 America/Caracas] PHP Parse error:  syntax error, unexpected '$objWˆiter' (T_VARIABLE) in /home/grupoele/public_html/system/application/libraries/excel/Classes/PHPExcel/Writer/Excel2007/Drawing.php on line 130
+[29-Apr-2026 12:16:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30895127')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[29-Apr-2026 12:16:15 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30895127')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[29-Apr-2026 12:41:08 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('26746378')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[07-May-2026 11:59:00 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('29957623')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[23-May-2026 11:39:09 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('24968200')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[24-May-2026 22:05:51 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('25144006')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[24-May-2026 22:15:44 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('24672157')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[27-May-2026 07:54:29 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('28349304')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[27-May-2026 07:54:30 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('28349304')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[31-May-2026 12:15:23 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30885541')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[06-Jun-2026 15:34:03 America/Caracas] PHP Parse error:  Invalid numeric literal in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 1744
+[06-Jun-2026 15:34:05 America/Caracas] PHP Parse error:  Invalid numeric literal in /home/grupoele/public_html/system/application/controllers/cooperativa.php on line 1744
+[26-Jun-2026 18:40:50 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('30697598')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[07-Jul-2026 10:42:50 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function uct() in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php:13
+Stack trace:
+#0 /home/grupoele/public_html/system/libraries/Loader.php(184): MAuditoria->__construct()
+#1 /home/grupoele/public_html/system/application/controllers/cooperativa.php(8303): CI_Loader->model('Mauditoria', 'Auditoria')
+#2 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(236): cooperativa->CargarNotaCredito('31093168')
+#3 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#4 {main}
+  thrown in /home/grupoele/public_html/system/application/models/auditoria/mauditoria.php on line 13
+[13-Jul-2026 16:53:43 America/Caracas] PHP Fatal error:  Uncaught Error: Class 'Cmenu' not found in /home/grupoele/public_html/system/libraries/Loader.php:184
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(16): CI_Loader->model('Cmenu')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(201): cooperativa->__construct()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/libraries/Loader.php on line 184
+[13-Jul-2026 16:53:43 America/Caracas] PHP Fatal error:  Uncaught Error: Class 'Cmenu' not found in /home/grupoele/public_html/system/libraries/Loader.php:184
+Stack trace:
+#0 /home/grupoele/public_html/system/application/controllers/cooperativa.php(16): CI_Loader->model('Cmenu')
+#1 /home/grupoele/public_html/system/codeigniter/CodeIgniter.php(201): cooperativa->__construct()
+#2 /home/grupoele/public_html/index.php(115): require_once('/home/grupoele/...')
+#3 {main}
+  thrown in /home/grupoele/public_html/system/libraries/Loader.php on line 184

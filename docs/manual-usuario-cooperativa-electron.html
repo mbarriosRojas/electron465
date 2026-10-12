@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Usuario — Cooperativa Electron</title>
+<style>
+:root{--bg:#ffffff;--surface:#f8fafc;--surface2:#f1f5f9;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb;--accent2:#059669;--warn:#d97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+.layout{display:flex;min-height:100vh}
+nav.sidebar{width:300px;background:var(--surface);border-right:1px solid var(--border);position:fixed;height:100vh;overflow-y:auto;padding:1.25rem 0}
+nav.sidebar h2{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:.5rem 1.25rem;margin-top:.75rem}
+nav.sidebar a{display:block;padding:.4rem 1.25rem;color:var(--muted);text-decoration:none;font-size:.84rem;border-left:3px solid transparent}
+nav.sidebar a:hover{color:var(--accent);background:var(--surface2);border-left-color:var(--accent)}
+main{margin-left:300px;flex:1;padding:2.5rem 3rem;max-width:1050px;background:var(--bg)}
+header{margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+header h1{font-size:1.9rem;color:var(--accent);font-weight:700}
+.meta{color:var(--muted);font-size:.9rem}
+section{margin-bottom:2.5rem;scroll-margin-top:1rem}
+section>h2{font-size:1.45rem;margin-bottom:1rem;padding-bottom:.4rem;border-bottom:2px solid var(--accent);color:#0f172a}
+section>h3{font-size:1.1rem;margin:1.25rem 0 .6rem;color:#1d4ed8}
+section>h4{font-size:.95rem;margin:1rem 0 .4rem;color:var(--muted)}
+p,li{font-size:.93rem}
+ul,ol{margin:.4rem 0 1rem 1.4rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.15rem;margin:1rem 0}
+.alert{padding:1rem;border-radius:8px;margin:1rem 0;border-left:4px solid}
+.alert-info{background:#eff6ff;border-color:var(--accent);color:#1e3a8a}
+.alert-warn{background:#fffbeb;border-color:var(--warn);color:#92400e}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem}
+th,td{border:1px solid var(--border);padding:.55rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--surface2);color:#1e40af;font-weight:600}
+tr:nth-child(even){background:#f8fafc}
+.badge{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.72rem;font-weight:600;background:#dbeafe;color:#1d4ed8}
+.step{border-left:3px solid var(--accent2);padding:.5rem 1rem;margin:.5rem 0;background:var(--surface);border-radius:0 6px 6px 0}
+.btn-desc{color:var(--accent2);font-weight:600}
+a{color:var(--accent)}
+code{background:#f1f5f9;border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px;font-size:.85em}
+@media print{nav.sidebar{display:none}main{margin-left:0}}
+@media(max-width:900px){nav.sidebar{display:none}main{margin-left:0;padding:1.5rem}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <h2>Manual</h2>
+  <a href="#intro">1. ¿Qué es la plataforma?</a>
+  <a href="#acceso">2. Acceso e inicio</a>
+  <a href="#navegacion">3. Navegación general</a>
+  <a href="#perfiles">4. Perfiles y menús</a>
+  <h2>Módulos</h2>
+  <a href="#buzon">5. Lo Nuevo / Buzón</a>
+  <a href="#cliente">6. Cliente</a>
+  <a href="#inventario">7. Inventario</a>
+  <a href="#recibos">8. Recibos</a>
+  <a href="#panel">9. Panel de Control</a>
+  <a href="#factura-control">10. Factura Control</a>
+  <a href="#configurar">11. Configurar</a>
+  <a href="#portal">12. Portal del cliente</a>
+  <h2>Reportes (detalle)</h2>
+  <a href="#reportes-intro">13. Módulo Reportes</a>
+  <a href="#reportes-iconos">13.1 Iconos del panel</a>
+  <a href="#reportes-descargas">13.2 Descargas</a>
+  <a href="#reportes-generales">13.3 Reportes Generales</a>
+  <a href="#reportes-modificaciones">13.4 Modificaciones</a>
+  <a href="#contratos-guia">13.5 Contratos y morosidad</a>
+  <a href="#cobranza">14. Cobranza y TXT</a>
+  <a href="#cobranza-crear">14.1 Crear TXT</a>
+  <a href="#cobranza-leer">14.2 Leer TXT</a>
+  <a href="#cobranza-venezuela">14.3 Banco Venezuela</a>
+  <a href="#cobranza-bfc">14.4 Cobranza BFC</a>
+  <a href="#glosario">15. Glosario</a>
+</nav>
+
+<main>
+<header>
+  <h1>Manual de Usuario — Cooperativa Electron</h1>
+  <p class="meta">Sistema de gestión de créditos al consumo · Grupo Electron / Cooperativa Electron 465 RL · Versión 2.0.0 · Junio 2026</p>
+</header>
+
+<section id="intro">
+<h2>1. ¿Qué es la plataforma?</h2>
+<p><strong>Cooperativa Electron</strong> es el sistema interno (staff) para gestionar el ciclo completo de créditos al consumo de empleados públicos y afiliados. No es una app de escritorio: es una aplicación web accesible desde el navegador.</p>
+
+<div class="card">
+<strong>La plataforma sirve para:</strong>
+<ul>
+  <li>Registrar clientes y crear solicitudes de crédito (asistente paso a paso).</li>
+  <li>Aprobar o rechazar contratos mediante un <strong>buzón de trabajo</strong> (workflow).</li>
+  <li>Facturar, cobrar por nómina (descuento en cuenta bancaria) y controlar pagos.</li>
+  <li>Gestionar inventario de mercancía y entregas a clientes.</li>
+  <li>Emitir recibos de ingreso/egreso contables.</li>
+  <li>Generar reportes operativos, contables y de cobranza.</li>
+  <li>Intercambiar archivos TXT con bancos para cobranza masiva.</li>
+</ul>
+</div>
+
+<p>Existe además un <strong>portal del cliente</strong> (acceso separado) donde el afiliado consulta su estado de cuenta e imprime constancias, sin ver los módulos internos.</p>
+</section>
+
+<section id="acceso">
+<h2>2. Acceso e inicio de sesión</h2>
+
+<h3>Pantalla de login (staff)</h3>
+<p>URL: <code>/index.php/cooperativa/login</code></p>
+<table>
+<tr><th>Campo</th><th>Descripción</th></tr>
+<tr><td>Nombre de Usuario</td><td>Su <strong>seudónimo</strong> registrado en el sistema (ej. <code>yuli</code>, <code>Carlos</code>). Distingue mayúsculas/minúsculas.</td></tr>
+<tr><td>Contraseña</td><td>Clave personal. El sistema la valida internamente.</td></tr>
+<tr><td>Botón Ingresar</td><td>Envía el formulario. Si las credenciales son correctas, redirige al buzón o pantalla principal según su perfil.</td></tr>
+</table>
+
+<div class="alert alert-warn">
+Si la sesión expira, verá el mensaje <em>"Ha finalizado la sesión"</em>. Vuelva a iniciar sesión. Use <strong>Cerrar Sesión</strong> en el menú para salir de forma segura.
+</div>
+
+<h3>Barra superior común</h3>
+<p>En casi todas las pantallas aparecen:</p>
+<ul>
+  <li><strong>Menú horizontal</strong> — módulos según su perfil.</li>
+  <li><strong>Buscador</strong> — localizar clientes por cédula o nombre.</li>
+  <li><strong>Usuario conectado y fecha</strong> — en el encabezado de cada módulo.</li>
+</ul>
+</section>
+
+<section id="navegacion">
+<h2>3. Navegación general — mapa de módulos</h2>
+
+<table>
+<tr><th>Menú principal</th><th>Para qué sirve</th><th>Ruta</th></tr>
+<tr><td><strong>Lo Nuevo</strong></td><td>Buzón de contratos pendientes de su acción (aprobaciones, rechazos, cuotas programadas).</td><td><code>buzon</code></td></tr>
+<tr><td><strong>Cliente</strong></td><td>Registro de afiliados, asistente de crédito, expedientes, certificaciones, ventas de contado.</td><td>varios</td></tr>
+<tr><td><strong>Factura Control</strong></td><td>Registrar número de control fiscal de facturas emitidas.</td><td><code>factura_control</code></td></tr>
+<tr><td><strong>Reportes</strong></td><td>Panel de reportes, descargas, cobranza TXT, modificaciones.</td><td><code>reportes</code></td></tr>
+<tr><td><strong>Configurar</strong></td><td>Cambiar contraseña y datos personales del usuario.</td><td><code>Configurar</code></td></tr>
+<tr><td><strong>Inventario</strong></td><td>Ver mercancía, órdenes de entrega, material de oficina. (Solo algunos perfiles)</td><td><code>inventario</code></td></tr>
+<tr><td><strong>Panel de Control</strong></td><td>Administración: usuarios, ubicaciones, traslados, planes. (Solo admin)</td><td><code>Panel</code></td></tr>
+<tr><td><strong>Recibos de Ingreso / Egreso</strong></td><td>Comprobantes contables de entradas y salidas de dinero.</td><td><code>Recibo_Ingreso</code> / <code>Recibo_Egreso</code></td></tr>
+<tr><td><strong>Cobranza BFC</strong></td><td>Generación legacy de archivos BFC. (Solo usuario <code>poleeth</code>)</td><td><code>Cobranza</code></td></tr>
+<tr><td><strong>Cerrar Sesión</strong></td><td>Finaliza la sesión activa.</td><td><code>logout</code></td></tr>
+</table>
+
+<div class="alert alert-info">
+<strong>Importante:</strong> No todos los usuarios ven todos los menús. El sistema muestra opciones según su <strong>nivel (perfil)</strong>, su <strong>usuario</strong> y su <strong>ubicación</strong> (oficina).
+</div>
+</section>
+
+<section id="perfiles">
+<h2>4. Perfiles de usuario — qué menú ve cada uno</h2>
+
+<table>
+<tr><th>Nivel</th><th>Rol típico</th><th>Acceso destacado</th></tr>
+<tr><td>0</td><td>Super administrador</td><td>Todo: Panel, Inventario, TXT cobranza, todos los reportes, Liquidación, Recibos.</td></tr>
+<tr><td>2</td><td>Reportes / cobranza</td><td>Menú TXT (Crear/Leer/Ver), Venezuela, Reportes Generales.</td></tr>
+<tr><td>3</td><td>Operaciones</td><td>TXT + Recibos Ingreso + Control De Pagos + Control Mensual + Entregar Mercancía.</td></tr>
+<tr><td>4</td><td>Mérida Principal</td><td>Menú estándar; en Mérida: Recibos Egreso y Cambiar Ubicación.</td></tr>
+<tr><td>5</td><td>Inventario limitado</td><td>Reportes de inventario y Control De Pagos (solo su ubicación).</td></tr>
+<tr><td>8–9</td><td>Inventario + operaciones</td><td>Inventario completo, Acuse, Reportes Generales, botones TXT en pantalla.</td></tr>
+<tr><td>10</td><td>Recibos</td><td>Recibos Ingreso, Acuse Administración, Entregar Mercancía.</td></tr>
+<tr><td>11</td><td>Voucher</td><td>Reporte Voucher y Transferencias.</td></tr>
+<tr><td>12</td><td>Mínimo</td><td>Solo Ver Expediente Digital + Salir.</td></tr>
+<tr><td>13–14</td><td>Depósito</td><td>Buzón, Registrar Cliente, Expedientes, Reportes (sin submenú TXT).</td></tr>
+<tr><td>15</td><td>Revisión</td><td>Expedientes Solicitud + Cambiar Ubicación.</td></tr>
+<tr><td>18</td><td>Semi-admin</td><td>Buzón, Cliente, Reportes, Control De Pagos, Facturas Formato Control.</td></tr>
+<tr><td>19</td><td>Analista expediente</td><td>Buzón, Expedientes, Reportes (Entrega de Mercancía).</td></tr>
+<tr><td>20</td><td>Solo buzón</td><td>Al entrar va directo a Reportes; menú mínimo (Principal + Salir).</td></tr>
+<tr><td>21</td><td>Auditoría</td><td>Módulo <code>archivosAuditoria</code> (sin menú estándar).</td></tr>
+</table>
+
+<h3>Usuarios con permisos especiales (por nombre)</h3>
+<table>
+<tr><th>Usuario</th><th>Capacidades extra</th></tr>
+<tr><td><code>Carlos</code> / <code>carlos</code></td><td>Casi todos los reportes e inventario, aunque su nivel no lo indique.</td></tr>
+<tr><td><code>yuli</code></td><td>Recibos Ingreso/Egreso, Cambiar Ubicación, Modificaciones.</td></tr>
+<tr><td><code>poleeth</code></td><td>Menú exclusivo <strong>Cobranza BFC</strong>.</td></tr>
+<tr><td><code>alvaro</code></td><td>Tratado como nivel 0 internamente; Liquidación, menú Mérida extendido.</td></tr>
+<tr><td><code>judelvis</code></td><td>Correo, Recepción Documentos, Modificaciones, Recibos Egreso.</td></tr>
+<tr><td><code>mvanalista11</code></td><td>Facturas Presupuesto y Facturas Formato Control en reportes.</td></tr>
+</table>
+</section>
+
+<!-- MÓDULOS -->
+<section id="buzon">
+<h2>5. Lo Nuevo — Buzón de actividades</h2>
+<p><strong>Propósito:</strong> Es la bandeja de entrada operativa. Aquí aparecen los contratos y tareas que requieren su decisión según su perfil en el flujo de aprobación.</p>
+
+<h3>Pestañas del buzón</h3>
+<table>
+<tr><th>Pestaña</th><th>Contenido</th><th>Acciones típicas</th></tr>
+<tr><td><strong>Créditos Pendientes</strong></td><td>Contratos en su etapa de workflow esperando aprobación o rechazo.</td><td>Revisar datos del cliente, aprobar (verdadero), rechazar (falso), ver detalle de cobro.</td></tr>
+<tr><td><strong>Cuotas Por Cobrar Programadas</strong></td><td>Cuotas con fecha de cobro próxima o programada.</td><td>Consultar estado de cuenta del contrato, verificar montos.</td></tr>
+<tr><td><strong>Rechazos Pendientes (X)</strong></td><td>Contratos rechazados que requieren seguimiento.</td><td>Revisar motivo, reenviar o corregir.</td></tr>
+<tr><td><strong>Envío de Aceptaciones Por Revisión</strong></td><td>Contratos aceptados pendientes de envío a revisión final.</td><td>Confirmar envío a siguiente etapa.</td></tr>
+</table>
+
+<h3>Submenú de Lo Nuevo (según perfil)</h3>
+<table>
+<tr><th>Opción</th><th>Para qué sirve</th></tr>
+<tr><td><strong>Asociar Entrega</strong></td><td>Abre módulo SUMI en nueva ventana para asociar entrega de mercancía al contrato.</td></tr>
+<tr><td><strong>Sugerencias</strong></td><td>Gestión de sugerencias internas del proceso.</td></tr>
+<tr><td><strong>Solicitud</strong></td><td>Consulta y gestión de solicitudes de crédito.</td></tr>
+<tr><td><strong>Liquidación</strong></td><td>Proceso de liquidación de contratos (solo nivel 0 y usuarios autorizados).</td></tr>
+<tr><td><strong>Cálculo Correo / Presupuesto Correo</strong></td><td>Herramientas de cálculo para envío por correo (Mérida y usuarios específicos).</td></tr>
+<tr><td><strong>Estatus Documentos</strong></td><td>Seguimiento de documentos recibidos de clientes.</td></tr>
+<tr><td><strong>Recep. Documentos</strong></td><td>Registro de recepción física de documentación.</td></tr>
+</table>
+
+<p>El contador <strong>Lo Nuevo (N)</strong> en el menú muestra cuántos ítems pendientes tiene en el buzón.</p>
+</section>
+
+<section id="cliente">
+<h2>6. Cliente — registro y asistente de crédito</h2>
+<p><strong>Propósito:</strong> Todo lo relacionado con el afiliado antes y durante la creación del crédito.</p>
+
+<table>
+<tr><th>Submenú</th><th>Qué hace</th><th>Cómo se usa</th></tr>
+<tr><td><strong>Registrar Usuario</strong></td><td>Alta de nuevo cliente en <code>t_personas</code>.</td><td>Complete cédula, nombres, datos laborales, nómina, cuenta bancaria. Guarde el registro.</td></tr>
+<tr><td><strong>Asistente</strong></td><td>Wizard paso a paso para crear un contrato de crédito.</td><td>Seleccione cliente → productos → condiciones → genera contrato y lo envía al buzón.</td></tr>
+<tr><td><strong>Expedientes Solicitud</strong></td><td>Carga/gestión de expedientes de solicitud (Mérida).</td><td>Suba documentos escaneados asociados a la solicitud.</td></tr>
+<tr><td><strong>Enviar Requisitos</strong></td><td>Certificación de que el cliente cumple requisitos.</td><td>Marque requisitos cumplidos y certifique.</td></tr>
+<tr><td><strong>Ver Expediente Digital</strong></td><td>Consulta documentos ya cargados.</td><td>Abre ventana emergente; busque por cédula.</td></tr>
+<tr><td><strong>Cargar Expediente Digital</strong></td><td>Subir archivos al expediente del cliente.</td><td>Seleccione cliente y archivos PDF/imagen.</td></tr>
+<tr><td><strong>Verifica Pronto Pago</strong></td><td>Validar elegibilidad para modalidad pronto pago.</td><td>Consulta automática según reglas del sistema.</td></tr>
+<tr><td><strong>Venta De Contado</strong></td><td>Venta sin financiamiento (pago único).</td><td>Registre productos y factura de contado.</td></tr>
+<tr><td><strong>Cálculo</strong></td><td>Calculadora de cuotas y montos.</td><td>Ventana emergente; ingrese monto, plazo, tasa.</td></tr>
+<tr><td><strong>Presupuesto</strong></td><td>Generar presupuesto de artefactos.</td><td>Ventana emergente con selección de productos.</td></tr>
+<tr><td><strong>Plan Corporativo</strong></td><td>Cotización bajo plan corporativo especial.</td><td>Ventana emergente.</td></tr>
+<tr><td><strong>Presupuesto Compuesto</strong></td><td>Presupuesto con múltiples ítems combinados.</td><td>Ventana emergente.</td></tr>
+<tr><td><strong>Archivo</strong></td><td>Gestión de archivo de clientes (perfil archivo).</td><td>Listado y consulta de expedientes archivados.</td></tr>
+<tr><td><strong>Recibos de Ingreso</strong></td><td>Emisión de recibo por pago recibido.</td><td>Ver sección Recibos.</td></tr>
+<tr><td><strong>Recibos de Egreso</strong></td><td>Emisión de recibo por pago realizado.</td><td>Ver sección Recibos.</td></tr>
+<tr><td><strong>C. Ubicación</strong></td><td>Cambiar oficina/ubicación asignada a facturas.</td><td>Seleccione facturas y nueva ubicación.</td></tr>
+<tr><td><strong>Expedientes Revisión</strong></td><td>Cola de expedientes para equipo de revisión.</td><td>Revise y apruebe documentación.</td></tr>
+<tr><td><strong>Entregar Mercancía</strong></td><td>Registrar entrega física al cliente.</td><td>Asocie contrato con mercancía del inventario.</td></tr>
+</table>
+</section>
+
+<section id="inventario">
+<h2>7. Inventario</h2>
+<p><strong>Propósito:</strong> Control de stock de productos (electrodomésticos, material de oficina) y órdenes de entrega.</p>
+<table>
+<tr><th>Submenú</th><th>Qué hace</th></tr>
+<tr><td><strong>Ver Mercancía</strong></td><td>Consulta inventario disponible por producto, marca, proveedor.</td></tr>
+<tr><td><strong>Orden de Entrega</strong></td><td>Crea órdenes para entregar mercancía a oficinas o clientes.</td></tr>
+<tr><td><strong>Material De Oficina</strong></td><td>Inventario específico de suministros de oficina.</td></tr>
+<tr><td><strong>Acuse Administración</strong></td><td>Acuse de recibo administrativo de mercancía.</td></tr>
+</table>
+</section>
+
+<section id="recibos">
+<h2>8. Recibos contables</h2>
+<table>
+<tr><th>Tipo</th><th>Propósito</th><th>Botones principales</th></tr>
+<tr><td><strong>Recibos de Ingreso</strong></td><td>Documentar dinero que <em>entra</em> (pagos de clientes, depósitos).</td><td>Nuevo recibo → datos del pagador, monto, concepto → Imprimir / Guardar.</td></tr>
+<tr><td><strong>Recibos de Egreso</strong></td><td>Documentar dinero que <em>sale</em> (pagos a proveedores, reintegros).</td><td>Mismo flujo con tipo egreso.</td></tr>
+</table>
+</section>
+
+<section id="panel">
+<h2>9. Panel de Control (administración)</h2>
+<p><strong>Acceso:</strong> Nivel 0, 8, 9 y usuario <code>carlos</code>.</p>
+<table>
+<tr><th>Submenú</th><th>Qué hace</th></tr>
+<tr><td><strong>Crear Usuario</strong></td><td>Alta de operadores del sistema (seudónimo, clave, perfil, ubicación, linaje).</td></tr>
+<tr><td><strong>Crear Ubicación</strong></td><td>Registrar sucursales/oficinas.</td></tr>
+<tr><td><strong>C. Ubicación</strong></td><td>Reasignar facturas entre ubicaciones.</td></tr>
+<tr><td><strong>Traslados Masivos</strong></td><td>Mover lotes de contratos entre analistas o ubicaciones.</td></tr>
+<tr><td><strong>Expedientes Solicitud</strong></td><td>Panel de expedientes a nivel administrativo.</td></tr>
+<tr><td><strong>Configurar Plan Corporativo</strong></td><td>Parámetros de planes corporativos de crédito.</td></tr>
+</table>
+
+<h3>Pestañas internas del Panel</h3>
+<p>Clientes · Nóminas · Contratos · Facturas · Inventario · Voucher · Instituciones · Bloqueo</p>
+<p>Cada pestaña permite consultar y editar registros maestros del sistema (bloqueo de clientes morosos, instituciones nominadoras, etc.).</p>
+</section>
+
+<section id="factura-control">
+<h2>10. Factura Control</h2>
+<p><strong>Propósito:</strong> Registrar el <strong>número de control</strong> fiscal de cada factura emitida, vinculado a empresa, cédula del cliente y productos.</p>
+
+<div class="step"><strong>Paso 1:</strong> Menú → <strong>Factura Control</strong></div>
+<div class="step"><strong>Paso 2:</strong> Complete el formulario dinámico: empresa (Cooperativa / Grupo), número de factura, número de control, cédula, nombre, fecha, teléfono, productos.</div>
+<div class="step"><strong>Paso 3:</strong> Presione <span class="btn-desc">Guardar</span> — el sistema valida y almacena en la base de datos.</div>
+
+<p>Este módulo <em>no genera</em> reportes en grilla; es un formulario de registro individual. Se usa antes de reportes de cobranza para asegurar trazabilidad fiscal.</p>
+</section>
+
+<section id="configurar">
+<h2>11. Configurar</h2>
+<p>Permite al usuario cambiar su <strong>contraseña</strong> y revisar datos de perfil. Accesible desde el menú en la mayoría de perfiles.</p>
+</section>
+
+<section id="portal">
+<h2>12. Portal del cliente (acceso externo)</h2>
+<p>URL separada: controlador <code>electron</code> (no <code>cooperativa</code>).</p>
+<ul>
+  <li>El cliente ingresa su <strong>cédula</strong>, últimos 4 dígitos de cuenta y captcha.</li>
+  <li>Puede <strong>consultar contratos activos</strong> y <strong>imprimir estado de cuenta</strong>.</li>
+  <li>No tiene acceso a buzón, reportes ni cobranza interna.</li>
+</ul>
+</section>
+
+<!-- REPORTES -->
+<section id="reportes-intro">
+<h2>13. Módulo Reportes — guía completa</h2>
+
+<p><strong>Propósito:</strong> Consultar, exportar y analizar información operativa. También concentra las herramientas de <strong>cobranza bancaria</strong> (archivos TXT).</p>
+
+<h3>Cómo llegar</h3>
+<p>Menú → <strong>Reportes</strong> → se abre el panel de iconos. También puede acceder a submódulos desde el submenú desplegable:</p>
+
+<table>
+<tr><th>Submenú Reportes</th><th>Pantalla</th><th>Quién lo ve</th></tr>
+<tr><td><strong>Descargas</strong></td><td>Plantillas Word/ZIP para contratos</td><td>Todos con menú Reportes</td></tr>
+<tr><td><strong>Crear Txt</strong></td><td>Generar archivo para enviar al banco</td><td>Nivel ≤ 3 (0,1,2,3)</td></tr>
+<tr><td><strong>Pendientes Por Procesar</strong></td><td>Subir respuesta del banco</td><td>Nivel ≤ 3</td></tr>
+<tr><td><strong>Archivos Procesados</strong></td><td>Historial de TXT enviados</td><td>Nivel ≤ 3</td></tr>
+<tr><td><strong>Cargar B. Venezuela</strong></td><td>Procesar respuesta Banco de Venezuela</td><td>Nivel ≤ 3</td></tr>
+<tr><td><strong>Reportes Generales</strong></td><td>Exportar XLS masivo por facturas o contratos</td><td>Nivel 0, 2, 3, 8, 9</td></tr>
+<tr><td><strong>Modificaciones</strong></td><td>Auditoría de cambios en el sistema</td><td>Nivel 0; también yuli/judelvis</td></tr>
+</table>
+
+<h3>Flujo común de cualquier reporte con icono</h3>
+<div class="step"><strong>1.</strong> Haga clic en el <strong>icono</strong> del reporte deseado.</div>
+<div class="step"><strong>2.</strong> Se abre un <strong>cuadro de diálogo</strong> con filtros (fechas, banco/linaje, nómina, empresa, etc.).</div>
+<div class="step"><strong>3.</strong> Complete los filtros obligatorios <span style="color:#f87171">(*)</span> y pulse <span class="btn-desc">Generar</span>.</div>
+<div class="step"><strong>4.</strong> Los resultados aparecen en la grilla inferior (<code>#Reportes</code>).</div>
+<div class="step"><strong>5.</strong> Use el botón <span class="btn-desc">Exportar XLS</span> de la grilla para descargar Excel, o <span class="btn-desc">Cerrar</span> para cerrar el diálogo.</div>
+</section>
+
+<section id="reportes-iconos">
+<h2>13.1 Panel de iconos — cada reporte explicado</h2>
+
+<table>
+<tr><th>Icono</th><th>Perfiles</th><th>Filtros principales</th><th>Qué muestra / para qué sirve</th></tr>
+<tr>
+  <td><strong>Estatus de Facturas</strong></td>
+  <td>Todos</td>
+  <td>Estatus crédito, dependencia, nómina, linaje (banco), fechas desde/hasta</td>
+  <td>Facturas pendientes por aceptar o en determinado estatus. Sirve para seguimiento de cartera antes de enviar a cobro.</td>
+</tr>
+<tr>
+  <td><strong>Cuadre de Caja</strong></td>
+  <td>0, 2, 3, 9</td>
+  <td>Empresa, nómina, linaje, forma de contrato, rango de fechas</td>
+  <td>Historial de cuotas cargadas vs. lo esperado. Cuadre diario de caja por analista.</td>
+</tr>
+<tr>
+  <td><strong>Buscar Contratos</strong></td>
+  <td>Todos</td>
+  <td>Empresa, tipo contrato, nómina, linaje, forma, día/mes/año, periodicidad</td>
+  <td>Búsqueda avanzada de contratos con múltiples criterios combinados.</td>
+</tr>
+<tr>
+  <td><strong>Número de Cuentas</strong></td>
+  <td>Todos</td>
+  <td>— (sin filtros)</td>
+  <td>Tabla estática con cuentas bancarias de Cooperativa Electron y Grupo Electron por banco (Sofitasa, Provincial, Venezuela, Bicentenario, etc.). Referencia para depósitos.</td>
+</tr>
+<tr>
+  <td><strong>Lista Direcciones</strong></td>
+  <td>Todos</td>
+  <td>— (sin filtros)</td>
+  <td>Direcciones, teléfonos y encargados de cada sucursal (Mérida, Barinas, Maracaibo, Valencia, etc.).</td>
+</tr>
+<tr>
+  <td><strong>Cheques</strong></td>
+  <td>0, 3, 9</td>
+  <td>Fechas, banco, estatus</td>
+  <td>Listado de cheques recibidos. Permite ver imagen escaneada del cheque desde la grilla.</td>
+</tr>
+<tr>
+  <td><strong>Voucher y Transferencias</strong></td>
+  <td>0, 9, 11</td>
+  <td>Fechas, filtros de voucher</td>
+  <td>Movimientos por voucher y transferencias bancarias registradas.</td>
+</tr>
+<tr>
+  <td><strong>Contratos Por Usuario</strong></td>
+  <td>0, 3, 5, 9</td>
+  <td>Usuario analista, fechas</td>
+  <td>Cuántos contratos gestionó cada vendedor/analista en un período.</td>
+</tr>
+<tr>
+  <td><strong>Depósitos Pendientes</strong></td>
+  <td>0, 13, 3, 8, 9</td>
+  <td>Fechas, ubicación</td>
+  <td>Depósitos bancarios registrados pero aún no conciliados. Clave para perfil Depósito (13/14).</td>
+</tr>
+<tr>
+  <td><strong>Inventario</strong></td>
+  <td>0, 8, 9, 5, 3, 18, Carlos</td>
+  <td>Producto, marca, ubicación, fechas</td>
+  <td>Stock actual y movimientos de mercancía.</td>
+</tr>
+<tr>
+  <td><strong>Control De Pagos</strong></td>
+  <td>0, 8, 9, 5, 3, 18, Carlos</td>
+  <td>Estatus (Todas / Sin Pago), ubicación, linaje, año, mes</td>
+  <td>Facturas que no han recibido pago en el período. Base para gestión de morosidad y cobranza.</td>
+</tr>
+<tr>
+  <td><strong>Ventas De Contado</strong></td>
+  <td>0, 8, 9, 5, Carlos</td>
+  <td>Fechas, ubicación</td>
+  <td>Facturas de venta al contado (sin financiamiento).</td>
+</tr>
+<tr>
+  <td><strong>Facturas Presupuesto</strong></td>
+  <td>0, 8, 9, 5, 18, Carlos, mvanalista11</td>
+  <td>Fechas, empresa, linaje</td>
+  <td>Facturas emitidas bajo modalidad presupuesto (antes de convertirse en contrato definitivo).</td>
+</tr>
+<tr>
+  <td><strong>Facturas Formato Control</strong></td>
+  <td>0, 8, 9, 5, 18, Carlos</td>
+  <td>Fechas, empresa</td>
+  <td>Facturas con número de control fiscal registrado (vinculado al módulo Factura Control).</td>
+</tr>
+<tr>
+  <td><strong>Entrega de Mercancía</strong></td>
+  <td>0, 8, 9, 5, 19, 15, Carlos</td>
+  <td>Fechas, ubicación, estatus entrega</td>
+  <td>Órdenes de entrega pendientes o completadas.</td>
+</tr>
+<tr>
+  <td><strong>Nuevos Clientes</strong></td>
+  <td>0, 8, 9, Carlos</td>
+  <td>Rango de fechas de registro</td>
+  <td>Clientes registrados recientemente.</td>
+</tr>
+<tr>
+  <td><strong>Solicitudes</strong></td>
+  <td>5, 8, 9, Carlos</td>
+  <td>Ubicación, fechas</td>
+  <td>Solicitudes de crédito por sucursal.</td>
+</tr>
+<tr>
+  <td><strong>Control Mensual</strong></td>
+  <td>0, 8, 9, 3, 2, Carlos</td>
+  <td>Empresa, linaje, forma contrato, día operación, mes/año pago, fecha archivo</td>
+  <td>Grilla <strong>editable</strong> del control mensual de pagos por nómina. Permite marcar cuotas cobradas y guardar lote con <span class="btn-desc">Guardar</span>.</td>
+</tr>
+<tr>
+  <td><strong>Control Cargas Domi</strong></td>
+  <td>0, 8, 9, 20, Carlos</td>
+  <td>Fecha desde / hasta</td>
+  <td>Archivos de domiciliación bancaria cargados en el período.</td>
+</tr>
+<tr>
+  <td><strong>Control Cargas Voucher</strong></td>
+  <td>0, 8, 9, 20, Carlos</td>
+  <td>Fecha desde / hasta</td>
+  <td>Cargas por voucher en el período.</td>
+</tr>
+<tr>
+  <td><strong>Cuadre de Vendedores</strong></td>
+  <td>0, Carlos</td>
+  <td>Fechas, vendedor</td>
+  <td>Rendimiento y cuadre por vendedor individual.</td>
+</tr>
+<tr>
+  <td><strong>Reportes Especiales</strong></td>
+  <td>Todos</td>
+  <td>Banco, estado contrato (Morosos / Al Día / Terminados)</td>
+  <td>Reporte avanzado con exportación Excel directa. Botones: <span class="btn-desc">Exportar Excel</span>, <span class="btn-desc">Limpiar</span>, <span class="btn-desc">Cerrar</span>.</td>
+</tr>
+</table>
+
+<div class="alert alert-info">
+Los botones <span class="btn-desc">Generar</span> y <span class="btn-desc">Cerrar</span> aparecen en todos los diálogos de filtro. La grilla TGrid incluye paginación, ordenamiento por columna y exportación XLS en la barra superior de la grilla.
+</div>
+</section>
+
+<section id="reportes-descargas">
+<h2>13.2 Descargas — plantillas documentales</h2>
+<p>Menú Reportes → <strong>Descargas</strong>. No requiere filtros: cada icono descarga un archivo directamente.</p>
+<table>
+<tr><th>Botón / enlace</th><th>Archivo</th><th>Uso</th></tr>
+<tr><td>Formato De Garantías</td><td><code>garantias.zip</code></td><td>Plantillas de garantía para contratos.</td></tr>
+<tr><td>Formatos De Autorización Grupo</td><td><code>autorizacion_g.docx</code></td><td>Autorización de descuento — Grupo Electron.</td></tr>
+<tr><td>Formatos De Autorización Cooperativa</td><td><code>autorizacion_c.docx</code></td><td>Autorización de descuento — Cooperativa.</td></tr>
+<tr><td>Pagaré</td><td><code>pagare.doc</code></td><td>Documento pagaré estándar.</td></tr>
+<tr><td>Pagaré Especial</td><td><code>pagare_es.doc</code></td><td>Variante de pagaré.</td></tr>
+<tr><td>NOMINA</td><td><code>NOMINAS.zip</code></td><td>Formatos relacionados con nóminas.</td></tr>
+<tr><td>Electrodoméstico Con/Sin Abono</td><td><code>.doc</code></td><td>Contratos de electrodomésticos.</td></tr>
+<tr><td>Circular Gobernación Mérida</td><td><code>circular2.jpg</code></td><td>Documento informativo.</td></tr>
+<tr><td>Reserva De Dominio Con/Sin Abono</td><td><code>.doc</code></td><td>Cláusulas de reserva de dominio.</td></tr>
+<tr><td>Acta (Mérida) / Acta (Vigía)</td><td><code>.doc</code></td><td>Actas de entrega por ciudad.</td></tr>
+</table>
+</section>
+
+<section id="reportes-generales">
+<h2>13.3 Reportes Generales — exportación masiva XLS</h2>
+<p>Menú Reportes → <strong>Reportes Generales</strong></p>
+
+<table>
+<tr><th>Icono</th><th>Botón</th><th>Resultado</th></tr>
+<tr>
+  <td><strong>POR FACTURAS</strong></td>
+  <td><span class="btn-desc">Generar</span> en diálogo de filtros</td>
+  <td>Archivo Excel con listado masivo de facturas según filtros (empresa, linaje, nómina, fechas, estatus).</td>
+</tr>
+<tr>
+  <td><strong>POR CONTRATOS</strong></td>
+  <td><span class="btn-desc">Generar</span></td>
+  <td>Archivo Excel con contratos completos y sus condiciones.</td>
+</tr>
+</table>
+<p>Use estos reportes cuando necesite extraer grandes volúmenes de datos para análisis externo (Excel, contabilidad).</p>
+</section>
+
+<section id="reportes-modificaciones">
+<h2>13.4 Modificaciones — auditoría de cambios</h2>
+<p>Menú Reportes → <strong>Modificaciones</strong></p>
+<table>
+<tr><th>Campo</th><th>Descripción</th></tr>
+<tr><td>Desde / Hasta</td><td>Rango de fechas del cambio.</td></tr>
+<tr><td>Tipo</td><td>Tipo de modificación (lista desde catálogo del sistema).</td></tr>
+<tr><td><span class="btn-desc">Buscar</span></td><td>Ejecuta consulta y muestra grilla con historial de cambios (quién, qué, cuándo).</td></tr>
+</table>
+<p>Sirve para auditoría interna: rastrear alteraciones en contratos, facturas, clientes, etc.</p>
+</section>
+
+<section id="contratos-guia">
+<h2>13.5 Guía de contratos, periodicidad y morosidad</h2>
+
+<div class="alert alert-info">
+Esta sección explica cómo la plataforma maneja los contratos de crédito, cuándo un afiliado queda <strong>moroso</strong> según la <strong>periodicidad</strong> del contrato, y por qué al generar el <strong>TXT de cobranza</strong> debe incluirse el saldo <strong>viejo o restante</strong> más la cuota del periodo actual — incluso si el mes anterior solo pagó <strong>parte</strong> de la cuota.
+</div>
+
+<h3>¿Qué es un contrato en la plataforma?</h3>
+<p>Cada crédito activo queda en la tabla <code>t_clientes_creditos</code>. Una <strong>factura</strong> puede tener <strong>varios contratos</strong> (cuota regular + aguinaldo + vacaciones, etc.). Cada contrato tiene:</p>
+<ul>
+  <li><strong>Monto por cuota</strong> (<code>monto_cuota</code>) y <strong>cantidad de cuotas</strong> (<code>numero_cuotas</code>)</li>
+  <li><strong>Periodicidad</strong> — cada cuánto vence: semanal, quincenal, mensual…</li>
+  <li><strong>Forma de contrato</strong> — único, aguinaldo, vacaciones, extra…</li>
+  <li><strong>Dónde se cobra</strong> (<code>cobrado_en</code>) — banco de nómina, domiciliación, voucher…</li>
+  <li><strong>Fecha inicio de cobro</strong> — desde cuándo corre el plan</li>
+</ul>
+
+<h3>Tipos de contrato (forma)</h3>
+<table>
+<tr><th>Forma</th><th>Significado operativo</th></tr>
+<tr><td>Único (0)</td><td>Cuota regular del financiamiento — la más usada en nómina y domiciliación.</td></tr>
+<tr><td>Aguinaldos (1)</td><td>Cuota especial en mes de aguinaldo (contrato aparte).</td></tr>
+<tr><td>Vacaciones (2)</td><td>Cuota especial en mes de vacaciones.</td></tr>
+<tr><td>Extra / Especial (3–5)</td><td>Cobros extraordinarios adicionales.</td></tr>
+<tr><td>Pronto pago / Bonoexpress (6–7)</td><td>Modalidades especiales de descuento.</td></tr>
+</table>
+
+<h3>Periodicidad — define cuándo se vuelve moroso</h3>
+<p><strong>Importante:</strong> la morosidad no se mide siempre “por mes civil”. Depende de la periodicidad del contrato:</p>
+<table>
+<tr><th>Periodicidad</th><th>Cada cuánto vence una cuota</th><th>Ejemplo de mora</th></tr>
+<tr><td>Semanal</td><td>~cada semana</td><td>Si no pagó la semana 1, la semana 2 debe incluir lo pendiente + cuota nueva.</td></tr>
+<tr><td>Quincenal (10–25 o 15–30)</td><td>~cada 15 días</td><td>Atraso de una quincena se arrastra a la siguiente.</td></tr>
+<tr><td>Mensual</td><td>Cada mes desde <code>fecha_inicio_cobro</code></td><td>Si no pagó enero, febrero debe cobrar enero pendiente + febrero.</td></tr>
+<tr><td>Trimestral / Semestral / Anual</td><td>3, 6 o 12 meses</td><td>La cuota “vencida” solo aparece al cumplirse ese intervalo.</td></tr>
+<tr><td>Mensual-10 / Mensual-25</td><td>Mensual con corte día 10 o 25</td><td>El calendario de vencimiento sigue ese día del mes.</td></tr>
+</table>
+
+<h3>Domiciliación: meta del cobro</h3>
+<p>Cuando el cliente paga por <strong>domiciliación</strong> (débito a cuenta), la meta del sistema es la misma que en nómina:</p>
+<ul>
+  <li>Cobrar <code>monto_cuota</code> en cada periodo definido por la periodicidad.</li>
+  <li>Hasta completar <code>numero_cuotas</code> o el <code>monto_total</code>.</li>
+  <li>Registrar cada pago (total o parcial) en el historial de cobros.</li>
+</ul>
+<p>Los días/meses exactos de cobro <strong>no se escriben a mano</strong>: el sistema los calcula con el plan de pagos (<code>GPlanCobro</code>) a partir de la fecha de inicio y la periodicidad.</p>
+
+<h3>Control de pagos: Pagada, Abonada, Pendiente</h3>
+<p>Todos los pagos reales quedan en <code>t_lista_cobros</code>. El sistema compara lo pagado contra el plan de cuotas:</p>
+<table>
+<tr><th>Estado</th><th>Qué significa</th></tr>
+<tr><td><strong>Pagada</strong></td><td>Se cubrió el monto completo de esa cuota del plan.</td></tr>
+<tr><td><strong>Abonada</strong></td><td>Pago parcial — quedó saldo pendiente en esa cuota.</td></tr>
+<tr><td><strong>Pendiente</strong></td><td>No hubo pago para esa cuota del plan.</td></tr>
+</table>
+<p>Saldo total pendiente del contrato: <code>monto_total − suma de pagos</code>.</p>
+
+<h3>Regla clave para el TXT de cobranza</h3>
+<div class="card">
+<p>Al generar el archivo para el banco (<strong>Reportes → Crear TXT</strong>, tipo <strong>Cobranza</strong>), el monto por afiliado debería ser, en principio:</p>
+<p style="font-size:1.05rem;margin:1rem 0"><strong>Monto a cobrar = Saldo pendiente de cuotas vencidas + Cuota(s) del periodo actual</strong></p>
+<p>El saldo pendiente incluye cuotas <strong>no pagadas</strong> y cuotas <strong>abonadas parcialmente</strong>.</p>
+</div>
+
+<h3>Ejemplo práctico (mensual con abono parcial)</h3>
+<table>
+<tr><th>Paso</th><th>Detalle</th></tr>
+<tr><td>Cuota mensual acordada</td><td><strong>100 Bs.</strong></td></tr>
+<tr><td>Mes anterior — debía pagar</td><td>100 Bs.</td></tr>
+<tr><td>Mes anterior — banco descontó solo</td><td><strong>40 Bs.</strong> (abono parcial → cuota <em>Abonada</em>)</td></tr>
+<tr><td>Saldo arrastrado</td><td>100 − 40 = <strong>60 Bs.</strong></td></tr>
+<tr><td>Mes actual — cuota nueva</td><td><strong>100 Bs.</strong></td></tr>
+<tr><td><strong>Total en TXT de este mes</strong></td><td>60 + 100 = <strong>160 Bs.</strong></td></tr>
+</table>
+<ul>
+  <li>Si no hubiera pagado nada el mes anterior → <strong>200 Bs.</strong> (100 + 100).</li>
+  <li>Si hubiera pagado los 100 completos → solo <strong>100 Bs.</strong> del mes nuevo.</li>
+</ul>
+
+<h3>Flujo resumido del ciclo de cobro</h3>
+<ol>
+  <li><strong>Asistente de crédito</strong> crea contrato(s) ligados a una factura.</li>
+  <li>El contrato pasa por el <strong>buzón</strong> hasta quedar activo.</li>
+  <li>El sistema genera un <strong>plan de cuotas</strong> (fechas según periodicidad).</li>
+  <li><strong>Crear TXT</strong> envía al banco los montos a descontar (incluyendo atrasos y parciales — lógica en programa <code>Gtxt</code>).</li>
+  <li><strong>Leer TXT</strong> (respuesta del banco) registra lo efectivamente cobrado en <code>t_lista_cobros</code>.</li>
+  <li><strong>Control Mensual</strong> permite registrar o corregir pagos manualmente si hace falta.</li>
+  <li><strong>Control De Pagos</strong> consulta quién debe y cuánto resta por factura/contrato.</li>
+</ol>
+
+<div class="alert alert-warn">
+<strong>Parámetros al crear TXT:</strong> además de banco y nómina, revise <strong>forma de contrato</strong>, <strong>periodicidad</strong> y sobre todo <strong>Hasta la fecha</strong> (día/mes/año de corte). Esa fecha determina qué cuotas se consideran vencidas y deben sumarse al cobro del periodo.
+</div>
+
+<p>Detalle técnico ampliado: <a href="analisis-plataforma-cooperativa-electron.html#mod-contratos-morosidad">Análisis §5.4.1 Contratos y morosidad</a>.</p>
+</section>
+
+<!-- COBRANZA -->
+<section id="cobranza">
+<h2>14. Cobranza bancaria — módulo integrado en Reportes</h2>
+
+<p>La cobranza por nómina funciona intercambiando <strong>archivos TXT</strong> con los bancos. El flujo tiene dos direcciones:</p>
+<ul>
+  <li><strong>Salida (envío):</strong> El sistema genera un TXT con los montos a descontar → se envía al banco.</li>
+  <li><strong>Entrada (respuesta):</strong> El banco devuelve un TXT con los resultados → el sistema lo procesa y registra pagos.</li>
+</ul>
+<p>Antes de operar cobranza, consulte la <a href="#contratos-guia">guía de contratos y morosidad (§13.5)</a>: explica cómo se acumulan cuotas atrasadas y abonos parciales al generar el TXT.</p>
+
+<div class="alert alert-warn">
+<strong>Banco de Venezuela</strong> es un caso especial: el sistema solo <em>recibe y procesa</em> la respuesta del banco. No genera TXT de envío desde <code>cargaVenezuela</code>.
+</div>
+</section>
+
+<section id="cobranza-crear">
+<h2>14.1 Crear TXT — generar archivo para el banco</h2>
+<p>Ruta: Reportes → <strong>Crear Txt</strong> → icono <strong>Generar TXT</strong></p>
+
+<h3>Campos del formulario</h3>
+<table>
+<tr><th>Campo</th><th>Opciones</th><th>Significado</th></tr>
+<tr><td>Tipo (*)</td><td>Afiliación / Cobranza / Manual</td><td>A = nuevas afiliaciones al descuento; C = cobro de cuotas; M = proceso manual.</td></tr>
+<tr><td>Empresa (*)</td><td>Cooperativa / Grupo / Ambas</td><td>Razón social emisora del archivo.</td></tr>
+<tr><td>Linaje</td><td>Lista de bancos</td><td>Banco donde se cobrará (Provincial, Bicentenario, etc.).</td></tr>
+<tr><td>Nómina</td><td>Depende del linaje</td><td>Ente nominador (MINED, ULA, etc.).</td></tr>
+<tr><td>Tipo contrato</td><td>Único, Aguinaldos, Vacaciones, Extra…</td><td>Modalidad del descuento.</td></tr>
+<tr><td>Periodicidad</td><td>Mensual, Quincenal, Semanal…</td><td>Frecuencia del cobro.</td></tr>
+<tr><td>Hasta La Fecha (*)</td><td>Día / Mes / Año</td><td>Corte de cuotas a incluir en el archivo. Determina qué cuotas vencidas y pendientes se suman al cobro del periodo (ver <a href="#contratos-guia">§13.5</a>).</td></tr>
+<tr><td>Método de picar</td><td>Opciones de formato</td><td>Divide montos grandes en varios débitos (ej. 160 Bs. con picar 100 → 100 + 60).</td></tr>
+</table>
+
+<div class="alert alert-info">
+Al generar cobranza, cada afiliado debería llevar en el TXT: <strong>lo que aún debe de cuotas anteriores</strong> (incluidos abonos parciales) <strong>+ la cuota del periodo actual</strong>. Ejemplo: debía 100, pagó 40 → arrastra 60; cuota nueva 100 → total <strong>160 Bs.</strong> Véase <a href="#contratos-guia">Guía de contratos y morosidad</a>.
+</div>
+
+<h3>Botones</h3>
+<table>
+<tr><th>Botón</th><th>Acción</th></tr>
+<tr><td><span class="btn-desc">Generar</span></td><td>Construye el archivo TXT mediante el procesador interno y lo deja disponible para descarga/envío al banco.</td></tr>
+<tr><td><span class="btn-desc">Cerrar</span></td><td>Cierra el diálogo sin generar.</td></tr>
+</table>
+</section>
+
+<section id="cobranza-leer">
+<h2>14.2 Leer TXT — procesar respuesta del banco</h2>
+<p>Ruta: Reportes → <strong>Pendientes Por Procesar</strong></p>
+
+<h3>Al abrir la pantalla</h3>
+<p>Se carga automáticamente una grilla con archivos TXT <strong>pendientes de procesar</strong> (generados previamente y esperando respuesta).</p>
+
+<h3>Formulario de carga</h3>
+<table>
+<tr><th>Campo</th><th>Descripción</th></tr>
+<tr><td>Tipo</td><td>Afiliación (A) o Cobranza (C).</td></tr>
+<tr><td>Certificado / Nómina / Linaje</td><td>Identificadores del lote.</td></tr>
+<tr><td>Archivo</td><td>Archivo TXT devuelto por el banco.</td></tr>
+</table>
+
+<h3>Botones y flujo</h3>
+<table>
+<tr><th>Botón</th><th>Acción</th></tr>
+<tr><td><span class="btn-desc">Generar</span></td><td>Sube el archivo y lo parsea; muestra vista previa de registros encontrados.</td></tr>
+<tr><td><span class="btn-desc">Procesar</span></td><td>Confirma e inserta los pagos en <code>t_lista_cobros</code>. Actualiza estatus de cuotas.</td></tr>
+<tr><td><span class="btn-desc">Cerrar</span></td><td>Cancela sin procesar.</td></tr>
+</table>
+
+<p>Ruta complementaria: Reportes → <strong>Archivos Procesados</strong> muestra el historial de TXT ya enviados al banco (solo consulta).</p>
+</section>
+
+<section id="cobranza-venezuela">
+<h2>14.3 Cargar B. Venezuela — respuesta Banco de Venezuela</h2>
+<p>Ruta: Reportes → <strong>Cargar B. Venezuela</strong></p>
+
+<table>
+<tr><th>Icono</th><th>Botón</th><th>Qué hace</th></tr>
+<tr>
+  <td><strong>Cargar TXT</strong></td>
+  <td><span class="btn-desc">Generar</span></td>
+  <td>Sube archivo de respuesta del Banco de Venezuela, lo lee y registra en tablas <code>t_archivos_venezuela</code> y <code>t_cargar_txt_venezuela</code>.</td>
+</tr>
+<tr>
+  <td><strong>Archivos Pendientes</strong></td>
+  <td><span class="btn-desc">Ver</span></td>
+  <td>Lista archivos cargados pendientes de asignación de contrato.</td>
+</tr>
+</table>
+
+<h3>Asignación de contratos (diálogo adicional)</h3>
+<p>Cuando un registro del TXT no coincide automáticamente con un contrato, aparece el diálogo <strong>Asignar Contrato</strong>:</p>
+<ul>
+  <li>Seleccione el contrato correcto de la lista.</li>
+  <li>Botón <span class="btn-desc">Guardar</span> — vincula el pago al contrato y actualiza la cuota.</li>
+</ul>
+</section>
+
+<section id="cobranza-bfc">
+<h2>14.4 Cobranza BFC — flujo legacy (solo poleeth)</h2>
+<p>Menú exclusivo: <strong>Cobranza BFC</strong> (visible solo para usuario <code>poleeth</code>).</p>
+<table>
+<tr><th>Enlace</th><th>Qué genera</th></tr>
+<tr><td>Cobranza BFC</td><td>Archivo TXT formato UNOM (cobranza normal).</td></tr>
+<tr><td>Cobranza BFC Aguinaldos</td><td>Archivo TXT formato ANOM (aguinaldos).</td></tr>
+</table>
+<p>Es un flujo anterior al sistema <code>Gtxt</code> moderno. Los demás usuarios de cobranza usan <strong>Crear Txt</strong> en el submenú Reportes.</p>
+</section>
+
+<section id="glosario">
+<h2>15. Glosario de términos</h2>
+<table>
+<tr><th>Término</th><th>Significado en la plataforma</th></tr>
+<tr><td><strong>Linaje</strong></td><td>Banco donde se realiza el descuento por nómina (ej. BICENTENARIO, PROVINCIAL).</td></tr>
+<tr><td><strong>Nómina / Procedencia</strong></td><td>Ente empleador que descuenta (MINED, ULA, Gobernación, etc.).</td></tr>
+<tr><td><strong>Forma contrato</strong></td><td>Modalidad: Único, Aguinaldos, Vacaciones, Extra, Pronto Pago, etc.</td></tr>
+<tr><td><strong>Factura</strong></td><td>Documento de venta asociado a un contrato; tiene número de factura y control fiscal.</td></tr>
+<tr><td><strong>Contrato</strong></td><td>Acuerdo de crédito con cuotas, vinculado a cliente y factura.</td></tr>
+<tr><td><strong>Periodicidad</strong></td><td>Frecuencia de vencimiento de cuotas (semanal, quincenal, mensual…). Define cuándo se considera moroso.</td></tr>
+<tr><td><strong>Moroso / Sin pago</strong></td><td>Contrato con cuotas vencidas según su plan y periodicidad, sin cubrir el monto esperado.</td></tr>
+<tr><td><strong>Abonada</strong></td><td>Cuota con pago parcial: se pagó algo pero no el monto_cuota completo; el resto se arrastra.</td></tr>
+<tr><td><strong>Resta</strong></td><td>Saldo pendiente del contrato: monto_total menos suma de pagos en t_lista_cobros.</td></tr>
+<tr><td><strong>Domiciliación</strong></td><td>Cobro por débito directo a cuenta bancaria (cobrado_en = DOMICILIACION).</td></tr>
+<tr><td><strong>Plan de cobro</strong></td><td>Cronograma teórico de cuotas calculado desde fecha_inicio_cobro + periodicidad + numero_cuotas.</td></tr>
+<tr><td><strong>Buzón</strong></td><td>Cola de trabajo del workflow; cada perfil ve contratos en su etapa.</td></tr>
+<tr><td><strong>TXT</strong></td><td>Archivo de texto plano para intercambio con bancos (cobranza masiva).</td></tr>
+<tr><td><strong>GVista</strong></td><td>Formulario dinámico generado por el sistema según esquema de campos.</td></tr>
+<tr><td><strong>TGrid</strong></td><td>Grilla de resultados con paginación, filtros y exportación Excel.</td></tr>
+<tr><td><strong>Nivel</strong></td><td>Número de perfil (0–21) que determina permisos y menú visible.</td></tr>
+<tr><td><strong>Ubicación</strong></td><td>Sucursal/oficina del usuario (ej. Mérida Principal, Barinas).</td></tr>
+<tr><td><strong>Seudónimo</strong></td><td>Nombre de usuario para login (campo <code>seudonimo</code> en BD).</td></tr>
+</table>
+
+<div class="card" style="margin-top:2rem">
+<strong>Documentos relacionados</strong>
+<ul>
+  <li><a href="analisis-plataforma-cooperativa-electron.html">Análisis técnico de plataforma</a> — arquitectura, BD, endpoints y planificación de HUs.</li>
+</ul>
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>
